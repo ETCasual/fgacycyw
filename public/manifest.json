@@ -1,0 +1,21 @@
+{
+	"name": "YWKL App",
+	"short_name": "YWKL",
+	"icons": [
+		{
+			"src": "/logo-128x128.png",
+			"sizes": "128x128",
+			"type": "image/png"
+		},
+		{
+			"src": "/logo-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#fff",
+	"background_color": "#fff",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait"
+}
