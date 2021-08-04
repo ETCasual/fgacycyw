@@ -13,7 +13,7 @@ export const Card: React.FC<CardProps> = ({ image, to, name, home }) => {
 	const router = useRouter()
 	return (
 		<div
-			className="w-full h-[200px] lg:h-[300px] cursor-pointer rounded-xl bg-center bg-cover relative z-[1] bg-no-repeat my-5"
+			className="w-full h-[200px] lg:h-[300px] cursor-pointer rounded-none lg:rounded-xl bg-center bg-cover relative z-[1] bg-no-repeat"
 			onClick={() => {
 				to ? router.push(to) : null
 			}}
@@ -29,7 +29,7 @@ export const Card: React.FC<CardProps> = ({ image, to, name, home }) => {
 				/>
 			) : null}
 			{name ? (
-				<p className="absolute z-[3] left-10 bottom-5 font-montserrat font-semibold text-lg">
+				<p className="absolute z-[3] left-10 bottom-5 font-montserrat font-semibold text-white text-lg">
 					{name}
 				</p>
 			) : null}

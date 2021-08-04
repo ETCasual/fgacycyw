@@ -13,7 +13,7 @@ import Head from 'next/head'
 const cards = [
 	{
 		image: '/assets/upcoming.png',
-		name: 'Upcoming Events',
+		name: 'YWKL Conference',
 		to: '/upcoming'
 	},
 	{
@@ -42,20 +42,20 @@ const Home: NextPage = () => {
 						Hello, {user.username}
 					</p>
 				</div>
-				<div className="w-full h-full flex flex-col px-10 sm:px-20">
+				<div className="w-full h-full flex flex-col px-10 sm:px-20 mb-3">
 					<p className="text-xl my-3 font-montserrat text-[#210440] font-semibold">
 						Welcome Home!
 					</p>
-					<div className="flex flex-row w-[150px] justify-between">
+					<div className="flex flex-row w-[300px] justify-between">
 						<p
-							className={`font-century text-[#210440]  text-lg ${
+							className={`font-century text-[#210440] text-lg ${
 								!aboutUs
 									? 'pb-1 border-b-[3px] border-[#FFBA00]'
 									: 'cursor-pointer'
 							}`}
 							onClick={() => setAboutUs(false)}
 						>
-							Home
+							Ready, Go!
 						</p>
 						<p
 							className={`font-century text-[#210440] text-lg ${
@@ -65,15 +65,22 @@ const Home: NextPage = () => {
 							}`}
 							onClick={() => setAboutUs(true)}
 						>
-							About Us
+							It all starts here...
 						</p>
 					</div>
 				</div>
+				{/* <iframe
+					src="https://www.youtube.com/embed/uGaRPMsFXnc"
+					title="YouTube video player"
+					frameBorder="0"
+					className=" px-10 sm:px-20 w-full h-[500px]"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowFullScreen
+				/> */}
 				{!aboutUs ? (
-					<div className="flex lg:flex-row flex-col gap-5 px-10 sm:px-20 items-center justify-center w-full h-full">
+					<div className="flex lg:flex-row flex-col px-0 sm:px-20 items-center justify-center w-full h-full">
 						{cards.map((card, i) => (
 							<Card
-								home
 								key={i}
 								to={card.to}
 								image={card.image}
