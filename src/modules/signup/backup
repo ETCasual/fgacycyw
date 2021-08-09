@@ -1,0 +1,497 @@
+import React, { useState } from 'react'
+import * as Yup from 'yup'
+import ProgressBar from '@ramonak/react-progress-bar'
+import Head from 'next/head'
+import { Layout } from '../../components'
+import { NextPage } from 'next'
+import { Field, Form, Formik } from 'formik'
+import { firebase } from '../../services/firebase'
+import { signupErrors } from '../../utils/errors'
+import { useSignUp } from '../../stores/useSignUpProgress'
+
+const genders = ['male', 'female']
+
+const cluster = ['Move', 'Voice', 'Mind', 'Force', 'Heart', 'Strike']
+const clusters = {
+	Move: [
+		{
+			smallteam: 'Move 1 | Yap Ai Ling',
+			cg: ['CYC 15T | Yap Ai Ling']
+		},
+		{
+			smallteam: 'Move 2 | Elaine Teoh Engyin',
+			cg: [
+				'CYC 04J | Chong You You',
+				'CYC 25J | Wong Chu Hui',
+				'CYC 37J (A) | Lau Yiew Ming',
+				'CYC 37J (B) | Tan Ann Hui',
+				'CYC 41J | Shuvia Pang',
+				'CYC 43J | Wang Mee Kee'
+			]
+		},
+		{
+			smallteam: 'Move 3 | Chhui Chong San',
+			cg: [
+				'CYC 17J (A) | Wong Pao Xuan',
+				'CYC 17J (B) | Chan Lai Teng',
+				'CYC 42J | Teo Min Hang',
+				'CYC 47J | Chan Pui Yan',
+				'CYC 107J | Fong Chung Sang'
+			]
+		}
+	],
+	Voice: [
+		{
+			smallteam: 'Voice 1 | Derek Yeow Han Xiang',
+			cg: [
+				'CYC 60J | Isabelle Chan Po Teng',
+				'CYC 100J (B) | Lee Jia Yin'
+			]
+		},
+		{
+			smallteam: 'Voice 2 | Sunil Kumar / Tan Peck Wah',
+			cg: [
+				'CYC 20J | Sunil Kumar',
+				'CYC 23J | Wong Wei Sheng',
+				'CYC 100T (A) | Shum Wai Lok'
+			]
+		},
+		{
+			smallteam: 'Voice 3 | Teressa Tang',
+			cg: [
+				'CYC 19J | Emily Him Min Li',
+				'CYC 111J (A) | Wang Hao Hua',
+				'CYC 111J (B) | Amanda Him Kye Li'
+			]
+		},
+		{
+			smallteam: 'Voice 4 | Goh Zheng Yang',
+			cg: [
+				'CYC 21J | Saw Li Hua',
+				'CYC 26J (A) | Beverly Yip Yi-Man',
+				'CYC 26J (B) | Goh Zheng Yang',
+				'CYC 62T (A) | Jason Mak Kah Chun',
+				'CYC 62J (B) | Lie Wai Kien',
+				'CYC 90J | Yap Yuan Joe'
+			]
+		}
+	],
+	Mind: [
+		{
+			smallteam: 'Mind 1 | Soon Mei Shi',
+			cg: [
+				'CYC 113J (A) | Lew Qian Yi',
+				'CYC 113J (B) | Chong Liu Ying',
+				'CYC 113J (C) | Yew Jia Ying',
+				'CYC 35J (A) | Yong Xun Ying',
+				'CYC 35J (B) | Thiam Yew Mun',
+				'CYC 16J | Law Mei Jia, Christie Micda'
+			]
+		},
+		{
+			smallteam: 'Mind 2 | Wong How Han',
+			cg: ['CYC 44T | Wong How Han']
+		}
+	],
+	Force: [
+		{
+			smallteam: 'One Force | Json Low',
+			cg: [
+				'CYC 71J | Yap Ee Ling',
+				'CYC 112J | Queenie Tan Sze Yuee',
+				'CYC 77J | Gilbert Hu Chang Hou',
+				'CYC 46J (A) | Angeline Tan Ho Yen',
+				'CYC 46J (B) | Angeline Tan Ho Yen'
+			]
+		}
+	],
+	Heart: [
+		{
+			smallteam: 'Heart 1 | Foong Dawn Hui',
+			cg: [
+				'CYC 02S | Choong Zheng Xuan',
+				'CYC 79S | Chin Jia Hao',
+				'CYC 86J | Teo Jia Yue'
+			]
+		},
+		{
+			smallteam: 'Heart 2 | Teo Jia Xin',
+			cg: ['CYC 59J | Priscilla Lua Sim Yee', 'CYC 73S | Tan Li Zhang']
+		},
+		{
+			smallteam: 'Heart 3 | Loh Xin Kai',
+			cg: [
+				'CYC 32S (A) | Joseph Chong Zuo Nian',
+				'CYC 32S (B) | Loh Xin Kai'
+			]
+		}
+	],
+	Strike: [
+		{
+			smallteam: 'Strike 1 | Yew Chi Joon / Lee Cheng Yee',
+			cg: ['CYC 45S | Ng Hui Yee', 'CYC 74S | Yap Wen Teng']
+		},
+		{
+			smallteam: 'Strike 2 | Khor Tet Woei / Phoebe Liew / Cherie Hoo',
+			cg: [
+				'CYC 22T | Lim Sheng Kai',
+				'CYC 27T | Ling Angel',
+				'CYC 51T | Loh Wai Ling'
+			]
+		}
+	]
+}
+
+const smallteams = Object.values(clusters).map((teams) =>
+	teams.map((team) => team.smallteam)
+)
+
+const SignUp: NextPage = () => {
+	console.log(smallteams)
+	const [emailToUpdate, setEmailToUpdate] = useState<string>('')
+	const [uidToUpdate, setUidToUpdate] = useState<string>('')
+	const { view, setView, progress } = useSignUp()
+
+	return (
+		<>
+			<Head>
+				<title>Sign Up | FGACYCYW KL</title>
+			</Head>
+			<Layout noFooter className="h-screen">
+				<div className="w-full px-5 sm:px-20">
+					<p className="font-montserrat text-[#210440] lg:text-5xl text-3xl font-bold mt-5 mb-2 lg:mt-10 lg:mb-5 text-center">
+						Sign Up
+					</p>
+					<div className="w-full px-3">
+						<ProgressBar
+							bgColor="#210440"
+							completed={progress}
+							className="w-full"
+							isLabelVisible={false}
+						/>
+					</div>
+				</div>
+				<div className="w-full px-5 sm:px-20 flex flex-col my-auto">
+					{progress === 0 ? (
+						<>
+							<p className="font-montserrat text-3xl text-center mb-5">
+								Firstly!
+								<span className="inline sm:hidden">
+									<br />
+								</span>{' '}
+								Let us know your credentials!{' '}
+								<span className="inline lg:hidden">
+									<br />
+								</span>
+								So we know how to log you in!
+							</p>
+
+							<Formik
+								initialValues={{
+									email: '',
+									password: '',
+									passwordConfirmation: ''
+								}}
+								validationSchema={Yup.object({
+									email: Yup.string()
+										.email('Invalid Email Address')
+										.required('Required'),
+									password: Yup.string()
+										.min(8, 'Must be 8 characters or more')
+										.required('Required'),
+									passwordConfirmation: Yup.string()
+										.min(8, 'Must be 8 characters or more')
+										.required('Required')
+										.test(
+											'passwords-match',
+											'Passwords must match',
+											function (value) {
+												return (
+													this.parent.password ===
+													value
+												)
+											}
+										)
+										.required('Required')
+								})}
+								onSubmit={async (values, { setErrors }) => {
+									try {
+										await firebase
+											.auth()
+											.createUserWithEmailAndPassword(
+												values.email,
+												values.password
+											)
+											.then((user) =>
+												fetch(
+													`/api/auth/signupNotion/${user.user?.uid}?email=${user.user?.email}`
+												).then(() => {
+													setEmailToUpdate(
+														values.email
+													)
+													setUidToUpdate(
+														user.user?.uid as string
+													)
+													// TODO: setView
+												})
+											)
+									} catch (err) {
+										switch (err.code) {
+											case 'auth/email-already-in-use': {
+												setErrors({
+													email: 'This email is in use.',
+													password: ''
+												})
+												break
+											}
+											case 'auth/invalid-email': {
+												setErrors({
+													email: 'Invalid email',
+													password: ''
+												})
+												break
+											}
+											case 'auth/weak-password': {
+												setErrors({
+													email: '',
+													password:
+														'Password must have more than 6 characters'
+												})
+												break
+											}
+											case 'auth/operation-not-allowed': {
+												setErrors({
+													email: '',
+													password: ''
+												})
+												console.log(
+													signupErrors.operationNotAllowed
+												)
+												break
+											}
+										}
+									}
+								}}
+							>
+								{({ errors, touched, values }) => (
+									<Form className="w-full mx-auto flex flex-col items-center">
+										<div className="flex flex-col items-end">
+											<div className="flex flex-col sm:flex-row items-center">
+												<label
+													className="block text-lg font-montserrat  leading-none sm:w-[170px] w-full sm:my-0 my-3"
+													htmlFor="email"
+												>
+													Email
+												</label>
+
+												<Field
+													id="email"
+													name="email"
+													placeholder={
+														values.email !== ''
+															? null
+															: 'Email'
+													}
+													className={`${
+														errors.email &&
+														touched.email
+															? 'ring-offset-1 ring-2 ring-red-600'
+															: !errors.email &&
+															  touched.email
+															? 'ring-offset-1 ring-2 ring-green-600'
+															: 'ring-offset-1 ring-2 ring-[#210440]'
+													}  focus-within:outline-none ml-0 sm:ml-10 text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] bg-gray-200 text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												/>
+											</div>
+											{errors.email && touched.email ? (
+												<div className="text-red-700 sm:h-7 h-3 self-end">
+													{errors.email}
+												</div>
+											) : (
+												<div className="sm:h-7 h-3" />
+											)}
+											<div className="flex flex-col sm:flex-row items-center">
+												<label
+													className="block text-lg font-montserrat  leading-none sm:w-[170px] w-full sm:my-0 my-3"
+													htmlFor="password"
+												>
+													Password
+												</label>
+
+												<Field
+													id="password"
+													name="password"
+													type="password"
+													placeholder={
+														values.password !== ''
+															? null
+															: 'Password'
+													}
+													className={`${
+														errors.password &&
+														touched.password
+															? 'ring-offset-1 ring-2 ring-red-600'
+															: !errors.password &&
+															  touched.password
+															? 'ring-offset-1 ring-2 ring-green-600'
+															: 'ring-offset-1 ring-2 ring-[#210440]'
+													}  focus-within:outline-none  ml-0 sm:ml-10 text-[#210440] bg-gray-200 lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												/>
+											</div>
+											{errors.password &&
+											touched.password ? (
+												<div className="text-red-700 sm:h-7 h-3 self-end">
+													{errors.password}
+												</div>
+											) : (
+												<div className="sm:h-7 h-3" />
+											)}
+											<div className="flex flex-col sm:flex-row items-center">
+												<label
+													className="block text-lg font-montserrat  leading-none sm:w-[170px] w-full sm:my-0 my-3"
+													htmlFor="passwordConfirmation"
+												>
+													Confirm Password
+												</label>
+
+												<Field
+													id="passwordConfirmation"
+													name="passwordConfirmation"
+													type="password"
+													placeholder={
+														values.passwordConfirmation !==
+														''
+															? null
+															: 'Password'
+													}
+													className={`${
+														errors.passwordConfirmation &&
+														touched.passwordConfirmation
+															? 'ring-offset-1 ring-2 ring-red-600'
+															: !errors.passwordConfirmation &&
+															  touched.passwordConfirmation
+															? 'ring-offset-1 ring-2 ring-green-600'
+															: 'ring-offset-1 ring-2 ring-[#210440]'
+													}  focus-within:outline-none  ml-0 sm:ml-10 text-[#210440] bg-gray-200 lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												/>
+											</div>
+											{errors.passwordConfirmation &&
+											touched.passwordConfirmation ? (
+												<div className="text-red-700 sm:h-7 h-3 self-end">
+													{
+														errors.passwordConfirmation
+													}
+												</div>
+											) : (
+												<div className="sm:h-7 h-3" />
+											)}
+											<button
+												type="submit"
+												className="rounded-[4px] bg-[#210440] mt-3 text-[#fff] font-montserrat lg:text-base text-base py-2 text-center w-full transform hover:scale-[1.025] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
+											>
+												Sign Up
+											</button>
+										</div>
+									</Form>
+								)}
+							</Formik>
+						</>
+					) : (
+						<>
+							<p className="font-montserrat text-3xl text-center mb-5">
+								Let us know more about you!
+							</p>
+							<Formik
+								initialValues={{
+									fullName: '',
+									nickname: '',
+									contact: '',
+									gender: 'male',
+									address1: '',
+									address2: '',
+									smallTeam: '',
+									cg: '',
+									dob: new Date(),
+									cluster: '',
+									ic: '',
+									status: ''
+								}}
+								validationSchema={Yup.object({
+									fullName: Yup.string()
+										.max(
+											50,
+											'Name must not exceed 50 characters'
+										)
+										.required('Required'),
+									gender: Yup.string()
+										.oneOf(genders)
+										.required('Required'),
+									address1: Yup.string().required('Required'),
+									address2: Yup.string().required('Required'),
+									// FIXME: Validation Error
+									// smallTeam: Yup.string()
+									// 	.when()
+									// 	.required('Required'),
+									// cg: Yup.string()
+									// 	.oneOf(cgs)
+									// 	.required('Required'),
+									nickname: Yup.string()
+										.max(
+											10,
+											'Nickname must not exceed 10 characters'
+										)
+										.required('Required'),
+									contact: Yup.string()
+										.matches(
+											/^(\+?6?01)[0|1|2|3|4|6|7|8|9]-*[0-9]{7,8}$/,
+											'Invalid malaysian phone number'
+										)
+										.required('Required')
+								})}
+								onSubmit={async (values) =>
+									console.log(JSON.stringify(values, null, 2))
+								}
+							>
+								{({ errors, touched, values }) => (
+									<Form className="w-full mx-auto flex flex-col items-center">
+										<div className="lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] flex flex-col">
+											<Field
+												id="fullName"
+												name="fullName"
+												placeholder={
+													values.fullName !== ''
+														? null
+														: 'Full Name'
+												}
+												className={`${
+													errors.fullName &&
+													touched.fullName
+														? 'ring-offset-1 ring-2 ring-red-600'
+														: !errors.fullName &&
+														  touched.fullName
+														? 'ring-offset-1 ring-2 ring-green-600'
+														: 'ring-offset-1 ring-2 ring-[#210440]'
+												}  focus-within:outline-none text-[#210440] w-full uppercase bg-gray-200 text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+											/>
+											{errors.fullName &&
+											touched.fullName ? (
+												<div className="text-red-700 sm:h-7 h-3 self-end">
+													{errors.fullName}
+												</div>
+											) : (
+												<div className="sm:h-7 h-3" />
+											)}
+										</div>
+									</Form>
+								)}
+							</Formik>
+						</>
+					)}
+					{/* TODO: CREATE ZUSTAND STATE FOR STORING SIGNUPFLOW */}
+				</div>
+			</Layout>
+		</>
+	)
+}
+
+export default SignUp

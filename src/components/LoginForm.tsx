@@ -3,6 +3,8 @@ import * as Yup from 'yup'
 import { Field, Form, Formik } from 'formik'
 
 import { useRouter } from 'next/router'
+import { login } from '../services/auth'
+import { loginErrors } from '../utils/errors'
 
 // import { login } from '../services/auth/auth'
 // import { loginErrors } from '../utils/errors'
@@ -23,50 +25,47 @@ export const LoginForm: React.FC = () => {
 					.required('Required'),
 				rememberMe: Yup.boolean()
 			})}
-			onSubmit={async (
-				values
-				// { setErrors }
-			) => {
+			onSubmit={async (values, { setErrors }) => {
 				console.log(JSON.stringify(values, null, 2))
 				router.push('/home')
-				// try {
-				// 	await login({
-				// 		email: values.email,
-				// 		password: values.pw
-				// 	})
-				// } catch (err) {
-				// 	switch (err.code) {
-				// 		case 'auth/invalid-email': {
-				// 			alert(loginErrors.invalidEmail)
-				// 			setErrors({ email: 'Invalid email', pw: '' })
-				// 			break
-				// 		}
-				// 		case 'auth/user-disabled': {
-				// 			alert(loginErrors.userDisabled)
-				// 			setErrors({
-				// 				email: 'Email has been disabled',
-				// 				pw: ''
-				// 			})
-				// 			break
-				// 		}
-				// 		case 'auth/user-not-found': {
-				// 			alert(loginErrors.userNotFound)
-				// 			setErrors({
-				// 				email: 'Email not registered',
-				// 				pw: ''
-				// 			})
-				// 			break
-				// 		}
-				// 		case 'auth/wrong-password': {
-				// 			alert(loginErrors.wrongPassword)
-				// 			setErrors({
-				// 				email: '',
-				// 				pw: 'Password is incorrect'
-				// 			})
-				// 			break
-				// 		}
-				// 	}
-				// }
+				try {
+					await login({
+						email: values.email,
+						password: values.pw
+					})
+				} catch (err) {
+					switch (err.code) {
+						case 'auth/invalid-email': {
+							alert(loginErrors.invalidEmail)
+							setErrors({ email: 'Invalid email', pw: '' })
+							break
+						}
+						case 'auth/user-disabled': {
+							alert(loginErrors.userDisabled)
+							setErrors({
+								email: 'Email has been disabled',
+								pw: ''
+							})
+							break
+						}
+						case 'auth/user-not-found': {
+							alert(loginErrors.userNotFound)
+							setErrors({
+								email: 'Email not registered',
+								pw: ''
+							})
+							break
+						}
+						case 'auth/wrong-password': {
+							alert(loginErrors.wrongPassword)
+							setErrors({
+								email: '',
+								pw: 'Password is incorrect'
+							})
+							break
+						}
+					}
+				}
 			}}
 		>
 			{({ errors, touched, values }) => (

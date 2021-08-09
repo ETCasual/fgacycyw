@@ -9,7 +9,13 @@ const texts = [
 
 const eventCards = ['/assets/upcoming.png', '/assets/6hrswithGod.jpg']
 
-const Upcoming: NextPage = () => {
+export type UpcomingProps = {
+	user?: Notion.User
+	userToken?: string
+	error?: boolean
+}
+
+const Upcoming: NextPage<UpcomingProps> = ({ user, userToken }) => {
 	return (
 		<Layout currentPage="home">
 			<div className="h-32 lg:h-52">
@@ -17,7 +23,7 @@ const Upcoming: NextPage = () => {
 			</div>
 			<div className="w-full px-3 sm:px-20 ">
 				<p className="font-montserrat text-[#210440] text-5xl my-5 font-bold">
-					Upcoming Events!
+					Upcoming Events
 				</p>
 			</div>
 
