@@ -26,7 +26,7 @@ export const LoginForm: React.FC = () => {
 				rememberMe: Yup.boolean()
 			})}
 			onSubmit={async (values, { setErrors }) => {
-				console.log(JSON.stringify(values, null, 2))
+				// console.log(JSON.stringify(values, null, 2))
 				router.push('/home')
 				try {
 					await login({
