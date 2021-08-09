@@ -26,7 +26,7 @@ export default handler
 				}
 			})
 			const user = parseUser(response.results[0])
-			console.log('user: ' + JSON.stringify(user, null, 2))
+			// console.log('user: ' + JSON.stringify(user, null, 2))
 			return res.status(200).json({
 				success: true,
 				message: `User data with uid \'${uid}\' is retrieved from Notion`,
