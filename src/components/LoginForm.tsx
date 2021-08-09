@@ -36,12 +36,12 @@ export const LoginForm: React.FC = () => {
 				} catch (err) {
 					switch (err.code) {
 						case 'auth/invalid-email': {
-							alert(loginErrors.invalidEmail)
+							// alert(loginErrors.invalidEmail)
 							setErrors({ email: 'Invalid email', pw: '' })
 							break
 						}
 						case 'auth/user-disabled': {
-							alert(loginErrors.userDisabled)
+							// alert(loginErrors.userDisabled)
 							setErrors({
 								email: 'Email has been disabled',
 								pw: ''
@@ -49,7 +49,7 @@ export const LoginForm: React.FC = () => {
 							break
 						}
 						case 'auth/user-not-found': {
-							alert(loginErrors.userNotFound)
+							// alert(loginErrors.userNotFound)
 							setErrors({
 								email: 'Email not registered',
 								pw: ''
@@ -57,7 +57,7 @@ export const LoginForm: React.FC = () => {
 							break
 						}
 						case 'auth/wrong-password': {
-							alert(loginErrors.wrongPassword)
+							// alert(loginErrors.wrongPassword)
 							setErrors({
 								email: '',
 								pw: 'Password is incorrect'
