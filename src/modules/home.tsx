@@ -178,15 +178,7 @@ const structure = {
 	]
 }
 
-const pastoralStatuses = [
-	'Full-Timer',
-	'TL',
-	'SCGL',
-	'PCGL / CGL',
-	'OM',
-	'NB',
-	'NF'
-]
+const pastoralStatuses = ['TL / ZL', 'SCGL', 'PCGL / CGL', 'OM', 'NB', 'NF']
 
 const clusters = [
 	{ value: 'Move', label: 'Move' },
