@@ -1009,7 +1009,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					allowFullScreen
 				/> */}
 				{!aboutUs ? (
-					<div className="grid sm:grid-cols-2 grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full h-full mb-24">
+					<div className="grid sm:grid-cols-2 grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full h-full">
 						{cards.map((card, i) => (
 							<Card
 								key={i}

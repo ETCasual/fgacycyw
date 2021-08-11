@@ -2,11 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/display-name */
 import { useRouter } from 'next/router'
-import React, { createRef, useState } from 'react'
+import React, { useState } from 'react'
 import HomeIcon from '../graphics/HomeIcon'
 import ProfileIcon from '../graphics/ProfileIcon'
 import SearchIcon from '../graphics/SearchIcon'
-import useEventListener from '../utils/hooks/useEventListener'
 
 const categoriesPage = [
 	{
@@ -41,26 +40,15 @@ export const Layout: React.FC<LayoutProps> = ({
 		currentPage ? currentPage : null
 	)
 
-	const navElem = createRef<HTMLDivElement>()
-
-	useEventListener('scroll', () => {
-		if (navElem && navElem.current) {
-			navElem.current.style.transform = `translateY(${window.scrollY}px)`
-		}
-	})
-
 	return (
-		<>
-			<div
-				className={`flex w-full h-full flex-col items-center relative ${className}`}
-			>
+		<div
+			className={`w-full h-screen flex flex-col justify-between ${className}`}
+		>
+			<div className={`flex w-full flex-col items-center relative`}>
 				{children}
 			</div>
 			{noFooter ? null : (
-				<div
-					ref={navElem}
-					className="z-10 bg-[#432fbf] absolute flex flex-row h-14 lg:h-16 py-2 bottom-0 justify-around w-full"
-				>
+				<div className="z-10 bg-[#432fbf] sticky flex flex-row h-14 lg:h-16 py-2 bottom-0 justify-around w-full mt-10">
 					{categoriesPage.map((page, i) => (
 						<div
 							key={i}
@@ -84,6 +72,6 @@ export const Layout: React.FC<LayoutProps> = ({
 					))}
 				</div>
 			)}
-		</>
+		</div>
 	)
 }

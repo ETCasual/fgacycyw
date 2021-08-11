@@ -29,8 +29,8 @@ const WarriorConference: NextPage = () =>
 				<Head>
 					<title>Warrior Conference | FGACYCYW KL</title>
 				</Head>
-				<Layout currentPage="home" className="h-screen">
-					<div className="h-32 lg:h-52">
+				<Layout currentPage="home" className="h-screen overflow-hidden">
+					<div className="h-32 lg:h-52 w-full">
 						<MyCarousel texts={texts} className="w-screen" />
 					</div>
 					<div className="flex lg:flex-row flex-col gap-2 lg:gap-5 px-10 sm:px-20 w-full">
@@ -106,11 +106,6 @@ const WarriorConference: NextPage = () =>
 							videoId="uGaRPMsFXnc"
 						/>
 					</div>
-					<img
-						src="/assets/json.png"
-						alt="Json"
-						className="absolute right-6 sm:right-10 bottom-0 object-cover w-[200px] sm:w-[250px]"
-					/>
 				</Layout>
 			</>
 		)
