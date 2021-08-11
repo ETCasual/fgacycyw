@@ -35,7 +35,7 @@ const updateProfile = async (
 						{
 							type: 'text',
 							text: {
-								content: properties.fullName
+								content: properties.fullName.toUpperCase()
 							}
 						}
 					]
