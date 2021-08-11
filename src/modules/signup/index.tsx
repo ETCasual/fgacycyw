@@ -31,7 +31,7 @@ const SignUp: NextPage = () => {
 					</div> */}
 				</div>
 				<div className="w-full px-5 sm:px-20 flex flex-col my-auto">
-					<p className="font-montserrat text-3xl text-center mb-5">
+					<p className="font-montserrat text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-5">
 						Firstly!
 						<span className="inline sm:hidden">
 							<br />

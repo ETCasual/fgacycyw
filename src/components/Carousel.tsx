@@ -11,21 +11,29 @@ type CarouselProps = {
 	imgSrc?: string[]
 	texts?: TextsType[]
 	className?: string
+	children?: React.ReactNode
+	autoplay?: boolean
+	infinite?: boolean
+	slidesToShow?: number
 }
 
 export const MyCarousel: React.FC<CarouselProps> = ({
 	imgSrc,
 	className = '',
-	texts
+	texts,
+	children,
+	autoplay = true,
+	infinite = true,
+	slidesToShow = 1
 }) => (
 	<Slider
-		infinite
+		infinite={infinite}
 		speed={500}
-		slidesToShow={1}
-		autoplay
+		slidesToShow={slidesToShow}
+		autoplay={autoplay}
 		autoplaySpeed={5000}
 		arrows={false}
-		className={`w-screen h-full ${className}`}
+		className={`h-full ${className}`}
 	>
 		{imgSrc
 			? imgSrc.map((img, i) => (
@@ -52,5 +60,6 @@ export const MyCarousel: React.FC<CarouselProps> = ({
 					</div>
 			  ))
 			: null}
+		{children}
 	</Slider>
 )

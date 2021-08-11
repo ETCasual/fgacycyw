@@ -30,16 +30,27 @@ import ProgressBar from '@ramonak/react-progress-bar'
 
 const genders = ['male', 'female']
 
+// TODO: change image
 const cards = [
 	{
 		image: '/assets/upcoming.png',
-		name: 'YWKL Conference',
-		to: '/upcoming'
+		name: 'Warriors Conference: The Unseen Shepherd',
+		to: '/warriorConference'
 	},
 	{
 		image: '/assets/testimonies.png',
 		name: 'Testimonies',
 		to: '/testimonies'
+	},
+	{
+		image: '/assets/DNA.jpeg',
+		name: 'Our Church: DNA Series',
+		to: '/dna'
+	},
+	{
+		image: '/assets/moment.jpg',
+		name: 'Moments With Us',
+		to: '/moments'
 	}
 ]
 
@@ -526,32 +537,49 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 														{errors.address2}
 													</div>
 												) : null}
-												<DatePicker
-													value={values.dob}
-													name="dob"
-													clearIcon={null}
-													// placeholder={
-													// 	values.dob !== ''
-													// 		? null
-													// 		: 'Date of Birth'
-													// }
-													onChange={(date: Date) =>
-														setValues({
-															...values,
-															dob: date
-														})
-													}
-													calendarClassName="w-full"
-													className={`${
+												<div
+													className={`w-full flex flex-row bg-[#7e30d1] rounded-[4px] mb-4 ring-2 ring-[#7e30d1] ${
 														errors.dob &&
 														touched.dob
-															? 'ring-offset-1 ring-2 ring-red-600'
+															? ' ring-red-600'
 															: !errors.dob &&
 															  touched.dob
-															? 'ring-offset-1 ring-2 ring-green-600'
-															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
-												/>
+															? ' ring-green-600'
+															: 'ring-[#7e30d1]'
+													}`}
+												>
+													<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
+														DOB
+													</div>
+													<DatePicker
+														value={values.dob}
+														name="dob"
+														clearIcon={null}
+														// placeholder={
+														// 	values.dob !== ''
+														// 		? null
+														// 		: 'Date of Birth'
+														// }
+														onChange={(
+															date: Date
+														) =>
+															setValues({
+																...values,
+																dob: date
+															})
+														}
+														calendarClassName="w-full"
+														className={`${
+															errors.dob &&
+															touched.dob
+																? 'ring-offset-1 ring-2 ring-red-600'
+																: !errors.dob &&
+																  touched.dob
+																? 'ring-offset-1 ring-2 ring-green-600'
+																: 'ring-offset-1 ring-2 ring-[#7e30d1]'
+														}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													/>
+												</div>
 												{errors.dob && touched.dob ? (
 													<div className="text-red-600 text-center mb-4">
 														{errors.dob}
@@ -981,7 +1009,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					allowFullScreen
 				/> */}
 				{!aboutUs ? (
-					<div className="flex sm:flex-row flex-col px-0 sm:px-20 items-center justify-center w-full h-full">
+					<div className="grid sm:grid-cols-2 grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full h-full mb-24">
 						{cards.map((card, i) => (
 							<Card
 								key={i}
