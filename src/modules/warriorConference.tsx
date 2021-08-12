@@ -104,6 +104,7 @@ const WarriorConference: NextPage = () =>
 							text={loremipsum}
 							className="mt-5"
 							videoId="uGaRPMsFXnc"
+							verse="Matthew 6:33 | Psalm 119"
 						/>
 					</div>
 				</Layout>

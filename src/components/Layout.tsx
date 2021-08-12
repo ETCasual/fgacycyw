@@ -3,21 +3,31 @@
 /* eslint-disable react/display-name */
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import HomeIcon from '../graphics/HomeIcon'
-import ProfileIcon from '../graphics/ProfileIcon'
-import SearchIcon from '../graphics/SearchIcon'
+import { BiChurch } from 'react-icons/bi'
+import { FaChurch } from 'react-icons/fa'
+import { BsFillPersonFill, BsPerson } from 'react-icons/bs'
 
 const categoriesPage = [
 	{
-		icon: (color: string) => <HomeIcon color={color} className="py-2" />,
+		icon: (active: boolean) =>
+			active ? (
+				<FaChurch color="#210440" className="w-12 h-12" />
+			) : (
+				<BiChurch color="#210440" className="w-12 h-12" />
+			),
 		pageName: 'home'
 	},
+	// {
+	// 	icon: (color: string) => <SearchIcon color={color} className="py-2" />,
+	// 	pageName: 'search'
+	// },
 	{
-		icon: (color: string) => <SearchIcon color={color} className="py-2" />,
-		pageName: 'search'
-	},
-	{
-		icon: (color: string) => <ProfileIcon color={color} className="py-2" />,
+		icon: (active: boolean) =>
+			active ? (
+				<BsFillPersonFill color="#210440" className="w-12 h-12" />
+			) : (
+				<BsPerson color="#210440" className="w-12 h-12" />
+			),
 		pageName: 'profile'
 	}
 ]
@@ -48,26 +58,17 @@ export const Layout: React.FC<LayoutProps> = ({
 				{children}
 			</div>
 			{noFooter ? null : (
-				<div className="z-10 bg-[#432fbf] sticky flex flex-row h-14 lg:h-16 py-2 bottom-0 justify-around w-full mt-10">
+				<div className="z-10 bg-[#fff] sticky flex flex-row h-14 lg:h-16 py-2 bottom-0 justify-around w-full mt-10 border-[#210440] border-t-[2px]">
 					{categoriesPage.map((page, i) => (
 						<div
 							key={i}
-							className={`rounded-xl w-[80px] sm:w-[130px] h-full cursor-pointer flex flex-row justify-around ${
-								isPage == page.pageName ? 'bg-[#5e4ecb]' : null
-							}`}
+							className={` h-full cursor-pointer`}
 							onClick={() => {
 								setPage(page.pageName)
 								router.push('/' + page.pageName)
 							}}
 						>
-							{page.icon(
-								isPage == page.pageName ? '#fff' : '#6659cd'
-							)}
-							{isPage == page.pageName ? (
-								<p className="font-montserrat text-center self-center text-white hidden sm:inline-block">
-									{page.pageName.toUpperCase()}
-								</p>
-							) : null}
+							{page.icon(isPage == page.pageName ? true : false)}
 						</div>
 					))}
 				</div>

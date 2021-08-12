@@ -12,3 +12,7 @@ html {
 }
 
 /* background: #6441a4; */
+
+.shadow-top-border {
+	box-shadow: 0 -5px -5px -5px #333;
+}
