@@ -20,7 +20,7 @@ export const SermonCard: React.FC<SermonCardProps> = ({
 }) => {
 	return (
 		<div
-			className={`p-3 flex flex-col bg-gradient-to-br  from-[#210440] to-[#5e4ecb] rounded-xl h-[500px]  w-full ${className}`}
+			className={`p-3 flex flex-col bg-gradient-to-br  from-[#210440] to-[#5e4ecb] rounded-xl h-[350px] xl:h-[430px] w-full ${className}`}
 		>
 			<a
 				href={
@@ -49,8 +49,8 @@ export const SermonCard: React.FC<SermonCardProps> = ({
 				{videoId ? (
 					<YouTube
 						videoId={videoId}
-						className="mx-auto"
-						containerClassName="w-full aspect-w-16 aspect-h-9 my-10"
+						className="mx-auto h-5/6"
+						containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
 					/>
 				) : (
 					''

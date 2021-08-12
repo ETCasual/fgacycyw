@@ -30,11 +30,15 @@ const WarriorConference: NextPage = () =>
 					<title>Warrior Conference | FGACYCYW KL</title>
 				</Head>
 				<Layout currentPage="home" className="h-screen overflow-hidden">
-					<div className="h-32 lg:h-52 w-full">
-						<MyCarousel texts={texts} className="w-screen" />
+					<div className="w-full">
+						<MyCarousel
+							texts={texts}
+							className="w-screen"
+							heightClass="h-32"
+						/>
 					</div>
 					<div className="flex lg:flex-row flex-col gap-2 lg:gap-5 px-10 sm:px-20 w-full">
-						<div className="mx-auto hidden sm:flex flex-row gap-5 mt-7 ">
+						<div className="mx-auto hidden sm:flex flex-row gap-5 mt-4 ">
 							{dayCards.map((days, i) => (
 								<div
 									className={`rounded-3xl transition ease-in-out duration-300 px-2 py-1  w-[150px] cursor-pointer ${
@@ -53,7 +57,7 @@ const WarriorConference: NextPage = () =>
 						</div>
 						<Menu
 							as="div"
-							className="w-[200px] mx-auto relative sm:hidden mt-4"
+							className="w-[200px] mx-auto relative sm:hidden mt-2"
 						>
 							<div>
 								<Menu.Button className="inline-flex justify-between w-full px-2 py-1 font-montserrat bg-[#FFBA00] text-base rounded-3xl text-[#210440] hover:bg-opacity-30">
@@ -102,7 +106,7 @@ const WarriorConference: NextPage = () =>
 						<SermonCard
 							title="Kingdom Come"
 							text={loremipsum}
-							className="mt-5"
+							className="mt-3"
 							videoId="uGaRPMsFXnc"
 							verse="Matthew 6:33 | Psalm 119"
 						/>

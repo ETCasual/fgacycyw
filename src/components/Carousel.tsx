@@ -15,11 +15,13 @@ type CarouselProps = {
 	autoplay?: boolean
 	infinite?: boolean
 	slidesToShow?: number
+	heightClass: string
 }
 
 export const MyCarousel: React.FC<CarouselProps> = ({
 	imgSrc,
 	className = '',
+	heightClass,
 	texts,
 	children,
 	autoplay = true,
@@ -41,14 +43,14 @@ export const MyCarousel: React.FC<CarouselProps> = ({
 						src={img}
 						key={i}
 						alt={img}
-						className="w-full object-center object-contain h-32 lg:h-52"
+						className={`w-full object-center object-contain ${heightClass}`}
 					/>
 			  ))
 			: null}
 		{texts
 			? texts.map((text, i) => (
 					<div
-						className={`z-[3] h-32 lg:h-52 w-full flex flex-row justify-center items-center bg-[${text.bgColor}]`}
+						className={`z-[3] w-full flex ${heightClass} flex-row justify-center items-center bg-[${text.bgColor}]`}
 						key={i}
 					>
 						<p
