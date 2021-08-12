@@ -98,7 +98,7 @@ const WarriorConference: NextPage = () =>
 							</Transition>
 						</Menu>
 					</div>
-					<div className="w-[280px] sm:w-[600px] lg:w-[800px]">
+					<div className="w-[280px] sm:w-[600px] lg:w-[950px]">
 						<SermonCard
 							title="Kingdom Come"
 							text={loremipsum}

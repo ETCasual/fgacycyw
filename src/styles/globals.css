@@ -6,13 +6,22 @@
 
 /* @import url('http://fonts.cdnfonts.com/css/century-gothic?styles=24895,24898,24896,24897'); */
 
-html {
+html,
+body {
 	-webkit-tap-highlight-color: transparent;
 	background: #fff;
+	overscroll-behavior-y: none;
 }
 
 /* background: #6441a4; */
 
 .shadow-top-border {
 	box-shadow: 0 -5px -5px -5px #333;
+}
+
+body > .mainwrapper {
+	width: 100vw;
+	height: 100vh;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
 }

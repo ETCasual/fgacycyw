@@ -40,16 +40,18 @@ export const SermonCard: React.FC<SermonCardProps> = ({
 					{title.toUpperCase()}
 				</p>
 			</a>
-			<div className="overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar scrollbar-thumb-gray-500">
+			<div className="overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar scrollbar-thumb-gray-500">
 				<p className="text-white text-xl text-center font-montserrat mx-auto my-3">
 					{verse}
 				</p>
 
-				<p className="font-montserrat my-2 text-white">{text}</p>
+				<p className="font-montserrat my-2  text-white">{text}</p>
 				{videoId ? (
-					<div className="aspect-w-16 aspect-h-9">
-						<YouTube videoId={videoId} className="mx-auto" />
-					</div>
+					<YouTube
+						videoId={videoId}
+						className="mx-auto"
+						containerClassName="w-full aspect-w-16 aspect-h-9 my-10"
+					/>
 				) : (
 					''
 				)}
