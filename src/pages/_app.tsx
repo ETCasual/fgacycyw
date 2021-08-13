@@ -67,6 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				pauseOnFocusLoss
 				draggable={false}
 				pauseOnHover
+				limit={1}
 			>
 				{HtmlRef && shouldPromptInstall() == 'ios'
 					? toast.info('🚀 Click on Share and Add to Home Screen!', {
