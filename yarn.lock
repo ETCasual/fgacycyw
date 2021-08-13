@@ -7297,6 +7297,11 @@ tailwind-scrollbar@^1.3.1:
   dependencies:
     tailwindcss ">1.9.6"
 
+tailwind-toast@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tailwind-toast/-/tailwind-toast-1.1.0.tgz#42cfa5bd03ea14e48993b3da6cc4d0d30d885b27"
+  integrity sha512-f4Ok+fZIWj0pjkgoc5BXtUVB90KCMSiY5ffq1bC2csqzR+5lALUhmPvpZPGjoe/OtkL3MqTkaWPgqzLDI6/LMw==
+
 tailwindcss-elevation@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tailwindcss-elevation/-/tailwindcss-elevation-1.0.1.tgz#d143704ca2ef1522fe692c8dcf00373085daefba"

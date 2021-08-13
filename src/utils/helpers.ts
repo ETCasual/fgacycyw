@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /**
  * Get an environment variable given its name
  * @param {string} envVar - the environment variable's name
@@ -24,4 +25,23 @@ export const convertto1D = (arrToConvert: string[][]): string[] => {
 		newArr = newArr.concat(arrToConvert[i])
 	}
 	return newArr
+}
+
+export const shouldPromptInstall = (): boolean => {
+	// Detects if device is on iOS
+	const isIos = () => {
+		const userAgent = window.navigator.userAgent.toLowerCase()
+		return /iphone|ipad|ipod/.test(userAgent)
+	}
+	// Detects if device is in standalone mode
+	const isInStandaloneMode = () =>
+		// @ts-ignore
+		'standalone' in window.navigator && window.navigator['standalone']
+
+	// Checks if should display install popup notification:
+	if (isIos() && !isInStandaloneMode()) {
+		return true
+	} else {
+		return false
+	}
 }
