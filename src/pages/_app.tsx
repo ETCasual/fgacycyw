@@ -79,7 +79,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 										hideProgressBar: true,
 										closeOnClick: false,
 										pauseOnHover: true,
-										draggable: false
+										draggable: false,
+										autoClose: false
 									}
 								)
 						  }, 5000)
