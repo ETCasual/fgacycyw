@@ -43,7 +43,7 @@ export const MyCarousel: React.FC<CarouselProps> = ({
 						src={img}
 						key={i}
 						alt={img}
-						className={`w-full object-center object-contain ${heightClass}`}
+						className={`w-full object-center object-cover ${heightClass}`}
 					/>
 			  ))
 			: null}
@@ -54,7 +54,7 @@ export const MyCarousel: React.FC<CarouselProps> = ({
 						key={i}
 					>
 						<p
-							className="text-2xl lg:text-5xl font-montserrat font-bold text-center"
+							className="text-2xl lg:text-5xl font-bebas font-bold text-center"
 							style={{ color: text.textColor }}
 						>
 							{text.text}

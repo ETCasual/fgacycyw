@@ -7,7 +7,9 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				montserrat: ['Montserrat', 'sans-serif'],
-				century: ["'Century Gothic'", 'sans-serif']
+				bebas: ["'Bebas Neue'", 'sans-serif'],
+				century: ["'Century Gothic'", 'sans-serif'],
+				gloss: ["'Gloss And Bloom'", 'sans-serif']
 			}
 		}
 	},
@@ -16,6 +18,8 @@ module.exports = {
 	},
 	plugins: [
 		require('tailwind-scrollbar'),
-		require('@tailwindcss/aspect-ratio')
+		require('@tailwindcss/aspect-ratio'),
+		require('@tailwindcss/line-clamp'),
+		require('tailwindcss-elevation')(['responsive'])
 	]
 }

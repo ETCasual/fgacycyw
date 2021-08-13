@@ -16,6 +16,8 @@
 		"@ramonak/react-progress-bar": "^3.2.1",
 		"@react-firebase/auth": "^0.2.10",
 		"@tailwindcss/aspect-ratio": "^0.2.1",
+		"@tailwindcss/line-clamp": "^0.2.1",
+		"aos": "^2.3.4",
 		"express-validator": "^6.12.1",
 		"firebase": "^8.8.1",
 		"firebase-admin": "^9.11.0",
@@ -37,10 +39,12 @@
 		"react-slick": "^0.28.1",
 		"react-youtube": "^7.13.1",
 		"slick-carousel": "^1.8.1",
+		"tailwindcss-elevation": "^1.0.1",
 		"yup": "^0.32.9",
 		"zustand": "^3.5.7"
 	},
 	"devDependencies": {
+		"@types/aos": "^3.0.4",
 		"@types/luxon": "^1.27.1",
 		"@types/react": "17.0.15",
 		"@types/react-router-dom": "^5.1.8",

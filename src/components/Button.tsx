@@ -16,7 +16,7 @@ export const Button: React.FC<ButtonProps> = (
 			onClick={onClick}
 			className={`${className} rounded-[4px] bg-[#FFBA00]`}
 		>
-			<p className="text-[#210440] font-montserrat text-base py-2 text-center">
+			<p className="text-[#210440] font-bebas text-base py-2 text-center">
 				{props.children}
 			</p>
 		</div>

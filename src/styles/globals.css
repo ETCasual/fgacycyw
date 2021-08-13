@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
+@font-face {
+	font-family: 'Gloss And Bloom';
+	src: url('/font/Gloss_And_Bloom.ttf');
+}
 /* @import url('http://fonts.cdnfonts.com/css/century-gothic?styles=24895,24898,24896,24897'); */
 
 html,

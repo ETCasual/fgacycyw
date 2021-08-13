@@ -1,16 +1,37 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Menu, Transition } from '@headlessui/react'
+import { Dialog, Menu, Transition } from '@headlessui/react'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 import { Layout, MyCarousel } from '../components'
 import { SermonCard } from '../components/SermonCard'
+import { UserProps } from '../interface'
+import AOS from 'aos'
+
+import { AiOutlineForm } from 'react-icons/ai'
+import { useRegister } from '../stores/useRegister'
+import Select from 'react-select'
 // import { UserProps } from '../interface'
 
-const texts = [
-	{ text: 'Warrior Conference', textColor: '#FFBA00', bgColor: '#210440' }
+// const texts = [
+// 	{ text: 'Warrior Conference', textColor: '#FFBA00', bgColor: '#210440' }
+// ]
+
+const selections = [
+	{
+		value: 'Photo Editing - Leo',
+		label: 'Photo Editing - Leo'
+	},
+	{
+		value: 'Singing - Cheng Yee',
+		label: 'Singing - Cheng Yee'
+	},
+	{
+		value: 'Performing Arts (Public Speaking) - Raymond',
+		label: 'Performing Arts (Public Speaking) - Raymond'
+	}
 ]
 
 const loremipsum =
@@ -18,54 +39,178 @@ const loremipsum =
 
 const dayCards = [1, 2, 3]
 
-const WarriorConference: NextPage = () =>
-	// {
-	// 	user
-	// }
-	{
-		const [day, setDay] = useState<number>(1)
-		return (
-			<>
-				<Head>
-					<title>Warrior Conference | FGACYCYW KL</title>
-				</Head>
-				<Layout currentPage="home" className="h-screen overflow-hidden">
-					<div className="w-full">
-						<MyCarousel
-							texts={texts}
-							className="w-screen"
-							heightClass="h-32"
+const WarriorConference: NextPage<UserProps> = ({ user }) => {
+	const [day, setDay] = useState<number>(1)
+	const [selectionText, setSelection] = useState<string>('')
+	const [isModalOpen, setModalState] = useState<boolean>(false)
+
+	const { uid, setRegistered } = useRegister()
+
+	useEffect(() => {
+		AOS.init({
+			duration: 2000
+		})
+	}, [])
+
+	return (
+		<>
+			<Head>
+				<title>Warrior Conference | FGACYCYW KL</title>
+			</Head>
+			<Layout
+				currentPage="home"
+				className="overflow-hidden relative"
+				user={user}
+				noFooter
+				hscreen={false}
+			>
+				<Dialog
+					as="div"
+					open={isModalOpen}
+					className="fixed inset-0 z-10 backdrop-blur-[2px]"
+					onClose={() => setModalState(false)}
+				>
+					<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
+						<p className="text-4xl font-bebas tracking-[0.025em] text-center my-5">
+							Select your desired workshop!{' '}
+							<span role="img" aria-label="Lightbulb">
+								💡
+							</span>
+						</p>
+						<Select
+							className="mx-auto mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]"
+							isClearable={false}
+							maxMenuHeight={150}
+							onChange={(selection) =>
+								setSelection(selection?.value as string)
+							}
+							options={selections}
 						/>
-					</div>
-					<div className="flex lg:flex-row flex-col gap-2 lg:gap-5 px-10 sm:px-20 w-full">
-						<div className="mx-auto hidden sm:flex flex-row gap-5 mt-4 ">
-							{dayCards.map((days, i) => (
-								<div
-									className={`rounded-3xl transition ease-in-out duration-300 px-2 py-1  w-[150px] cursor-pointer ${
-										days == day
-											? 'bg-[#FFBA00] text-[#210440]'
-											: 'bg-[#210440] text-[#fff] '
-									}`}
-									onClick={() => setDay(days)}
-									key={i}
-								>
-									<p className="font-montserrat text-lg text-center">
-										{'Day ' + days}
-									</p>
-								</div>
-							))}
-						</div>
-						<Menu
-							as="div"
-							className="w-[200px] mx-auto relative sm:hidden mt-2"
+						<button
+							onClick={
+								selectionText
+									? async () => {
+											const res = await fetch(
+												`/api/registerConference/${selectionText}`,
+												{
+													method: 'POST',
+													headers: {
+														'Content-Type':
+															'application/json'
+													},
+													credentials: 'same-origin',
+													body: JSON.stringify(user)
+												}
+											)
+											if (res.ok) {
+												setRegistered(
+													user?.uid as string
+												)
+												alert('Registered!')
+												setModalState(false)
+											}
+									  }
+									: () => alert('Please select a workshop!')
+							}
+							className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 						>
+							Register!
+						</button>
+					</div>
+				</Dialog>
+				<div className="w-full" data-aos="fade-down">
+					<MyCarousel
+						imgSrc={['/assets/warriorConfBannerSmall.png']}
+						className="w-screen block sm:hidden"
+						heightClass="h-32"
+					/>
+					<MyCarousel
+						imgSrc={['/assets/warriorConfbanner.png']}
+						className="w-screen hidden sm:block"
+						heightClass="h-52"
+					/>
+				</div>
+				<div className="flex lg:flex-row flex-col gap-2 lg:gap-5 px-10 sm:px-20 w-full mt-2">
+					<div className="mx-auto hidden sm:flex flex-row gap-5 mt-4">
+						{dayCards.map((days, i) => (
+							<div
+								className={`rounded-3xl transition ease-in-out duration-300 px-2 py-1  w-[150px] cursor-pointer ${
+									days == day
+										? 'bg-[#FFBA00] text-[#210440]'
+										: 'bg-[#210440] text-[#fff] '
+								}`}
+								onClick={() => setDay(days)}
+								key={i}
+							>
+								<p className="font-bebas text-lg text-center">
+									{'Day ' + days}
+								</p>
+							</div>
+						))}
+					</div>
+					<Menu
+						as="div"
+						className="w-[200px] mx-auto relative sm:hidden mt-2"
+					>
+						<div>
+							<Menu.Button className="inline-flex justify-between w-full px-2 py-1 font-bebas bg-[#FFBA00] text-base rounded-3xl text-[#210440] hover:bg-opacity-30">
+								{'Day ' + day}
+								<FaChevronDown
+									className="w-3 h-3 self-center ml-2  text-violet-200 hover:text-violet-100"
+									aria-hidden="true"
+								/>
+							</Menu.Button>
+						</div>
+						<Transition
+							as={Fragment}
+							enter="transition ease-out duration-100"
+							enterFrom="transform opacity-0 scale-95"
+							enterTo="transform opacity-100 scale-100"
+							leave="transition ease-in duration-75"
+							leaveFrom="transform opacity-100 scale-100"
+							leaveTo="transform opacity-0 scale-95"
+						>
+							<Menu.Items className="absolute left-0 z-[2] w-full origin-top-right rounded-md shadow-lg focus:outline-none">
+								<div className="flex flex-col">
+									{dayCards.map((days, i) => (
+										<Menu.Item key={i}>
+											<button
+												onClick={() => setDay(days)}
+											>
+												<p
+													className={`
+														${
+															days == day
+																? 'bg-[#FFBA00] text-[#210440]'
+																: 'bg-[#210440] text-[#fff] '
+														} px-2 py-1`}
+												>
+													{'Day ' + days}
+												</p>
+											</button>
+										</Menu.Item>
+									))}
+								</div>
+							</Menu.Items>
+						</Transition>
+					</Menu>
+				</div>
+				<div className="w-[280px] sm:w-[600px] lg:w-[950px] mx-auto my-2">
+					<SermonCard
+						title="Kingdom Come"
+						text={loremipsum}
+						className="mt-2"
+						videoId="uGaRPMsFXnc"
+						verse="Matthew 6:33 | Psalm 119"
+					/>
+				</div>
+
+				{!uid.includes(user?.uid as string) ? (
+					<div className="fixed top-16">
+						<Menu as="div" className="fixed bottom-10 left-10">
 							<div>
-								<Menu.Button className="inline-flex justify-between w-full px-2 py-1 font-montserrat bg-[#FFBA00] text-base rounded-3xl text-[#210440] hover:bg-opacity-30">
-									{'Day ' + day}
-									<FaChevronDown
-										className="w-3 h-3 self-center ml-2  text-violet-200 hover:text-violet-100"
-										aria-hidden="true"
-									/>
+								<Menu.Button className="animate-bounce rounded-full from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-[60px] h-[60px] lg:w-[80px] lg:h-[80px] p-3 lg:p-5 text-[#210440]">
+									<AiOutlineForm className="object-contain w-full h-full" />
 								</Menu.Button>
 							</div>
 							<Transition
@@ -77,43 +222,31 @@ const WarriorConference: NextPage = () =>
 								leaveFrom="transform opacity-100 scale-100"
 								leaveTo="transform opacity-0 scale-95"
 							>
-								<Menu.Items className="absolute left-0 z-[2] w-full origin-top-right rounded-md shadow-lg focus:outline-none">
-									<div className="flex flex-col">
-										{dayCards.map((days, i) => (
-											<Menu.Item key={i}>
-												<button
-													onClick={() => setDay(days)}
-												>
-													<p
-														className={`
-														${
-															days == day
-																? 'bg-[#FFBA00] text-[#210440]'
-																: 'bg-[#210440] text-[#fff] '
-														} px-2 py-1`}
-													>
-														{'Day ' + days}
-													</p>
-												</button>
-											</Menu.Item>
-										))}
-									</div>
+								<Menu.Items
+									onClick={() => {
+										setModalState(true)
+										console.log('Opened')
+									}}
+									className="absolute bottom-20 lg:bottom-32 w-[200px] origin-bottom-left ring-2 ring-[#210440] ring-offset-4 text-left px-1 text-[#210440] rounded-md shadow-lg focus:outline-none"
+								>
+									<Menu.Item>
+										<>
+											<p className="font-bebas text-xl mt-2">
+												Register Here!
+											</p>
+											<p className="mb-2">
+												Click on the button to register!
+											</p>
+										</>
+									</Menu.Item>
 								</Menu.Items>
 							</Transition>
 						</Menu>
 					</div>
-					<div className="w-[280px] sm:w-[600px] lg:w-[950px]">
-						<SermonCard
-							title="Kingdom Come"
-							text={loremipsum}
-							className="mt-3"
-							videoId="uGaRPMsFXnc"
-							verse="Matthew 6:33 | Psalm 119"
-						/>
-					</div>
-				</Layout>
-			</>
-		)
-	}
+				) : null}
+			</Layout>
+		</>
+	)
+}
 
 export default WarriorConference

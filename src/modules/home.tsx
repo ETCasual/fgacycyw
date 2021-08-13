@@ -25,33 +25,34 @@ import { useAuthUser } from 'next-firebase-auth'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Field, Form, Formik } from 'formik'
 import ProgressBar from '@ramonak/react-progress-bar'
+import { convertto1D } from '../utils/helpers'
 // import initAuth from '../services/auth/next-firebase-auth'
 // import getUserData from '../pages/api/auth/[id]'
 
-const genders = ['male', 'female']
+export const genders = ['male', 'female']
 
 // TODO: change image
 const cards = [
 	{
-		image: '/assets/upcoming.png',
-		name: 'Warriors Conference: The Unseen Shepherd',
+		image: '/assets/warriorConfBannerSmall.png',
+		name: 'Warriors Conference',
 		to: '/warriorConference'
-	},
-	{
-		image: '/assets/testimonies.png',
-		name: 'Testimonies',
-		to: '/testimonies'
-	},
-	{
-		image: '/assets/DNA.jpeg',
-		name: 'Our Church: DNA Series',
-		to: '/dna'
-	},
-	{
-		image: '/assets/moment.jpg',
-		name: 'Moments With Us',
-		to: '/moments'
 	}
+	// {
+	// 	image: '/assets/testimonies.png',
+	// 	name: 'Testimonies',
+	// 	to: '/testimonies'
+	// },
+	// {
+	// 	image: '/assets/DNA.jpeg',
+	// 	name: 'Our Church: DNA Series',
+	// 	to: '/dna'
+	// },
+	// {
+	// 	image: '/assets/moment.jpg',
+	// 	name: 'Moments With Us',
+	// 	to: '/moments'
+	// }
 ]
 
 export type HomeProps = {
@@ -59,7 +60,7 @@ export type HomeProps = {
 	userToken?: string
 	error?: boolean
 }
-const structure = {
+export const structure = {
 	Move: [
 		{
 			smallteam: 'Move 1 | Yap Ai Ling',
@@ -189,9 +190,16 @@ const structure = {
 	]
 }
 
-const pastoralStatuses = ['TL / ZL', 'SCGL', 'PCGL / CGL', 'OM', 'NB', 'NF']
+export const pastoralStatuses = [
+	'TL / ZL',
+	'SCGL',
+	'PCGL / CGL',
+	'OM',
+	'NB',
+	'NF'
+]
 
-const clusters = [
+export const clusters = [
 	{ value: 'Move', label: 'Move' },
 	{ value: 'Voice', label: 'Voice' },
 	{ value: 'Mind', label: 'Mind' },
@@ -202,24 +210,14 @@ const clusters = [
 const cg1 = Object.values(structure).map((teams) =>
 	teams.map((team) => team.cg.map((cg) => cg))
 )
-const [MoveCG, VoiceCG, MindCG, ForceCG, HeartCG, StrikeCG] = cg1
+export const [MoveCG, VoiceCG, MindCG, ForceCG, HeartCG, StrikeCG] = cg1
 
 const smallteams1 = Object.values(structure).map((teams) =>
 	teams.map((team) => team.smallteam)
 )
-const [Move, Voice, Mind, Force, Heart, Strike] = smallteams1
-
-const convertto1D = (arrToConvert: string[][]): string[] => {
-	let newArr: string[] = []
-	for (let i = 0; i < arrToConvert.length; i++) {
-		newArr = newArr.concat(arrToConvert[i])
-	}
-	return newArr
-}
+export const [Move, Voice, Mind, Force, Heart, Strike] = smallteams1
 
 const Home: NextPage<HomeProps> = ({ user, userToken }) => {
-	const authUser = useAuthUser()
-
 	console.log(user?.uid)
 
 	const [modalMode, setModalMode] = useState<boolean>(
@@ -233,7 +231,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 			<Head>
 				<title>Home | FGACYCYW KL</title>
 			</Head>
-			<Layout currentPage="home">
+			<Layout currentPage="home" user={user} noFooter hscreen={false}>
 				<Dialog
 					as="div"
 					open={modalMode}
@@ -242,7 +240,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 				>
 					<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
 						<>
-							<p className="text-2xl font-montserrat font-bold text-center">
+							<p className="text-2xl font-bebas font-bold text-center">
 								Complete Your Profile{' '}
 								<span role="img" aria-label="Clipboard">
 									📋
@@ -349,7 +347,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.fullName
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.fullName &&
 												touched.fullName ? (
@@ -373,7 +371,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.nickname
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.nickname &&
 												touched.nickname ? (
@@ -399,7 +397,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.contact
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.contact &&
 												touched.contact ? (
@@ -452,7 +450,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													/>
 												</div>
 												<button
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 													onClick={() => {
 														!errors.fullName &&
 														!errors.nickname &&
@@ -482,7 +480,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.ic
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.ic && touched.ic ? (
 													<div className="text-red-600 text-center mb-4">
@@ -505,7 +503,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.address1
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.address1 &&
 												touched.address1 ? (
@@ -529,7 +527,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.address2
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.address2 &&
 												touched.address2 ? (
@@ -548,7 +546,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															: 'ring-[#7e30d1]'
 													}`}
 												>
-													<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
+													<div className="text-white font-bebas  px-3 py-2 text-center w-[100px] self-center">
 														DOB
 													</div>
 													<DatePicker
@@ -577,7 +575,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 																  touched.dob
 																? 'ring-offset-1 ring-2 ring-green-600'
 																: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-														}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+														}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													/>
 												</div>
 												{errors.dob && touched.dob ? (
@@ -608,7 +606,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.cluster
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													options={clusters}
 													isClearable={false}
 													maxMenuHeight={150}
@@ -621,7 +619,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													</div>
 												) : null}
 												<button
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 													onClick={() => {
 														!errors.ic &&
 														!errors.address1 &&
@@ -659,7 +657,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.smallTeam
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													options={
 														values.cluster == 'Move'
 															? Move.map(
@@ -768,7 +766,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.cg
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													options={
 														values.cluster == 'Move'
 															? convertto1D(
@@ -871,7 +869,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.status
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													isClearable={false}
 													maxMenuHeight={150}
 													options={pastoralStatuses.map(
@@ -890,14 +888,14 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 												) : null}
 												<button
 													type="submit"
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												>
 													Update Profile
 												</button>
 											</>
 										) : (
 											<div className="w-full flex flex-col items-center">
-												<p className="text-white font-montserrat text-2xl font-bold text-center mb-4">
+												<p className="text-white font-bebas text-2xl font-bold text-center mb-4">
 													Profile updated!{' '}
 													<span
 														role="img"
@@ -907,7 +905,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													</span>
 												</p>
 												<button
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
 													onClick={() => {
 														setModalMode(false)
 														window.location.reload()
@@ -924,18 +922,18 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					</div>
 				</Dialog>
 
-				<div
+				{/* <div
 					className="w-full px-5 sm:px-20 "
 					onClick={() => authUser.signOut()}
 				>
-					<p className="font-montserrat text-[#210440] xl:text-5xl lg:text-4xl text-2xl font-bold sm:mt-5 sm:mb-2 mt-3 mb-1 lg:mt-10 lg:mb-5">
+					<p className="font-bebas text-[#210440] xl:text-5xl lg:text-4xl text-2xl font-bold sm:mt-5 sm:mb-2 mt-3 mb-1 lg:mt-10 lg:mb-5">
 						Hello, {user?.nickname}
 					</p>
-				</div>
-				<div className="w-full h-full flex flex-col px-5 sm:px-20 mb-3">
-					<p className="text-xl mb-3 mt-0 lg:mt-3  font-montserrat text-[#210440] font-semibold">
+				</div> */}
+				<div className="w-full h-full flex flex-col px-5 sm:px-20 mt-10 mb-3">
+					{/* <p className="text-xl mb-3 mt-0 lg:mt-3  font-bebas text-[#210440] font-semibold">
 						Welcome Home!
-					</p>
+					</p> */}
 					<div className="sm:flex flex-row w-[300px] justify-between hidden">
 						<p
 							className={`font-century  text-[#210440] text-lg ${
@@ -960,7 +958,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					</div>
 					<Menu as="div" className="w-[170px] relative sm:hidden">
 						<div>
-							<Menu.Button className="inline-flex justify-between w-full px-4 py-2 text-sm font-montserrat bg-[#210440] text-white hover:bg-opacity-30">
+							<Menu.Button className="inline-flex justify-between w-full px-4 py-2 text-sm font-montserrat bg-[#210440] text-[#fff] hover:bg-opacity-30">
 								{aboutUs
 									? 'It all starts here...'
 									: 'Ready, GO!'}
@@ -1008,8 +1006,10 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					allowFullScreen
 				/> */}
+
 				{!aboutUs ? (
-					<div className="grid sm:grid-cols-2 grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full h-full">
+					// TODO: sm:grid-cols-1 must chg to grid-cols-2 when develop further
+					<div className="grid sm:grid-cols-1  grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full h-full">
 						{cards.map((card, i) => (
 							<Card
 								key={i}
@@ -1021,7 +1021,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					</div>
 				) : (
 					<div className="w-full h-full px-10 sm:px-20">
-						<p className="text-xl my-3 font-montserrat text-[#210440] font-semibold">
+						<p className="text-2xl my-3 font-bebas tracking-[0.025em] text-[#210440] font-semibold">
 							Follow Us!
 						</p>
 						<div

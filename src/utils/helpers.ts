@@ -17,3 +17,11 @@ export const getEnvVar = (
 	}
 	return { env: x, error: null }
 }
+
+export const convertto1D = (arrToConvert: string[][]): string[] => {
+	let newArr: string[] = []
+	for (let i = 0; i < arrToConvert.length; i++) {
+		newArr = newArr.concat(arrToConvert[i])
+	}
+	return newArr
+}

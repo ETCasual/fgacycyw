@@ -74,7 +74,7 @@ export const LoginForm: React.FC = () => {
 						id="email"
 						name="email"
 						placeholder={values.email !== '' ? null : 'Email'}
-						className="focus-within:outline-none  text-[#210440] bg-[#fff] w-full text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]"
+						className="focus-within:outline-none  text-[#210440] bg-[#fff] w-full text-center font-bebas text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]"
 					/>
 					{errors.email && touched.email ? (
 						<div className="text-red-700 h-10">{errors.email}</div>
@@ -86,7 +86,7 @@ export const LoginForm: React.FC = () => {
 						name="pw"
 						type="password"
 						placeholder={values.pw !== '' ? null : 'Password'}
-						className="focus-within:outline-none  text-[#210440] bg-[#fff] w-full text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]"
+						className="focus-within:outline-none  text-[#210440] bg-[#fff] w-full text-center font-bebas text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]"
 					/>
 					{errors.pw && touched.pw ? (
 						<div className="text-red-700 h-10">{errors.pw}</div>
@@ -95,7 +95,7 @@ export const LoginForm: React.FC = () => {
 					)}
 					<button
 						type="submit"
-						className="rounded-[4px] bg-[#210440] text-[#fff] font-montserrat lg:text-base text-sm lg:py-2 py-1 text-center lg:w-[200px] w-[100px] transform hover:scale-[1.2] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
+						className="rounded-[4px] bg-[#210440] text-[#fff] font-bebas lg:text-base text-sm lg:py-2 py-1 text-center lg:w-[200px] w-[100px] transform hover:scale-[1.2] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
 					>
 						Log In
 					</button>

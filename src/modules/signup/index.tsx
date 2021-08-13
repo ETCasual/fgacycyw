@@ -18,7 +18,7 @@ const SignUp: NextPage = () => {
 			</Head>
 			<Layout noFooter className="h-screen">
 				<div className="w-full px-5 sm:px-20">
-					<p className="font-montserrat text-[#210440] lg:text-5xl text-3xl font-bold mt-5 mb-2 lg:mt-10 lg:mb-5 text-center">
+					<p className="font-bebas text-[#210440] lg:text-5xl text-3xl font-bold mt-5 mb-2 lg:mt-10 lg:mb-5 text-center">
 						Sign Up
 					</p>
 					{/* <div className="w-full px-3">
@@ -31,7 +31,7 @@ const SignUp: NextPage = () => {
 					</div> */}
 				</div>
 				<div className="w-full px-5 sm:px-20 flex flex-col my-auto">
-					<p className="font-montserrat text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-5">
+					<p className="font-bebas text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-5">
 						Firstly!
 						<span className="inline sm:hidden">
 							<br />
@@ -124,7 +124,7 @@ const SignUp: NextPage = () => {
 								<div className="flex flex-col items-end">
 									<div className="flex flex-col sm:flex-row items-center">
 										<label
-											className="block text-lg font-montserrat  leading-none sm:w-[170px] w-full sm:my-0 my-3"
+											className="block text-lg font-bebas  leading-none sm:w-[170px] w-full sm:my-0 my-3"
 											htmlFor="email"
 										>
 											Email
@@ -145,7 +145,7 @@ const SignUp: NextPage = () => {
 													  touched.email
 													? 'ring-offset-1 ring-2 ring-green-600'
 													: 'ring-offset-1 ring-2 ring-[#210440]'
-											}  focus-within:outline-none ml-0 sm:ml-10 text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] bg-gray-200 text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+											}  focus-within:outline-none ml-0 sm:ml-10 text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] bg-gray-200 text-center font-bebas text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 										/>
 									</div>
 									{errors.email && touched.email ? (
@@ -157,7 +157,7 @@ const SignUp: NextPage = () => {
 									)}
 									<div className="flex flex-col sm:flex-row items-center">
 										<label
-											className="block text-lg font-montserrat  leading-none sm:w-[170px] w-full sm:my-0 my-3"
+											className="block text-lg font-bebas  leading-none sm:w-[170px] w-full sm:my-0 my-3"
 											htmlFor="password"
 										>
 											Password
@@ -180,7 +180,7 @@ const SignUp: NextPage = () => {
 													  touched.password
 													? 'ring-offset-1 ring-2 ring-green-600'
 													: 'ring-offset-1 ring-2 ring-[#210440]'
-											}  focus-within:outline-none  ml-0 sm:ml-10 text-[#210440] bg-gray-200 lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+											}  focus-within:outline-none  ml-0 sm:ml-10 text-[#210440] bg-gray-200 lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] text-center font-bebas text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 										/>
 									</div>
 									{errors.password && touched.password ? (
@@ -192,7 +192,7 @@ const SignUp: NextPage = () => {
 									)}
 									<div className="flex flex-col sm:flex-row items-center">
 										<label
-											className="block text-lg font-montserrat  leading-none sm:w-[170px] w-full sm:my-0 my-3"
+											className="block text-lg font-bebas  leading-none sm:w-[170px] w-full sm:my-0 my-3"
 											htmlFor="passwordConfirmation"
 										>
 											Confirm Password
@@ -216,7 +216,7 @@ const SignUp: NextPage = () => {
 													  touched.passwordConfirmation
 													? 'ring-offset-1 ring-2 ring-green-600'
 													: 'ring-offset-1 ring-2 ring-[#210440]'
-											}  focus-within:outline-none  ml-0 sm:ml-10 text-[#210440] bg-gray-200 lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] text-center font-montserrat text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+											}  focus-within:outline-none  ml-0 sm:ml-10 text-[#210440] bg-gray-200 lg:w-[600px] md:w-[500px] sm:w-[400px] w-[280px] text-center font-bebas text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 										/>
 									</div>
 									{errors.passwordConfirmation &&
@@ -229,7 +229,7 @@ const SignUp: NextPage = () => {
 									)}
 									<button
 										type="submit"
-										className="rounded-[4px] bg-[#210440] mt-3 text-[#fff] font-montserrat lg:text-base text-base py-2 text-center w-full transform hover:scale-[1.025] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
+										className="rounded-[4px] bg-[#210440] mt-3 text-[#fff] font-bebas lg:text-base text-base py-2 text-center w-full transform hover:scale-[1.025] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
 									>
 										Sign Up
 									</button>

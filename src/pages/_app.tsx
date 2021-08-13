@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick-theme.css'
 import type { AppProps } from 'next/app'
 import initAuth from '../services/auth/next-firebase-auth'
 
+import 'aos/dist/aos.css'
+
 initAuth()
 
 function MyApp({ Component, pageProps }: AppProps) {

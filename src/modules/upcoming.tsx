@@ -22,7 +22,7 @@ const Upcoming: NextPage<UpcomingProps> = ({ user, userToken }) => {
 				<MyCarousel texts={texts} heightClass="h-32 lg:h-52" />
 			</div>
 			<div className="w-full px-3 sm:px-20 ">
-				<p className="font-montserrat text-[#210440] text-5xl my-5 font-bold">
+				<p className="font-bebas text-[#210440] text-5xl my-5 font-bold">
 					Upcoming Events
 				</p>
 			</div>

@@ -20,11 +20,11 @@ const Login: React.FC = () => {
 					<div className="m-auto lg:w-[500px] sm:w-[400px] w-[300px] z-[3] h-1/2 flex flex-col">
 						<LoginForm />
 						<div className="flex flex-col items-center mb-2">
-							<p className="font-montserrat text-sm text-[#210440]">
+							<p className="font-bebas text-sm text-[#210440]">
 								Don&apos;t have an account?
 							</p>
 							<a href="/signup">
-								<p className="font-montserrat text-base underline text-[#210440] transform transition ease-in-out hover:scale-[1.2]">
+								<p className="font-bebas text-base underline text-[#210440] transform transition ease-in-out hover:scale-[1.2]">
 									Create an account
 								</p>
 							</a>

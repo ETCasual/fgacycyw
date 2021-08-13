@@ -33,7 +33,7 @@ export const SermonCard: React.FC<SermonCardProps> = ({
 				rel="noreferrer"
 			>
 				<p
-					className={`font-montserrat text-2xl font-bold transition ease-in-out duration-300  text-white ${
+					className={`font-bebas text-4xl font-bold transition ease-in-out duration-300 tracking-[0.025em] text-white ${
 						videoId ? 'underline hover:text-[#FFBA00]' : null
 					}`}
 				>
@@ -41,11 +41,13 @@ export const SermonCard: React.FC<SermonCardProps> = ({
 				</p>
 			</a>
 			<div className="overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar scrollbar-thumb-gray-500">
-				<p className="text-white text-xl text-center font-montserrat mx-auto my-3">
+				<p className="text-white text-xl text-center font-montserrat mx-auto my-3 tracking-tight">
 					{verse}
 				</p>
 
-				<p className="font-montserrat my-2  text-white">{text}</p>
+				<p className="font-montserrat text-lg my-2  text-white">
+					{text}
+				</p>
 				{videoId ? (
 					<YouTube
 						videoId={videoId}

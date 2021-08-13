@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = ({
 	const router = useRouter()
 	return (
 		<div
-			className={`w-full h-[200px] lg:h-[300px] cursor-pointer rounded-none sm:rounded-md bg-center bg-cover relative z-[1] bg-no-repeat ${className}`}
+			className={`w-full h-[200px] lg:h-[300px] cursor-pointer rounded-none sm:rounded-md bg-center bg-cover sm:bg-cover relative z-[1] bg-no-repeat ${className}`}
 			onClick={() => {
 				to ? router.push(to) : null
 			}}
@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({
 				/>
 			) : null}
 			{name ? (
-				<p className="absolute z-[3] left-6 bottom-5 font-montserrat font-semibold text-white text-lg">
+				<p className="absolute z-[3] left-6 bottom-5 font-montserrat font-semibold text-black text-lg">
 					{name}
 				</p>
 			) : null}
