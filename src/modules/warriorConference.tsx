@@ -121,6 +121,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 												)
 												alert('Registered!')
 												setModalState(false)
+												window.location.reload()
 											}
 									  }
 									: () => alert('Please select a workshop!')
