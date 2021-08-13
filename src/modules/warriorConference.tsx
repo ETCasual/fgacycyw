@@ -46,6 +46,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 	const [day, setDay] = useState<number>(1)
 	const [selectionText, setSelection] = useState<string>('')
 	const [isModalOpen, setModalState] = useState<boolean>(false)
+	const [thumbnail, setThumbnail] = useState<boolean>(false)
 
 	const { uid, setRegistered } = useRegister()
 	const buttonRef = createRef<HTMLButtonElement>()
@@ -143,15 +144,26 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div>
 				<div className="sm:w-2/3 lg:w-1/2 w-full">
-					<YouTube
-						videoId="pkKcQv3jxt8"
-						className="mx-auto"
-						containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
-						onEnd={() => {
-							console.log('Video Ended')
-							buttonRef.current?.click()
-						}}
-					/>
+					{thumbnail == false ? (
+						<YouTube
+							videoId="pkKcQv3jxt8"
+							className="mx-auto"
+							containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
+							onEnd={() => {
+								console.log('Video Ended')
+								buttonRef.current?.click()
+								setThumbnail(true)
+							}}
+						/>
+					) : (
+						<div className="w-full mx-auto aspect-w-9 aspect-h-16 mt-7">
+							<img
+								className="mx-auto"
+								src="/assets/warriorConfPoster.png"
+								alt="warriorConfPoster"
+							/>
+						</div>
+					)}
 				</div>
 				<p className="font-montserrat font-semibold sm:text-3xl text-xl w-full mx-auto text-center my-10 animate-bounce">
 					Stay Tuned for more Updates!
