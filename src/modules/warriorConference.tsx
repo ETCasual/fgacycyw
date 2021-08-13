@@ -157,14 +157,13 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							}}
 						/>
 					) : (
-						<div className=" mx-auto aspect-w-9 aspect-h-16 mt-7">
+						<div className="mx-auto  mt-7 flex flex-col items-center">
 							<button
 								className="w-full mb-3 px-5 py-3 text-xl my-2 font-montserrat rounded-md text-white bg-[#210440]"
 								onClick={() => setThumbnail(false)}
 							>
 								Replay Video
 							</button>
-
 							<img
 								className="mx-auto object-contain px-0 sm:px-10"
 								src="/assets/warriorConfposter.png"
