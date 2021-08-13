@@ -5,7 +5,7 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import React, { Fragment, useState, useEffect } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
-import { Layout, MyCarousel } from '../components'
+import { Layout, MyCarousel, Loader } from '../components'
 import { SermonCard } from '../components/SermonCard'
 import { UserProps } from '../interface'
 import AOS from 'aos'
@@ -51,6 +51,14 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 			duration: 2000
 		})
 	}, [])
+	const [mounted, setMounted] = useState<boolean>(false)
+	useEffect(() => {
+		setTimeout(() => {
+			setMounted(true)
+		}, 1000)
+	}, [])
+
+	if (!mounted) return <Loader />
 
 	return (
 		<>

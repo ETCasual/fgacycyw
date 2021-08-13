@@ -4,8 +4,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { NextPage } from 'next'
-import React, { ChangeEvent, Fragment, useState } from 'react'
-import { Card, Layout } from '../components'
+import React, { ChangeEvent, Fragment, useEffect, useState } from 'react'
+import { Card, Layout, Loader } from '../components'
 import Select from 'react-select'
 import DatePicker from 'react-date-picker/dist/entry.nostyle'
 import 'react-date-picker/dist/DatePicker.css'
@@ -225,6 +225,14 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 	)
 	const [aboutUs, setAboutUs] = useState<boolean>(false)
 	const [progress, updateProgress] = useState<number>(0)
+	const [mounted, setMounted] = useState<boolean>(false)
+	useEffect(() => {
+		setTimeout(() => {
+			setMounted(true)
+		}, 1000)
+	}, [])
+
+	if (!mounted) return <Loader />
 
 	return (
 		<>
