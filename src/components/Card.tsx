@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({
 				/>
 			) : null}
 			{name ? (
-				<p className="absolute group group-hover:text-[#FFBA00] transition ease-in-out duration-300 z-[3] left-4 bottom-3 font-montserrat font-semibold text-black text-lg">
+				<p className="absolute group group-hover:text-[#210440] transition ease-in-out duration-300 z-[3] left-4 bottom-3 font-montserrat font-semibold text-black text-lg">
 					{name}
 				</p>
 			) : null}
