@@ -262,7 +262,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 									title={
 										'Registration For Warrior Conference'
 									}
-									className="animate-bounce rounded-2xl flex flex-row items-center from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-[60px] h-[60px] lg:w-[80px] lg:h-[80px] p-3 lg:p-5 text-[#210440]"
+									className="animate-bounce rounded-2xl flex flex-row items-center from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-full h-[60px]  lg:h-[80px] p-3 lg:p-5 text-[#210440]"
 								>
 									<AiOutlineForm className="object-contain w-full h-full" />
 									<p className="font-bebas text-2xl text-[#210440] ml-2 text-center">
