@@ -11,6 +11,8 @@
 		"clean": "rimraf -rf .next"
 	},
 	"dependencies": {
+		"@emotion/babel-plugin": "^11.3.0",
+		"@emotion/react": "^11.4.1",
 		"@headlessui/react": "^1.4.0",
 		"@notionhq/client": "^0.2.4",
 		"@ramonak/react-progress-bar": "^3.2.1",
@@ -37,6 +39,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-select": "^4.3.1",
 		"react-slick": "^0.28.1",
+		"react-spinners": "^0.11.0",
 		"react-toastify": "^7.0.4",
 		"react-youtube": "^7.13.1",
 		"slick-carousel": "^1.8.1",

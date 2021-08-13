@@ -3,12 +3,10 @@ const withPWA = require('next-pwa')
 module.exports = withPWA({
 	pwa: {
 		dest: 'public',
-		// swSrc: './service-worker.js',
+		swSrc: './service-worker.js',
 		register: true,
-		dynamicStartUrl: true
-		//   dynamicStartUrlRedirect: '/login',
-		//   disable: process.env.NODE_ENV === 'development'
+		dynamicStartUrl: true,
+		dynamicStartUrlRedirect: '/login'
 	},
-
 	webpack5: true
 })

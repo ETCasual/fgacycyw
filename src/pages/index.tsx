@@ -7,9 +7,11 @@ import {
 	withAuthUser,
 	withAuthUserTokenSSR
 } from 'next-firebase-auth'
+import React from 'react'
+import { Loader } from '../components'
 
 const Index: NextPage = () => {
-	return <div></div>
+	return <Loader />
 }
 
 export const getServerSideProps = withAuthUserTokenSSR({
