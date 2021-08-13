@@ -9,7 +9,8 @@
 		"type-check": "tsc --project tsconfig.json --pretty --noEmit",
 		"lint": "eslint --ext ts --ext tsx",
 		"clean": "rimraf -rf .next",
-		"push": "git add -A && git commit -m"
+		"commit": "git add -A && git commit -m",
+		"push": "git push origin"
 	},
 	"dependencies": {
 		"@emotion/babel-plugin": "^11.3.0",
