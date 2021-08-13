@@ -57,9 +57,9 @@ const categoriesPage = [
 	{
 		icon: (active: boolean) =>
 			active ? (
-				<BsFillPersonFill color="#FFBA00" className="w-12 h-12" />
-			) : (
 				<BsPerson color="#FFBA00" className="w-12 h-12" />
+			) : (
+				<BsFillPersonFill color="#FFBA00" className="w-12 h-12" />
 			),
 		pageName: 'profile'
 	}

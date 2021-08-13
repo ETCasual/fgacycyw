@@ -24,16 +24,16 @@ import { useRef } from 'react'
 
 const selections = [
 	{
-		value: 'Photo Editing - Leo',
-		label: 'Photo Editing - Leo'
+		value: 'Photo Editing',
+		label: 'Photo Editing'
 	},
 	{
-		value: 'Singing - Cheng Yee',
-		label: 'Singing - Cheng Yee'
+		value: 'Singing',
+		label: 'Singing'
 	},
 	{
-		value: 'Performing Arts (Public Speaking) - Raymond',
-		label: 'Performing Arts (Public Speaking) - Raymond'
+		value: 'Performing Arts (Public Speaking)',
+		label: 'Performing Arts (Public Speaking)'
 	}
 ]
 
@@ -259,6 +259,9 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							<div>
 								<Menu.Button
 									ref={buttonRef}
+									title={
+										'Registration For Warrior Conference'
+									}
 									className="animate-bounce rounded-full from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-[60px] h-[60px] lg:w-[80px] lg:h-[80px] p-3 lg:p-5 text-[#210440]"
 								>
 									<AiOutlineForm className="object-contain w-full h-full" />
