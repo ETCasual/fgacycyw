@@ -53,7 +53,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Component {...pageProps} />
-
 			<ToastContainer
 				position="bottom-center"
 				hideProgressBar={true}

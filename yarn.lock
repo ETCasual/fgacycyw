@@ -5462,11 +5462,6 @@ minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-mobile-device-detect@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/mobile-device-detect/-/mobile-device-detect-0.4.3.tgz#05d73b4bde7ccb5beda1c4bd0ea0986ce30b1f3f"
-  integrity sha512-SN9EBE9SoJgkb83kuUVoIp3R9OGYE5dYEnLEz2oLooh0DzgtQ72BJmpNGqrgFvmfE4iLR2CaVJ3RjUcStheVZg==
-
 modern-normalize@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
@@ -6577,12 +6572,10 @@ react-pdf@^4.2.0:
     pdfjs-dist "2.1.266"
     prop-types "^15.6.2"
 
-react-pwa-install@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/react-pwa-install/-/react-pwa-install-1.0.12.tgz#f7203bd1ca2b2a4204bfc469ee11813d9c2567a9"
-  integrity sha512-zy1ZPfUIDTiBap1pycB6IZw+8wSRwncFwtjuUHYwRX2+285EabTcvXAwl2PdIzcXc1fh+K0ZI6Snccx5bgLpxg==
-  dependencies:
-    mobile-device-detect "^0.4.3"
+react-pwa-install-prompt@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-pwa-install-prompt/-/react-pwa-install-prompt-1.0.5.tgz#c3f8dfcce398847eb0ed24a0f349115137abb278"
+  integrity sha512-sOMFTd9gkSkqy60S4Iabg2I/KvihvSPOAx3oDkounOG7m3P22tBn5hI0j6ryKCV8OKqXGzuoAUwywKUO3oCgrQ==
 
 react-refresh@0.8.3:
   version "0.8.3"

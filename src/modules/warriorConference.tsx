@@ -151,7 +151,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 				<div className="sm:w-2/3 lg:w-1/2 w-full">
 					{thumbnail == false ? (
 						<YouTube
-							videoId="pkKcQv3jxt8"
+							videoId="osstd3a2kf0"
 							className="mx-auto"
 							containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
 							onEnd={() => {
