@@ -96,6 +96,7 @@ export const Layout: React.FC<LayoutProps> = ({
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const [modalMode, setModalMode] = useState<boolean>(false)
 	const [progress, updateProgress] = useState<number>(0)
+	const [disabled, setDisabled] = useState<boolean>()
 
 	const scrollElem = createRef<HTMLDivElement>()
 	const ref = createRef<HTMLButtonElement>()
@@ -227,6 +228,7 @@ export const Layout: React.FC<LayoutProps> = ({
 						</div>
 						<Formik
 							onSubmit={async (values) => {
+								setDisabled(true)
 								const res = await fetch(
 									`/api/updateProfile/${user?.uid}`,
 									{
@@ -244,6 +246,7 @@ export const Layout: React.FC<LayoutProps> = ({
 									alert(
 										'There are some troubles updating your profile, Please contact developers for support'
 									)
+									setDisabled(false)
 								}
 							}}
 							validationSchema={Yup.object({
@@ -827,6 +830,7 @@ export const Layout: React.FC<LayoutProps> = ({
 												</div>
 											) : null}
 											<button
+												disabled={disabled}
 												type="submit"
 												className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 											>
@@ -848,6 +852,7 @@ export const Layout: React.FC<LayoutProps> = ({
 												className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												onClick={() => {
 													setModalMode(false)
+													setDisabled(false)
 													window.location.reload()
 												}}
 											>

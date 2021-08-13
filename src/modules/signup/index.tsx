@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Yup from 'yup'
 // import ProgressBar from '@ramonak/react-progress-bar'
 import Head from 'next/head'
@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { FaChevronLeft } from 'react-icons/fa'
 
 const SignUp: NextPage = () => {
+	const [disabled, setDisabled] = useState<boolean>()
 	const router = useRouter()
 	return (
 		<>
@@ -76,6 +77,7 @@ const SignUp: NextPage = () => {
 								.required('Required')
 						})}
 						onSubmit={async (values, { setErrors }) => {
+							setDisabled(true)
 							try {
 								await firebase
 									.auth()
@@ -95,6 +97,7 @@ const SignUp: NextPage = () => {
 											email: 'This email is in use.',
 											password: ''
 										})
+										setDisabled(false)
 										break
 									}
 									case 'auth/invalid-email': {
@@ -102,6 +105,7 @@ const SignUp: NextPage = () => {
 											email: 'Invalid email',
 											password: ''
 										})
+										setDisabled(false)
 										break
 									}
 									case 'auth/weak-password': {
@@ -110,6 +114,7 @@ const SignUp: NextPage = () => {
 											password:
 												'Password must have more than 6 characters'
 										})
+										setDisabled(false)
 										break
 									}
 									case 'auth/operation-not-allowed': {
@@ -117,6 +122,7 @@ const SignUp: NextPage = () => {
 											email: '',
 											password: ''
 										})
+										setDisabled(false)
 										console.log(
 											signupErrors.operationNotAllowed
 										)
@@ -236,6 +242,7 @@ const SignUp: NextPage = () => {
 									)}
 									<button
 										type="submit"
+										disabled={disabled}
 										className="rounded-[4px] bg-[#210440] mt-3 text-[#fff] font-montserrat lg:text-base text-base py-2 text-center w-full transform hover:scale-[1.025] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
 									>
 										Sign Up

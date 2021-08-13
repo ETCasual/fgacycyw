@@ -223,6 +223,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 	const [modalMode, setModalMode] = useState<boolean>(
 		user?.fullName ? false : true
 	)
+	const [disabled1, setDisabled1] = useState<boolean>(false)
 	const [aboutUs, setAboutUs] = useState<boolean>(false)
 	const [progress, updateProgress] = useState<number>(0)
 	const [mounted, setMounted] = useState<boolean>(false)
@@ -265,6 +266,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 							</div>
 							<Formik
 								onSubmit={async (values) => {
+									setDisabled1(true)
 									const res = await fetch(
 										`/api/updateProfile/${user?.uid}`,
 										{
@@ -283,6 +285,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 										alert(
 											'There are some troubles updating your profile, Please contact developers for support'
 										)
+										setDisabled1(false)
 									}
 								}}
 								validationSchema={Yup.object({
@@ -895,6 +898,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													</div>
 												) : null}
 												<button
+													disabled={disabled1}
 													type="submit"
 													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												>

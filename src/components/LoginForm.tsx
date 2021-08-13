@@ -14,10 +14,11 @@ import { login } from '../services/auth'
 export const LoginForm: React.FC = () => {
 	const router = useRouter()
 	const [show, setshow] = useState<boolean>(false)
+	const [disabled, setDisabled] = useState<boolean>(false)
 
 	return (
 		<Formik
-			initialValues={{ email: '', pw: '', rememberMe: false }}
+			initialValues={{ email: '', pw: '' }}
 			validateOnBlur={false}
 			validationSchema={Yup.object({
 				email: Yup.string()
@@ -25,11 +26,11 @@ export const LoginForm: React.FC = () => {
 					.required('Required'),
 				pw: Yup.string()
 					.min(8, 'Must be 8 characters or more')
-					.required('Required'),
-				rememberMe: Yup.boolean()
+					.required('Required')
 			})}
 			onSubmit={async (values, { setErrors }) => {
 				// console.log(JSON.stringify(values, null, 2))
+				setDisabled(true)
 				router.push('/home')
 				try {
 					await login({
@@ -41,6 +42,7 @@ export const LoginForm: React.FC = () => {
 						case 'auth/invalid-email': {
 							// alert(loginErrors.invalidEmail)
 							setErrors({ email: 'Invalid email', pw: '' })
+							setDisabled(false)
 							break
 						}
 						case 'auth/user-disabled': {
@@ -49,6 +51,7 @@ export const LoginForm: React.FC = () => {
 								email: 'Email has been disabled',
 								pw: ''
 							})
+							setDisabled(false)
 							break
 						}
 						case 'auth/user-not-found': {
@@ -57,6 +60,7 @@ export const LoginForm: React.FC = () => {
 								email: 'Email not registered',
 								pw: ''
 							})
+							setDisabled(false)
 							break
 						}
 						case 'auth/wrong-password': {
@@ -65,6 +69,7 @@ export const LoginForm: React.FC = () => {
 								email: '',
 								pw: 'Password is incorrect'
 							})
+							setDisabled(false)
 							break
 						}
 					}
@@ -113,6 +118,7 @@ export const LoginForm: React.FC = () => {
 
 					<button
 						type="submit"
+						disabled={disabled}
 						className="rounded-[4px] bg-[#210440] text-[#fff] font-montserrat lg:text-base text-sm lg:py-2 py-1 text-center lg:w-[200px] w-[100px] transform hover:scale-[1.2] hover:text-[#210440] hover:bg-[#FFBA00] transition ease-in-out duration-500"
 					>
 						Log In
