@@ -47,6 +47,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return 'standalone'
 	}
 
+	const isOffline = (): boolean => {
+		if (window.navigator.onLine) {
+			return false
+		} else {
+			return true
+		}
+	}
+
 	return (
 		<>
 			<Component {...pageProps} />
@@ -61,7 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				pauseOnHover
 			>
 				{HtmlRef && shouldPromptInstall() == 'ios'
-					? toast.info('Click on Share and Add to Home Screen!', {
+					? toast.info('🚀 Click on Share and Add to Home Screen!', {
 							position: 'bottom-center',
 
 							closeOnClick: true,
@@ -70,7 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 					  })
 					: HtmlRef && shouldPromptInstall() == 'android'
 					? toast.info(
-							'Click on Options and Install App / Install YWKL!',
+							'🚀 Click on Options and Install App / Install YWKL!',
 							{
 								position: 'bottom-center',
 								hideProgressBar: true,
@@ -79,6 +87,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 								draggable: true
 							}
 					  )
+					: null}
+				{HtmlRef && isOffline
+					? toast.error('⚠️ Please connect to the Internet', {
+							position: 'bottom-center',
+							hideProgressBar: true,
+							closeOnClick: false,
+							pauseOnHover: true,
+							draggable: false
+					  })
 					: null}
 			</ToastContainer>
 		</>
