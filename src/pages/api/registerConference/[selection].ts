@@ -1,3 +1,4 @@
+import { CheckboxPropertyValue } from '@notionhq/client/build/src/api-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 import notion from '../../../lib/notion'
 import { getEnvVar } from '../../../utils/helpers'
@@ -26,6 +27,18 @@ const sendRegistration = async (
 				]
 			}
 		})
+
+		if (
+			(
+				response1.results[0].properties
+					.Registered as CheckboxPropertyValue
+			).checkbox
+		) {
+			res.status(403)
+			throw new Error(
+				`User with uid: '${properties.uid}' Already Registered!`
+			)
+		}
 
 		const pageId = response1.results[0].id
 

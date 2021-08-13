@@ -2,7 +2,7 @@ import create from 'zustand'
 import { combine, persist } from 'zustand/middleware'
 
 const createState = persist(
-	combine({ uid: [''] as string[] }, (set, get) => ({
+	combine({ uid: [] as string[] }, (set, get) => ({
 		// setProgress: (progress: number) => set({ progress }),
 		setRegistered: (uid: string) => {
 			const newUidArr = get().uid

@@ -40,8 +40,6 @@ import DatePicker from 'react-date-picker/dist/entry.nostyle'
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
 
-import usePWA from 'react-pwa-install-prompt'
-
 import { convertto1D } from '../utils/helpers'
 
 const categoriesPage = [
@@ -101,28 +99,6 @@ export const Layout: React.FC<LayoutProps> = ({
 
 	const scrollElem = createRef<HTMLDivElement>()
 	const ref = createRef<HTMLButtonElement>()
-	const { isStandalone, isInstallPromptSupported, promptInstall } = usePWA()
-
-	const onClickInstall = async () => {
-		const didInstall = await promptInstall()
-		if (didInstall) {
-			// User accepted PWA install
-			alert('Thanks for installing!')
-		}
-	}
-
-	const renderInstallButton = () => {
-		if (isInstallPromptSupported && isStandalone)
-			return (
-				<button
-					className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none"
-					onClick={onClickInstall}
-				>
-					Install App
-				</button>
-			)
-		return null
-	}
 
 	useEventListener(
 		'touchstart',
@@ -214,7 +190,6 @@ export const Layout: React.FC<LayoutProps> = ({
 							>
 								Edit Profile
 							</button>
-							{renderInstallButton()}
 
 							<button
 								className="text-montserrat elevation-24 text-xl focus-within:outline-none font-semibold absolute bottom-0 px-5 py-3 w-full bg-[#fff] flex flex-row items-center text-[#210440]"

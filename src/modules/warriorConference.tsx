@@ -47,6 +47,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 	const [selectionText, setSelection] = useState<string>('')
 	const [isModalOpen, setModalState] = useState<boolean>(false)
 	const [thumbnail, setThumbnail] = useState<boolean>(false)
+	const [disabled, setDisabled] = useState<boolean>(false)
 
 	const { uid, setRegistered } = useRegister()
 	const buttonRef = createRef<HTMLButtonElement>()
@@ -107,6 +108,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							onClick={
 								selectionText
 									? async () => {
+											setDisabled(true)
 											const res = await fetch(
 												`/api/registerConference/${selectionText}`,
 												{
@@ -130,6 +132,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 									  }
 									: () => alert('Please select a workshop!')
 							}
+							disabled={disabled}
 							className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 						>
 							Register!
@@ -138,12 +141,12 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 				</Dialog>
 				<div className="w-full" data-aos="fade-down">
 					<MyCarousel
-						imgSrc={['/assets/warriorConfBannerSmall.png']}
+						imgSrc={['/assets/warriorConfBannerSmall.jpg']}
 						className="w-screen block sm:hidden"
 						heightClass="h-32"
 					/>
 					<MyCarousel
-						imgSrc={['/assets/warriorConfbanner.png']}
+						imgSrc={['/assets/warriorConfbanner.jpg']}
 						className="w-screen hidden sm:block"
 						heightClass="h-52"
 					/>
@@ -170,7 +173,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							</button>
 							<img
 								className="mx-auto object-contain px-0 sm:px-10"
-								src="/assets/warriorConfposter.png"
+								src="/assets/warriorConfposter.jpg"
 								alt="warriorConfPoster"
 							/>
 						</div>
@@ -257,12 +260,15 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div> */}
 
-				{user?.registered == false ? (
+				{user?.registered == false &&
+				!uid.includes(user.uid as string) &&
+				!disabled ? (
 					<div className="fixed top-16">
 						<Menu as="div" className="fixed bottom-10 left-10">
 							<div>
 								<Menu.Button
 									ref={buttonRef}
+									disabled={disabled}
 									title={
 										'Registration For Warrior Conference'
 									}
