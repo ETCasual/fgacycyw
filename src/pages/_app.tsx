@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -8,7 +9,6 @@ import 'slick-carousel/slick/slick-theme.css'
 import type { AppProps } from 'next/app'
 import initAuth from '../services/auth/next-firebase-auth'
 
-import { useReactPWAInstall } from 'react-pwa-install'
 import 'aos/dist/aos.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -18,11 +18,15 @@ initAuth()
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const [HtmlRef, setHtmlRef] = useState<string>('')
+	const [showed, setShowed] = useState<boolean>(false)
 	useEffect(() => {
 		setHtmlRef(window.location.pathname)
+		{
+			HtmlRef && !showed
+				? () => setTimeout(() => handleload(), 5000)
+				: null
+		}
 	}, [])
-
-	const { supported, isInstalled } = useReactPWAInstall()
 
 	const handleload = () => {
 		toast.info(
@@ -35,6 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				draggable: true
 			}
 		)
+		setShowed(true)
 	}
 
 	const isOffline = (): boolean => {
@@ -60,7 +65,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 				pauseOnHover
 				limit={1}
 			>
-				{HtmlRef && supported() && !isInstalled() ? handleload() : null}
 				{HtmlRef && isOffline()
 					? setTimeout(() => {
 							toast.error('⚠️ Please connect to the Internet', {
