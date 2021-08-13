@@ -165,7 +165,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							</button>
 							<img
 								className="mx-auto object-contain"
-								src="/assets/warriorConfPoster.png"
+								src="/assets/warriorConfposter.png"
 								alt="warriorConfPoster"
 							/>
 						</div>
