@@ -92,8 +92,8 @@ export const structure = {
 		{
 			smallteam: 'Voice 1 | Derek Yeow Han Xiang',
 			cg: [
-				'CYC 60J | Isabelle Chan Po Teng',
-				'CYC 100J (B) | Lee Jia Yin'
+				'CYC 60J (A) | Isabelle Chan Po Teng',
+				'CYC 60J (B) | Lee Jia Yin'
 			]
 		},
 		{
@@ -101,7 +101,7 @@ export const structure = {
 			cg: [
 				'CYC 20J | Sunil Kumar',
 				'CYC 23J | Wong Wei Sheng',
-				'CYC 100T (A) | Shum Wai Lok'
+				'CYC 100T | Shum Wai Lok'
 			]
 		},
 		{
