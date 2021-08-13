@@ -229,7 +229,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			setMounted(true)
-		}, 1000)
+		}, 2000)
 	}, [])
 
 	if (!mounted) return <Loader />

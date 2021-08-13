@@ -89,13 +89,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 					  )
 					: null}
 				{HtmlRef && isOffline()
-					? toast.error('⚠️ Please connect to the Internet', {
-							position: 'bottom-center',
-							hideProgressBar: true,
-							closeOnClick: false,
-							pauseOnHover: true,
-							draggable: false
-					  })
+					? setTimeout(() => {
+							toast.error('⚠️ Please connect to the Internet', {
+								position: 'bottom-center',
+								hideProgressBar: true,
+								closeOnClick: false,
+								pauseOnHover: true,
+								draggable: false
+							})
+					  }, 5000)
 					: null}
 			</ToastContainer>
 		</>

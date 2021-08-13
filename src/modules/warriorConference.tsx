@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, createRef } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 import { Layout, MyCarousel, Loader } from '../components'
 import { SermonCard } from '../components/SermonCard'
@@ -13,6 +14,8 @@ import AOS from 'aos'
 import { AiOutlineForm } from 'react-icons/ai'
 import { useRegister } from '../stores/useRegister'
 import Select from 'react-select'
+import YouTube from 'react-youtube'
+import { useRef } from 'react'
 // import { UserProps } from '../interface'
 
 // const texts = [
@@ -45,6 +48,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 	const [isModalOpen, setModalState] = useState<boolean>(false)
 
 	const { uid, setRegistered } = useRegister()
+	const buttonRef = createRef<HTMLButtonElement>()
 
 	useEffect(() => {
 		AOS.init({
@@ -55,7 +59,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			setMounted(true)
-		}, 1000)
+		}, 2000)
 	}, [])
 
 	if (!mounted) return <Loader />
@@ -126,7 +130,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						</button>
 					</div>
 				</Dialog>
-				<div className="w-full" data-aos="fade-down">
+				<div className="w-full">
 					<MyCarousel
 						imgSrc={['/assets/warriorConfBannerSmall.png']}
 						className="w-screen block sm:hidden"
@@ -138,7 +142,21 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						heightClass="h-52"
 					/>
 				</div>
-				<div className="flex lg:flex-row flex-col gap-2 lg:gap-5 px-10 sm:px-20 w-full mt-2">
+				<div className="sm:w-2/3 lg:w-1/2 w-full my-5">
+					<YouTube
+						videoId="pkKcQv3jxt8"
+						className="mx-auto"
+						containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
+						onEnd={() => {
+							console.log('Video Ended')
+							buttonRef.current?.click()
+						}}
+					/>
+				</div>
+
+				{/* TODO: Uncomment all these went d-day comes */}
+
+				{/* <div className="flex lg:flex-row flex-col gap-2 lg:gap-5 px-10 sm:px-20 w-full mt-2">
 					<div className="mx-auto hidden sm:flex flex-row gap-5 mt-4">
 						{dayCards.map((days, i) => (
 							<div
@@ -211,13 +229,16 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						videoId="uGaRPMsFXnc"
 						verse="Matthew 6:33 | Psalm 119"
 					/>
-				</div>
+				</div> */}
 
 				{!uid.includes(user?.uid as string) ? (
 					<div className="fixed top-16">
 						<Menu as="div" className="fixed bottom-10 left-10">
 							<div>
-								<Menu.Button className="animate-bounce rounded-full from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-[60px] h-[60px] lg:w-[80px] lg:h-[80px] p-3 lg:p-5 text-[#210440]">
+								<Menu.Button
+									ref={buttonRef}
+									className="animate-bounce rounded-full from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-[60px] h-[60px] lg:w-[80px] lg:h-[80px] p-3 lg:p-5 text-[#210440]"
+								>
 									<AiOutlineForm className="object-contain w-full h-full" />
 								</Menu.Button>
 							</div>
@@ -235,7 +256,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 										setModalState(true)
 										console.log('Opened')
 									}}
-									className="absolute bottom-20 lg:bottom-32 w-[200px] origin-bottom-left ring-2 ring-[#210440] ring-offset-4 text-left px-1 text-[#210440] rounded-md shadow-lg focus:outline-none"
+									className="absolute cursor-pointer bottom-20 lg:bottom-32 w-[200px] origin-bottom-left ring-2 ring-[#210440] ring-offset-4 text-left px-1 text-[#210440] rounded-md shadow-lg focus:outline-none"
 								>
 									<Menu.Item>
 										<>
