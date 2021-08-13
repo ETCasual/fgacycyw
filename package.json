@@ -37,9 +37,9 @@
 		"react-router-dom": "^5.2.0",
 		"react-select": "^4.3.1",
 		"react-slick": "^0.28.1",
+		"react-toastify": "^7.0.4",
 		"react-youtube": "^7.13.1",
 		"slick-carousel": "^1.8.1",
-		"tailwind-toast": "^1.1.0",
 		"tailwindcss-elevation": "^1.0.1",
 		"yup": "^0.32.9",
 		"zustand": "^3.5.7"

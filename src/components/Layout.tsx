@@ -72,6 +72,8 @@ type LayoutProps = {
 	noFooter?: boolean
 	user?: Notion.User
 	hscreen?: boolean
+	noNav?: boolean
+	overflowHidden?: boolean
 }
 
 export const Layout: React.FC<LayoutProps> = ({
@@ -80,7 +82,9 @@ export const Layout: React.FC<LayoutProps> = ({
 	currentPage,
 	noFooter,
 	user,
-	hscreen = true
+	noNav = false,
+	hscreen = true,
+	overflowHidden = false
 }) => {
 	const authUser = useAuthUser()
 	const router = useRouter()
@@ -112,46 +116,48 @@ export const Layout: React.FC<LayoutProps> = ({
 
 	return (
 		<div className="mainwrapper" ref={scrollElem}>
-			<div className="bg-[#fff] flex flex-col sticky top-0 z-10 h-14 justify-center drop-shadow-2xl shadow-xl">
-				<div className="mx-2 sm:mx-5 lg:mx-10 flex flex-row justify-between items-center">
-					{isPage === 'home' ? (
-						<FaChurch
-							color="#210440"
-							size={35}
+			{noNav ? null : (
+				<div className="bg-[#fff] flex flex-col sticky top-0 z-10 h-14 justify-center drop-shadow-2xl shadow-xl">
+					<div className="mx-2 sm:mx-5 lg:mx-10 flex flex-row justify-between items-center">
+						{isPage === 'home' ? (
+							<FaChurch
+								color="#210440"
+								size={35}
+								onClick={() => router.push('/')}
+								className="object-contain cursor-pointer"
+							/>
+						) : (
+							<BiChurch
+								color="#210440"
+								size={35}
+								onClick={() => router.push('/')}
+								className="object-contain cursor-pointer"
+							/>
+						)}
+						<p
+							className="font-gloss text-lg sm:text-xl lg:text-2xl line-clamp-1 w-full text-center text-[#210440] cursor-pointer"
 							onClick={() => router.push('/')}
-							className="object-contain cursor-pointer"
-						/>
-					) : (
-						<BiChurch
-							color="#210440"
-							size={35}
-							onClick={() => router.push('/')}
-							className="object-contain cursor-pointer"
-						/>
-					)}
-					<p
-						className="font-gloss text-lg sm:text-xl lg:text-2xl line-clamp-1 w-full text-center text-[#210440] cursor-pointer"
-						onClick={() => router.push('/')}
-					>
-						Welcome Home, {user ? user!.nickname : null}
-					</p>
-					{isPage === 'profile' ? (
-						<BsFillPersonFill
-							color="#210440"
-							className="object-contain cursor-pointer"
-							size={35}
-							onClick={() => setIsOpen(true)}
-						/>
-					) : (
-						<BsPerson
-							color="#210440"
-							className="object-contain cursor-pointer"
-							size={35}
-							onClick={() => setIsOpen(true)}
-						/>
-					)}
+						>
+							Welcome Home, {user ? user!.nickname : null}
+						</p>
+						{isPage === 'profile' ? (
+							<BsFillPersonFill
+								color="#210440"
+								className="object-contain cursor-pointer"
+								size={35}
+								onClick={() => setIsOpen(true)}
+							/>
+						) : (
+							<BsPerson
+								color="#210440"
+								className="object-contain cursor-pointer"
+								size={35}
+								onClick={() => setIsOpen(true)}
+							/>
+						)}
+					</div>
 				</div>
-			</div>
+			)}
 
 			<Transition show={isOpen} as={Fragment}>
 				<Dialog
@@ -857,7 +863,11 @@ export const Layout: React.FC<LayoutProps> = ({
 					hscreen ? 'h-screen' : null
 				} flex flex-col justify-between ${className}`}
 			>
-				<div className={`flex w-full flex-col items-center relative`}>
+				<div
+					className={`flex w-full flex-col items-center relative ${
+						overflowHidden ? 'overflow-hidden' : null
+					}`}
+				>
 					{children}
 				</div>
 				{noFooter ? null : (
