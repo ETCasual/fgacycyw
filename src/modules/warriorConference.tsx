@@ -132,7 +132,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						</button>
 					</div>
 				</Dialog>
-				<div className="w-full">
+				<div className="w-full" data-aos="fade-down">
 					<MyCarousel
 						imgSrc={['/assets/warriorConfBannerSmall.png']}
 						className="w-screen block sm:hidden"
