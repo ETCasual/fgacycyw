@@ -24,7 +24,7 @@ clientsClaim()
 const WB_MANIFEST = self.__WB_MANIFEST
 // Precache fallback route and image
 WB_MANIFEST.push({
-	url: '/fallback',
+	url: '/_offline',
 	revision: '1234567890'
 })
 precacheAndRoute(WB_MANIFEST)
@@ -207,7 +207,7 @@ setCatchHandler(({ event }) => {
 	switch (event.request.destination) {
 		case 'document':
 			// If using precached URLs:
-			return matchPrecache('/fallback')
+			return matchPrecache('/_offline')
 		// return caches.match('/fallback')
 		// case 'image':
 		//   // If using precached URLs:
