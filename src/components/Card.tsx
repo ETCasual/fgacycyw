@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({
 				/>
 			) : null}
 			{name ? (
-				<p className="absolute z-[3] left-6 bottom-5 font-montserrat font-semibold text-black text-lg">
+				<p className="absolute z-[3] left-4 bottom-3 font-montserrat font-semibold text-black text-lg">
 					{name}
 				</p>
 			) : null}
