@@ -25,25 +25,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const { pwaInstall, supported, isInstalled } = useReactPWAInstall()
 
 	const handleload = () => {
-		pwaInstall({
-			title: 'Install YWKL',
-			logo: '/logo-medium.png'
-		})
-			.then(() =>
-				toast.info(
-					`🚀\nAndroid: Click on Options and Install App / Install YWKL!,\niOS: Click on share then Add to Home Screen`,
-					{
-						position: 'bottom-center',
-						hideProgressBar: true,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: true
-					}
-				)
-			)
-			.catch((err) => {
-				console.log('opted Out: ' + err)
-			})
+		toast.info(
+			`🚀\nAndroid: Click on Options and Install App / Install YWKL!,\niOS: Click on share then Add to Home Screen`,
+			{
+				position: 'bottom-center',
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true
+			}
+		)
 	}
 
 	const isOffline = (): boolean => {
