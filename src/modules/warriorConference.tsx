@@ -142,7 +142,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						heightClass="h-52"
 					/>
 				</div>
-				<div className="sm:w-2/3 lg:w-1/2 w-full my-5">
+				<div className="sm:w-2/3 lg:w-1/2 w-full">
 					<YouTube
 						videoId="pkKcQv3jxt8"
 						className="mx-auto"
@@ -259,7 +259,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 										setModalState(true)
 										console.log('Opened')
 									}}
-									className="absolute cursor-pointer bottom-20 lg:bottom-32 w-[200px] origin-bottom-left ring-2 ring-[#210440] ring-offset-4 text-left px-1 text-[#210440] rounded-md shadow-lg focus:outline-none"
+									className="absolute cursor-pointer bottom-20 lg:bottom-32 w-[200px] bg-white origin-bottom-left ring-2 ring-[#210440] ring-offset-4 text-left px-1 text-[#210440] rounded-md shadow-lg focus:outline-none"
 								>
 									<Menu.Item>
 										<>

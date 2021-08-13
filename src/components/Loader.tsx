@@ -9,7 +9,7 @@ const override = css`
 
 export const Loader: React.FC = (): JSX.Element => {
 	return (
-		<div className="h-screen w-screen flex justify-center items-center">
+		<div className="h-screen w-screen flex justify-center items-center overflow-hidden">
 			<PacmanLoader color="#210440" css={override} size="60px" />
 		</div>
 	)
