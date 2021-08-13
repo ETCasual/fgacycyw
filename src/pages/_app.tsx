@@ -56,39 +56,34 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
-			<Component {...pageProps} />
 			<ReactPWAInstallProvider enableLogging>
-				<ToastContainer
-					position="bottom-center"
-					hideProgressBar={true}
-					newestOnTop={false}
-					closeOnClick={false}
-					rtl={false}
-					pauseOnFocusLoss
-					draggable={false}
-					pauseOnHover
-					limit={1}
-				>
-					{HtmlRef && supported() && !isInstalled()
-						? handleload()
-						: null}
-					{HtmlRef && isOffline()
-						? setTimeout(() => {
-								toast.error(
-									'⚠️ Please connect to the Internet',
-									{
-										position: 'bottom-center',
-										hideProgressBar: true,
-										closeOnClick: false,
-										pauseOnHover: true,
-										draggable: false,
-										autoClose: false
-									}
-								)
-						  }, 5000)
-						: null}
-				</ToastContainer>
+				<Component {...pageProps} />
+				{HtmlRef && supported() && !isInstalled() ? handleload() : null}
 			</ReactPWAInstallProvider>
+			<ToastContainer
+				position="bottom-center"
+				hideProgressBar={true}
+				newestOnTop={false}
+				closeOnClick={false}
+				rtl={false}
+				pauseOnFocusLoss
+				draggable={false}
+				pauseOnHover
+				limit={1}
+			>
+				{HtmlRef && isOffline()
+					? setTimeout(() => {
+							toast.error('⚠️ Please connect to the Internet', {
+								position: 'bottom-center',
+								hideProgressBar: true,
+								closeOnClick: false,
+								pauseOnHover: true,
+								draggable: false,
+								autoClose: false
+							})
+					  }, 5000)
+					: null}
+			</ToastContainer>
 		</>
 	)
 }
