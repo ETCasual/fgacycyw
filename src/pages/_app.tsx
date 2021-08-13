@@ -62,10 +62,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				position="bottom-center"
 				hideProgressBar={true}
 				newestOnTop={false}
-				closeOnClick
+				closeOnClick={false}
 				rtl={false}
 				pauseOnFocusLoss
-				draggable
+				draggable={false}
 				pauseOnHover
 			>
 				{HtmlRef && shouldPromptInstall() == 'ios'
@@ -88,7 +88,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 							}
 					  )
 					: null}
-				{HtmlRef && isOffline
+				{HtmlRef && isOffline()
 					? toast.error('⚠️ Please connect to the Internet', {
 							position: 'bottom-center',
 							hideProgressBar: true,
