@@ -69,7 +69,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 					pauseOnHover
 					limit={1}
 				>
-					{supported() && !isInstalled() ? handleload() : null}
+					{HtmlRef && supported() && !isInstalled()
+						? handleload()
+						: null}
 					{HtmlRef && isOffline()
 						? setTimeout(() => {
 								toast.error(
