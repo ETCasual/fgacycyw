@@ -234,7 +234,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div> */}
 
-				{!uid.includes(user?.uid as string) ? (
+				{user?.registered == false ? (
 					<div className="fixed top-16">
 						<Menu as="div" className="fixed bottom-10 left-10">
 							<div>

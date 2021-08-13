@@ -11,8 +11,35 @@ const sendRegistration = async (
 
 	const { env: dbId, error } = getEnvVar('NOTION_REGISTRATION_DATABASE_ID')
 	if (error) throw error
+	const { env: dbId2, error: err2 } = getEnvVar('NOTION_USER_DATABASE_ID')
+	if (err2) throw err2
 
 	try {
+		const response1 = await notion.databases.query({
+			database_id: dbId2 as string,
+			filter: {
+				and: [
+					{
+						property: 'Uid',
+						text: { equals: properties.uid as string }
+					}
+				]
+			}
+		})
+
+		const pageId = response1.results[0].id
+
+		await notion.pages.update({
+			page_id: pageId,
+			archived: false,
+			properties: {
+				Registered: {
+					type: 'checkbox',
+					checkbox: true
+				}
+			}
+		})
+
 		const response = await notion.pages.create({
 			parent: { database_id: dbId as string },
 			properties: {

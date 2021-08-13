@@ -3,7 +3,8 @@ import {
 	Page,
 	RichTextPropertyValue,
 	EmailPropertyValue,
-	TitlePropertyValue
+	TitlePropertyValue,
+	CheckboxPropertyValue
 } from '@notionhq/client/build/src/api-types'
 
 export const allowedContent = {
@@ -109,6 +110,8 @@ export const parseUser = (page: Page): Notion.User => {
 			(page.properties.CG as RichTextPropertyValue).rich_text.length !== 0
 				? (page.properties.CG as RichTextPropertyValue).rich_text[0]
 						.plain_text
-				: null
+				: null,
+		registered: (page.properties.Registered as CheckboxPropertyValue)
+			.checkbox
 	}
 }

@@ -14,5 +14,6 @@ declare namespace Notion {
 		status: string | null
 		smallTeam: string | null
 		cg: string | null
+		registered: boolean
 	}
 }
