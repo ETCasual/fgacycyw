@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setHtmlRef(window.location.pathname)
 	}, [])
 
-	const { pwaInstall, supported, isInstalled } = useReactPWAInstall()
+	const { supported, isInstalled } = useReactPWAInstall()
 
 	const handleload = () => {
 		toast.info(
