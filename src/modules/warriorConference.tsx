@@ -84,11 +84,15 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					onClose={() => setModalState(false)}
 				>
 					<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
-						<p className="text-4xl font-bebas tracking-[0.025em] text-center my-5">
-							Select your desired workshop!{' '}
+						<p className="text-4xl font-bebas tracking-[0.025em] text-center mt-5">
+							Warrior Conference @ workshop!{' '}
 							<span role="img" aria-label="Lightbulb">
 								💡
 							</span>
+						</p>
+						<p className="text-2xl font-montserrat text-center mb-5 mt-1">
+							These will be your workshops for
+							<span className="font-semibold">Session 3</span>
 						</p>
 						<Select
 							className="mx-auto mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]"
