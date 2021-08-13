@@ -264,7 +264,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 									}
 									className="animate-bounce rounded-2xl flex flex-row items-center from-[#FFBA00] to-[#ffbbbb] bg-gradient-to-br w-full h-[60px]  lg:h-[80px] px-5 py-3 text-[#210440]"
 								>
-									<AiOutlineForm className="h-20 w-20" />
+									<AiOutlineForm className="h-10 w-10" />
 									<p className="font-bebas text-2xl text-[#210440] ml-2 text-center">
 										Register Now!
 									</p>
