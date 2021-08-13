@@ -153,6 +153,9 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						}}
 					/>
 				</div>
+				<p className="font-montserrat font-semibold sm:text-3xl text-xl w-full mx-auto text-center my-10 animate-bounce">
+					Stay Tuned for more Updates!
+				</p>
 
 				{/* TODO: Uncomment all these went d-day comes */}
 
