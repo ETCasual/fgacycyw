@@ -91,7 +91,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							</span>
 						</p>
 						<p className="text-2xl font-montserrat text-center mb-5 mt-1">
-							These will be your workshops for
+							These will be your workshop for
 							<span className="font-bold"> Session 3</span>
 						</p>
 						<Select
