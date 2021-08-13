@@ -56,8 +56,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
+			<Component {...pageProps} />
 			<ReactPWAInstallProvider enableLogging>
-				<Component {...pageProps} />
 				<ToastContainer
 					position="bottom-center"
 					hideProgressBar={true}
@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 					pauseOnHover
 					limit={1}
 				>
-					{supported() && !isInstalled() ? handleload : null}
+					{supported() && !isInstalled() ? handleload() : null}
 					{HtmlRef && isOffline()
 						? setTimeout(() => {
 								toast.error(
