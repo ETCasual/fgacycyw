@@ -157,7 +157,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							}}
 						/>
 					) : (
-						<div className="mx-auto  mt-7 flex flex-col items-center">
+						<div className="mx-5 sm:mx-auto mt-3 flex flex-col items-center">
 							<button
 								className="w-full mb-3 px-5 py-3 text-xl my-2 font-montserrat rounded-md text-white bg-[#210440]"
 								onClick={() => setThumbnail(false)}
