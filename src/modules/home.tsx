@@ -34,7 +34,7 @@ export const genders = ['male', 'female']
 // TODO: change image
 const cards = [
 	{
-		image: '/assets/warriorConfBannerSmall.png',
+		image: '/assets/warriorConfBannerSmall.jpg',
 		name: 'Warriors Conference',
 		to: '/warriorConference'
 	}
