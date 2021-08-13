@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import type { AppProps } from 'next/app'
 import initAuth from '../services/auth/next-firebase-auth'
 
+import ReactPWAInstallProvider, { useReactPWAInstall } from 'react-pwa-install'
 import 'aos/dist/aos.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -21,30 +22,28 @@ function MyApp({ Component, pageProps }: AppProps) {
 		setHtmlRef(window.location.pathname)
 	}, [])
 
-	const shouldPromptInstall = (): string => {
-		const userAgent = window.navigator.userAgent.toLowerCase()
-		// Detects if device is on iOS
-		const isIos = () => {
-			return /iphone|ipad|ipod/.test(userAgent)
-		}
+	const { pwaInstall, supported, isInstalled } = useReactPWAInstall()
 
-		// Detects if device is on Android
-		const isAndroid = () => {
-			return /android/i.test(userAgent)
-		}
-
-		// Detects if device is in standalone mode
-		const isInStandaloneMode = () =>
-			// @ts-ignore
-			'standalone' in window.navigator && window.navigator['standalone']
-
-		// Checks if should display install popup notification:
-		if (isIos() && !isInStandaloneMode()) {
-			return 'ios'
-		} else if (isAndroid() && !isInStandaloneMode()) {
-			return 'android'
-		}
-		return 'standalone'
+	const handleload = () => {
+		pwaInstall({
+			title: 'Install YWKL',
+			logo: '/logo-medium.png'
+		})
+			.then(() =>
+				toast.info(
+					`🚀\nAndroid: Click on Options and Install App / Install YWKL!,\niOS: Click on share then Add to Home Screen`,
+					{
+						position: 'bottom-center',
+						hideProgressBar: true,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true
+					}
+				)
+			)
+			.catch((err) => {
+				console.log('opted Out: ' + err)
+			})
 	}
 
 	const isOffline = (): boolean => {
@@ -57,50 +56,36 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
-			<Component {...pageProps} />
-			<ToastContainer
-				position="bottom-center"
-				hideProgressBar={true}
-				newestOnTop={false}
-				closeOnClick={false}
-				rtl={false}
-				pauseOnFocusLoss
-				draggable={false}
-				pauseOnHover
-				limit={1}
-			>
-				{HtmlRef && shouldPromptInstall() == 'ios'
-					? toast.info('🚀 Click on Share and Add to Home Screen!', {
-							position: 'bottom-center',
-
-							closeOnClick: true,
-							pauseOnHover: true,
-							draggable: true
-					  })
-					: HtmlRef && shouldPromptInstall() == 'android'
-					? toast.info(
-							'🚀 Click on Options and Install App / Install YWKL!',
-							{
-								position: 'bottom-center',
-								hideProgressBar: true,
-								closeOnClick: true,
-								pauseOnHover: true,
-								draggable: true
-							}
-					  )
-					: null}
-				{HtmlRef && isOffline()
-					? setTimeout(() => {
-							toast.error('⚠️ Please connect to the Internet', {
-								position: 'bottom-center',
-								hideProgressBar: true,
-								closeOnClick: false,
-								pauseOnHover: true,
-								draggable: false
-							})
-					  }, 5000)
-					: null}
-			</ToastContainer>
+			<ReactPWAInstallProvider enableLogging>
+				<Component {...pageProps} />
+				<ToastContainer
+					position="bottom-center"
+					hideProgressBar={true}
+					newestOnTop={false}
+					closeOnClick={false}
+					rtl={false}
+					pauseOnFocusLoss
+					draggable={false}
+					pauseOnHover
+					limit={1}
+				>
+					{supported() && !isInstalled() ? handleload : null}
+					{HtmlRef && isOffline()
+						? setTimeout(() => {
+								toast.error(
+									'⚠️ Please connect to the Internet',
+									{
+										position: 'bottom-center',
+										hideProgressBar: true,
+										closeOnClick: false,
+										pauseOnHover: true,
+										draggable: false
+									}
+								)
+						  }, 5000)
+						: null}
+				</ToastContainer>
+			</ReactPWAInstallProvider>
 		</>
 	)
 }
