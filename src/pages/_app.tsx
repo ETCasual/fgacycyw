@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import type { AppProps } from 'next/app'
 import initAuth from '../services/auth/next-firebase-auth'
 
-import ReactPWAInstallProvider, { useReactPWAInstall } from 'react-pwa-install'
+import { useReactPWAInstall } from 'react-pwa-install'
 import 'aos/dist/aos.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -47,10 +47,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
-			<ReactPWAInstallProvider enableLogging>
-				<Component {...pageProps} />
-				{HtmlRef && supported() && !isInstalled() ? handleload() : null}
-			</ReactPWAInstallProvider>
+			<Component {...pageProps} />
+
 			<ToastContainer
 				position="bottom-center"
 				hideProgressBar={true}
@@ -62,6 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				pauseOnHover
 				limit={1}
 			>
+				{HtmlRef && supported() && !isInstalled() ? handleload() : null}
 				{HtmlRef && isOffline()
 					? setTimeout(() => {
 							toast.error('⚠️ Please connect to the Internet', {
