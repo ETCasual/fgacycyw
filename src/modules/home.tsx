@@ -1021,7 +1021,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 
 				{!aboutUs ? (
 					// TODO: sm:grid-cols-1 must chg to grid-cols-2 when develop further
-					<div className="grid sm:grid-cols-1  grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full h-full">
+					<div className="grid sm:grid-cols-1  grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full">
 						{cards.map((card, i) => (
 							<Card
 								key={i}
