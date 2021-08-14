@@ -249,7 +249,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 				>
 					<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
 						<>
-							<p className="text-2xl font-bebas font-bold text-center">
+							<p className="text-4xl font-bebas font-bold text-center">
 								Complete Your Profile{' '}
 								<span role="img" aria-label="Clipboard">
 									📋
@@ -358,7 +358,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.fullName
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.fullName &&
 												touched.fullName ? (
@@ -382,7 +382,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.nickname
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.nickname &&
 												touched.nickname ? (
@@ -408,7 +408,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.contact
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.contact &&
 												touched.contact ? (
@@ -461,7 +461,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													/>
 												</div>
 												<button
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 													onClick={() => {
 														!errors.fullName &&
 														!errors.nickname &&
@@ -491,7 +491,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.ic
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.ic && touched.ic ? (
 													<div className="text-red-600 text-center mb-4">
@@ -514,7 +514,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.address1
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.address1 &&
 												touched.address1 ? (
@@ -538,7 +538,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.address2
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 												/>
 												{errors.address2 &&
 												touched.address2 ? (
@@ -557,7 +557,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															: 'ring-[#7e30d1]'
 													}`}
 												>
-													<div className="text-white font-bebas  px-3 py-2 text-center w-[100px] self-center">
+													<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
 														DOB
 													</div>
 													<DatePicker
@@ -586,7 +586,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 																  touched.dob
 																? 'ring-offset-1 ring-2 ring-green-600'
 																: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-														}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+														}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													/>
 												</div>
 												{errors.dob && touched.dob ? (
@@ -617,7 +617,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.cluster
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													options={clusters}
 													isClearable={false}
 													maxMenuHeight={150}
@@ -630,7 +630,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													</div>
 												) : null}
 												<button
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 													onClick={() => {
 														!errors.ic &&
 														!errors.address1 &&
@@ -668,7 +668,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.smallTeam
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													options={
 														values.cluster == 'Move'
 															? Move.map(
@@ -777,7 +777,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.cg
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													options={
 														values.cluster == 'Move'
 															? convertto1D(
@@ -880,7 +880,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 															  touched.status
 															? 'ring-offset-1 ring-2 ring-green-600'
 															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-bebas text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+													} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 													isClearable={false}
 													maxMenuHeight={150}
 													options={pastoralStatuses.map(
@@ -900,14 +900,14 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 												<button
 													disabled={disabled1}
 													type="submit"
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												>
 													Update Profile
 												</button>
 											</>
 										) : (
 											<div className="w-full flex flex-col items-center">
-												<p className="text-white font-bebas text-2xl font-bold text-center mb-4">
+												<p className="text-white font-bebas text-4xl font-bold text-center mb-4">
 													Profile updated!{' '}
 													<span
 														role="img"
@@ -917,7 +917,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													</span>
 												</p>
 												<button
-													className="rounded-[4px] bg-[#10031f] text-[#fff] font-bebas text-base lg:py-2 py-1 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
+													className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
 													onClick={() => {
 														setModalMode(false)
 														window.location.reload()
