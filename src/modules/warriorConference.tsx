@@ -99,7 +99,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							By submitting, you are registered for
 							<span className="font-bold text-[#FFBA00]">
 								{' '}
-								Warriors Conference!
+								Warrior Conference!
 							</span>
 						</p>
 						<Select
