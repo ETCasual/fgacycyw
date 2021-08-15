@@ -560,10 +560,15 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="smallTeam"
 												name="smallTeam"
-												defaultValue={Object.create({
-													value: values.smallTeam,
-													label: values.smallTeam
-												})}
+												defaultValue={
+													values.cluster ==
+													user?.cluster
+														? Object.create({
+																value: values.smallTeam,
+																label: values.smallTeam
+														  })
+														: null
+												}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -661,10 +666,15 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="cg"
 												name="cg"
-												defaultValue={Object.create({
-													value: values.cg,
-													label: values.cg
-												})}
+												defaultValue={
+													values.cluster ==
+													user?.cluster
+														? Object.create({
+																value: values.cg,
+																label: values.cg
+														  })
+														: null
+												}
 												onChange={(selection) =>
 													setValues({
 														...values,
