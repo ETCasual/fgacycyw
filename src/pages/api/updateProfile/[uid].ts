@@ -14,6 +14,13 @@ const updateProfile = async (
 
 	if (error) throw error
 
+	const parsedDate = getDOBfromIC(properties.ic)?.toLocaleDateString(
+		'en-US',
+		{
+			timeZone: 'Asia/Kuala_Lumpur'
+		}
+	)
+
 	try {
 		const response = await notion.databases.query({
 			database_id: userDatabaseId as string,
@@ -135,11 +142,7 @@ const updateProfile = async (
 						{
 							type: 'text',
 							text: {
-								content: getDOBfromIC(
-									properties.ic
-								)?.toLocaleDateString('en-US', {
-									timeZone: 'Asia/Kuala_Lumpur'
-								}) as string
+								content: parsedDate as string
 							}
 						}
 					]
