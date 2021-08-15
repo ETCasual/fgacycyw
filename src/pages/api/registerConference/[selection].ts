@@ -15,11 +15,7 @@ const sendRegistration = async (
 	const { env: dbId2, error: err2 } = getEnvVar('NOTION_USER_DATABASE_ID')
 	if (err2) throw err2
 
-	const parsedDate = getDOBfromIC(
-		properties.ic as string
-	)?.toLocaleDateString('en-US', {
-		timeZone: 'Asia/Kuala_Lumpur'
-	})
+	const parsedDate = getDOBfromIC(properties.ic as string)?.parsedDate
 
 	try {
 		const response1 = await notion.databases.query({

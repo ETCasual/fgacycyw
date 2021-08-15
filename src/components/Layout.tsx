@@ -36,9 +36,6 @@ import {
 	VoiceCG,
 	pastoralStatuses
 } from '../modules/home'
-import DatePicker from 'react-date-picker/dist/entry.nostyle'
-import 'react-date-picker/dist/DatePicker.css'
-import 'react-calendar/dist/Calendar.css'
 
 import { convertto1D, getDOBfromIC } from '../utils/helpers'
 
@@ -261,7 +258,7 @@ export const Layout: React.FC<LayoutProps> = ({
 									.required('Required'),
 								address1: Yup.string().required('Required'),
 								address2: Yup.string(),
-								dob: Yup.date().required('Required'),
+								dob: Yup.string().required('Required'),
 								cluster: Yup.string().required('Required'),
 								ic: Yup.string()
 									.matches(
@@ -292,7 +289,8 @@ export const Layout: React.FC<LayoutProps> = ({
 								address2: user?.address2 ? user.address2 : null,
 								smallTeam: user?.smallTeam,
 								cg: user?.cg,
-								dob: getDOBfromIC(user?.ic as string),
+								dob: getDOBfromIC(user?.ic as string)
+									.parsedDate,
 								cluster: user?.cluster,
 								ic: user?.ic,
 								status: user?.status
@@ -519,22 +517,16 @@ export const Layout: React.FC<LayoutProps> = ({
 												<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
 													DOB
 												</div>
-												<DatePicker
+												<Field
 													disabled
 													value={values.dob}
 													name="dob"
-													clearIcon={null}
 													// placeholder={
 													// 	values.dob !== ''
 													// 		? null
 													// 		: 'Date of Birth'
 													// }
-													onChange={(date: Date) =>
-														setValues({
-															...values,
-															dob: date
-														})
-													}
+
 													calendarClassName="w-full"
 													className={`${
 														errors.dob &&

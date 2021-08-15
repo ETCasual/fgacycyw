@@ -7,9 +7,6 @@ import { NextPage } from 'next'
 import React, { ChangeEvent, Fragment, useEffect, useState } from 'react'
 import { Card, Layout, Loader } from '../components'
 import Select from 'react-select'
-import DatePicker from 'react-date-picker/dist/entry.nostyle'
-import 'react-date-picker/dist/DatePicker.css'
-import 'react-calendar/dist/Calendar.css'
 import * as Yup from 'yup'
 import {
 	FaChevronDown,
@@ -332,7 +329,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 									address2: '',
 									smallTeam: '',
 									cg: '',
-									dob: new Date(),
+									dob: '',
 									cluster: '',
 									ic: '',
 									status: ''
@@ -560,24 +557,16 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 													<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
 														DOB
 													</div>
-													<DatePicker
+													<Field
 														disabled
 														value={values.dob}
 														name="dob"
-														clearIcon={null}
 														// placeholder={
 														// 	values.dob !== ''
 														// 		? null
 														// 		: 'Date of Birth'
 														// }
-														onChange={(
-															date: Date
-														) =>
-															setValues({
-																...values,
-																dob: date
-															})
-														}
+
 														calendarClassName="w-full"
 														className={`${
 															errors.dob &&

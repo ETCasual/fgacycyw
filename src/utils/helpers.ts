@@ -28,7 +28,9 @@ export const convertto1D = (arrToConvert: string[][]): string[] => {
 	return newArr
 }
 
-export const getDOBfromIC = (icno: string): Date | null => {
+export const getDOBfromIC = (
+	icno: string
+): { parsedDate: string | null; error: Error | null } => {
 	if (
 		icno.replace(/-|\s/g, '').match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)
 	) {
@@ -52,10 +54,11 @@ export const getDOBfromIC = (icno: string): Date | null => {
 			0,
 			0,
 			0
-		)
-		return date
+		).toLocaleDateString('en-US', {
+			timeZone: 'Asia/Kuala_Lumpur'
+		})
+		return { parsedDate: date, error: null }
 	} else {
-		console.error('Not a valid IC string')
-		return null
+		return { parsedDate: null, error: new Error('Not a valid IC string') }
 	}
 }
