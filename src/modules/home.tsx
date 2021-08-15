@@ -264,6 +264,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 							<Formik
 								onSubmit={async (values) => {
 									setDisabled1(true)
+									console.log('Submitting')
 									const res = await fetch(
 										`/api/updateProfile/${user?.uid}`,
 										{
@@ -297,7 +298,6 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 										.required('Required'),
 									address1: Yup.string().required('Required'),
 									address2: Yup.string(),
-									dob: Yup.date().required('Required'),
 									cluster: Yup.string().required('Required'),
 									ic: Yup.string()
 										.matches(

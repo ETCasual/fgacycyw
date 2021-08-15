@@ -54,7 +54,7 @@ export const getDOBfromIC = (
 			0,
 			0,
 			0
-		).toLocaleDateString('en-US', {
+		).toLocaleDateString('en-GB', {
 			timeZone: 'Asia/Kuala_Lumpur'
 		})
 		return { parsedDate: date, error: null }

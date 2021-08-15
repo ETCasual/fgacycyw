@@ -259,7 +259,6 @@ export const Layout: React.FC<LayoutProps> = ({
 								address1: Yup.string().required('Required'),
 								address2: Yup.string(),
 
-								cluster: Yup.string().required('Required'),
 								ic: Yup.string()
 									.matches(
 										/^\d{6}-\d{2}-\d{4}$/,
@@ -275,10 +274,7 @@ export const Layout: React.FC<LayoutProps> = ({
 								contact: Yup.string().matches(
 									/^(\+?6?01)[0|1|2|3|4|6|7|8|9]-*[0-9]{7,8}$/,
 									'Invalid malaysian phone number'
-								),
-								cg: Yup.string().required('Required'),
-								smallTeam: Yup.string().required('Required'),
-								status: Yup.string().required('Required')
+								)
 							})}
 							initialValues={{
 								fullName: user?.fullName,
@@ -294,7 +290,13 @@ export const Layout: React.FC<LayoutProps> = ({
 								status: user?.status
 							}}
 						>
-							{({ setValues, errors, touched, values }) => (
+							{({
+								setValues,
+								errors,
+								touched,
+								values,
+								setErrors
+							}) => (
 								<Form className="mt-4 flex flex-col items-center">
 									{progress == 0 ? (
 										<>
@@ -506,6 +508,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="cluster"
 												name="cluster"
+												defaultValue={Object.create({
+													value: values.cluster,
+													label: values.cluster
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -514,9 +520,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.cluster !== ''
-														? values.cluster
-														: 'Cluster'
+													'Please choose your cluster'
 												}
 												className={`${
 													errors.cluster &&
@@ -542,10 +546,15 @@ export const Layout: React.FC<LayoutProps> = ({
 												className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												onClick={() => {
 													!errors.ic &&
+													touched.cluster &&
 													!errors.address1 &&
 													!errors.cluster
 														? updateProgress(66)
-														: null
+														: setErrors({
+																...errors,
+																cluster:
+																	'Please choose your cluster'
+														  })
 												}}
 											>
 												Next
@@ -556,6 +565,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="smallTeam"
 												name="smallTeam"
+												defaultValue={Object.create({
+													value: values.smallTeam,
+													label: values.smallTeam
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -564,9 +577,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.smallTeam !== ''
-														? values.smallTeam
-														: 'Small Team'
+													'Please choose your small team'
 												}
 												className={`${
 													errors.smallTeam &&
@@ -655,6 +666,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="cg"
 												name="cg"
+												defaultValue={Object.create({
+													value: values.cg,
+													label: values.cg
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -662,9 +677,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.cg !== ''
-														? values.cg
-														: 'CG'
+													'Please choose your CG'
 												}
 												className={`${
 													errors.cg && touched.cg
@@ -745,6 +758,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="status"
 												name="status"
+												defaultValue={Object.create({
+													value: values.status,
+													label: values.status
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -752,9 +769,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.status !== ''
-														? values.status
-														: 'Status'
+													'Please choose your status'
 												}
 												className={`${
 													errors.status &&
