@@ -258,7 +258,7 @@ export const Layout: React.FC<LayoutProps> = ({
 									.required('Required'),
 								address1: Yup.string().required('Required'),
 								address2: Yup.string(),
-								dob: Yup.string().required('Required'),
+
 								cluster: Yup.string().required('Required'),
 								ic: Yup.string()
 									.matches(
@@ -289,8 +289,6 @@ export const Layout: React.FC<LayoutProps> = ({
 								address2: user?.address2 ? user.address2 : null,
 								smallTeam: user?.smallTeam,
 								cg: user?.cg,
-								dob: getDOBfromIC(user?.ic as string)
-									.parsedDate,
 								cluster: user?.cluster,
 								ic: user?.ic,
 								status: user?.status
@@ -504,46 +502,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													{errors.address2}
 												</div>
 											) : null}
-											<div
-												className={`w-full flex flex-row bg-[#7e30d1] rounded-[4px] mb-4 ring-2 ring-[#7e30d1] ${
-													errors.dob && touched.dob
-														? ' ring-red-600'
-														: !errors.dob &&
-														  touched.dob
-														? ' ring-green-600'
-														: 'ring-[#7e30d1]'
-												}`}
-											>
-												<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
-													DOB
-												</div>
-												<Field
-													disabled
-													value={values.dob}
-													name="dob"
-													// placeholder={
-													// 	values.dob !== ''
-													// 		? null
-													// 		: 'Date of Birth'
-													// }
 
-													calendarClassName="w-full"
-													className={`${
-														errors.dob &&
-														touched.dob
-															? 'ring-offset-1 ring-2 ring-red-600'
-															: !errors.dob &&
-															  touched.dob
-															? 'ring-offset-1 ring-2 ring-green-600'
-															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
-												/>
-											</div>
-											{errors.dob && touched.dob ? (
-												<div className="text-red-600 text-center mb-4">
-													{errors.dob}
-												</div>
-											) : null}
 											<Select
 												id="cluster"
 												name="cluster"
@@ -584,7 +543,6 @@ export const Layout: React.FC<LayoutProps> = ({
 												onClick={() => {
 													!errors.ic &&
 													!errors.address1 &&
-													!errors.dob &&
 													!errors.cluster
 														? updateProgress(66)
 														: null
