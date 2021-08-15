@@ -546,15 +546,10 @@ export const Layout: React.FC<LayoutProps> = ({
 												className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												onClick={() => {
 													!errors.ic &&
-													touched.cluster &&
 													!errors.address1 &&
 													!errors.cluster
 														? updateProgress(66)
-														: setErrors({
-																...errors,
-																cluster:
-																	'Please choose your cluster'
-														  })
+														: null
 												}}
 											>
 												Next
