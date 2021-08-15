@@ -40,7 +40,7 @@ import DatePicker from 'react-date-picker/dist/entry.nostyle'
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
 
-import { convertto1D } from '../utils/helpers'
+import { convertto1D, getDOBfromIC } from '../utils/helpers'
 
 const categoriesPage = [
 	{
@@ -292,7 +292,7 @@ export const Layout: React.FC<LayoutProps> = ({
 								address2: user?.address2 ? user.address2 : null,
 								smallTeam: user?.smallTeam,
 								cg: user?.cg,
-								dob: new Date(user?.dob as string),
+								dob: getDOBfromIC(user?.ic as string),
 								cluster: user?.cluster,
 								ic: user?.ic,
 								status: user?.status
@@ -520,6 +520,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													DOB
 												</div>
 												<DatePicker
+													disabled
 													value={values.dob}
 													name="dob"
 													clearIcon={null}

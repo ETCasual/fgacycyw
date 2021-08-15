@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import notion from '../../../lib/notion'
-import { getEnvVar } from '../../../utils/helpers'
-import { DateTime } from 'luxon'
+import { getDOBfromIC, getEnvVar } from '../../../utils/helpers'
 
 const updateProfile = async (
 	req: NextApiRequest,
@@ -136,9 +135,11 @@ const updateProfile = async (
 						{
 							type: 'text',
 							text: {
-								content: DateTime.fromISO(
-									properties.dob.toString()
-								).toLocaleString(DateTime.DATE_FULL)
+								content: getDOBfromIC(
+									properties.ic
+								)?.toLocaleDateString('en-US', {
+									timeZone: 'Asia/Kuala_Lumpur'
+								}) as string
 							}
 						}
 					]

@@ -561,6 +561,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 														DOB
 													</div>
 													<DatePicker
+														disabled
 														value={values.dob}
 														name="dob"
 														clearIcon={null}

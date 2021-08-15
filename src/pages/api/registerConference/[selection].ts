@@ -1,7 +1,7 @@
 import { CheckboxPropertyValue } from '@notionhq/client/build/src/api-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 import notion from '../../../lib/notion'
-import { getEnvVar } from '../../../utils/helpers'
+import { getDOBfromIC, getEnvVar } from '../../../utils/helpers'
 
 const sendRegistration = async (
 	req: NextApiRequest,
@@ -164,7 +164,11 @@ const sendRegistration = async (
 						{
 							type: 'text',
 							text: {
-								content: properties.dob as string
+								content: getDOBfromIC(
+									properties.ic as string
+								)?.toLocaleDateString('en-US', {
+									timeZone: 'Asia/Kuala_Lumpur'
+								}) as string
 							}
 						}
 					]

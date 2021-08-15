@@ -27,3 +27,35 @@ export const convertto1D = (arrToConvert: string[][]): string[] => {
 	}
 	return newArr
 }
+
+export const getDOBfromIC = (icno: string): Date | null => {
+	if (
+		icno.replace(/-|\s/g, '').match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)
+	) {
+		let year = RegExp.$1
+		const month = RegExp.$2
+		const day = RegExp.$3
+		console.log(year, month, day)
+
+		const now = new Date().getFullYear().toString()
+
+		const decade = now.substr(0, 2)
+		if (now.substr(2, 2) > year) {
+			year = parseInt(decade.concat(year.toString()), 10).toString()
+		}
+
+		const date = new Date(
+			year as unknown as number,
+			(month as unknown as number) - 1,
+			day as unknown as number,
+			0,
+			0,
+			0,
+			0
+		)
+		return date
+	} else {
+		console.error('Not a valid IC string')
+		return null
+	}
+}
