@@ -1922,6 +1922,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-vertical-timeline-component@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-vertical-timeline-component/-/react-vertical-timeline-component-3.0.1.tgz#52c905b00ea822befb394e0446f0865de8c5e0d5"
+  integrity sha512-0psZ6s08ALy3v3I87fmylolKUweUUC6GIqxgvjAPNadNvnV//DwHk5knbMpHCkci+8vJK+ECPbxic4a0GjoOwg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@17.0.15":
   version "17.0.15"
   resolved "https://registry.npmjs.org/@types/react/-/react-17.0.15.tgz"
@@ -6503,6 +6510,11 @@ react-intersection-observer@^6.1.0:
     "@babel/runtime" "^7.2.0"
     invariant "^2.2.4"
 
+react-intersection-observer@^8.26.2:
+  version "8.32.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.32.0.tgz#47249332e12e8bb99ed35a10bb7dd10446445a7b"
+  integrity sha512-RlC6FvS3MFShxTn4FHAy904bVjX5Nn4/eTjUkurW0fHK+M/fyQdXuyCy9+L7yjA+YMGogzzSJNc7M4UtfSKvtw==
+
 react-is@17.0.2, "react-is@^16.8.0 || ^17.0.0":
   version "17.0.2"
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
@@ -6678,6 +6690,15 @@ react-use@^17.2.4:
     throttle-debounce "^3.0.1"
     ts-easing "^0.2.0"
     tslib "^2.1.0"
+
+react-vertical-timeline-component@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/react-vertical-timeline-component/-/react-vertical-timeline-component-3.3.3.tgz#0c87e92be0af11ea895743f267be0e07e941e8e1"
+  integrity sha512-zvztiWKFYYPqq0vDrWoBcLJC6ok5A4nvdgxHq94JKVyjwUypojGHZQxDSjDzmLkgLRrA2kVjNzfNnv6eQ/O80A==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.7.2"
+    react-intersection-observer "^8.26.2"
 
 react-youtube@^7.13.1:
   version "7.13.1"
