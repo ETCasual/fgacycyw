@@ -1,7 +1,7 @@
 import { CheckboxPropertyValue } from '@notionhq/client/build/src/api-types'
 import { NextApiRequest, NextApiResponse } from 'next'
 import notion from '../../../lib/notion'
-import { getEnvVar } from '../../../utils/helpers'
+import { getDOBfromIC, getEnvVar } from '../../../utils/helpers'
 
 const sendRegistration = async (
 	req: NextApiRequest,
@@ -14,6 +14,8 @@ const sendRegistration = async (
 	if (error) throw error
 	const { env: dbId2, error: err2 } = getEnvVar('NOTION_USER_DATABASE_ID')
 	if (err2) throw err2
+
+	const parsedDate = getDOBfromIC(properties.ic as string)?.parsedDate
 
 	try {
 		const response1 = await notion.databases.query({
@@ -164,7 +166,7 @@ const sendRegistration = async (
 						{
 							type: 'text',
 							text: {
-								content: properties.dob as string
+								content: parsedDate as string
 							}
 						}
 					]

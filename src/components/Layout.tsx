@@ -36,11 +36,8 @@ import {
 	VoiceCG,
 	pastoralStatuses
 } from '../modules/home'
-import DatePicker from 'react-date-picker/dist/entry.nostyle'
-import 'react-date-picker/dist/DatePicker.css'
-import 'react-calendar/dist/Calendar.css'
 
-import { convertto1D } from '../utils/helpers'
+import { convertto1D, getDOBfromIC } from '../utils/helpers'
 
 const categoriesPage = [
 	{
@@ -261,8 +258,7 @@ export const Layout: React.FC<LayoutProps> = ({
 									.required('Required'),
 								address1: Yup.string().required('Required'),
 								address2: Yup.string(),
-								dob: Yup.date().required('Required'),
-								cluster: Yup.string().required('Required'),
+
 								ic: Yup.string()
 									.matches(
 										/^\d{6}-\d{2}-\d{4}$/,
@@ -278,10 +274,7 @@ export const Layout: React.FC<LayoutProps> = ({
 								contact: Yup.string().matches(
 									/^(\+?6?01)[0|1|2|3|4|6|7|8|9]-*[0-9]{7,8}$/,
 									'Invalid malaysian phone number'
-								),
-								cg: Yup.string().required('Required'),
-								smallTeam: Yup.string().required('Required'),
-								status: Yup.string().required('Required')
+								)
 							})}
 							initialValues={{
 								fullName: user?.fullName,
@@ -292,13 +285,18 @@ export const Layout: React.FC<LayoutProps> = ({
 								address2: user?.address2 ? user.address2 : null,
 								smallTeam: user?.smallTeam,
 								cg: user?.cg,
-								dob: new Date(user?.dob as string),
 								cluster: user?.cluster,
 								ic: user?.ic,
 								status: user?.status
 							}}
 						>
-							{({ setValues, errors, touched, values }) => (
+							{({
+								setValues,
+								errors,
+								touched,
+								values,
+								setErrors
+							}) => (
 								<Form className="mt-4 flex flex-col items-center">
 									{progress == 0 ? (
 										<>
@@ -506,54 +504,14 @@ export const Layout: React.FC<LayoutProps> = ({
 													{errors.address2}
 												</div>
 											) : null}
-											<div
-												className={`w-full flex flex-row bg-[#7e30d1] rounded-[4px] mb-4 ring-2 ring-[#7e30d1] ${
-													errors.dob && touched.dob
-														? ' ring-red-600'
-														: !errors.dob &&
-														  touched.dob
-														? ' ring-green-600'
-														: 'ring-[#7e30d1]'
-												}`}
-											>
-												<div className="text-white font-montserrat  px-3 py-2 text-center w-[100px] self-center">
-													DOB
-												</div>
-												<DatePicker
-													value={values.dob}
-													name="dob"
-													clearIcon={null}
-													// placeholder={
-													// 	values.dob !== ''
-													// 		? null
-													// 		: 'Date of Birth'
-													// }
-													onChange={(date: Date) =>
-														setValues({
-															...values,
-															dob: date
-														})
-													}
-													calendarClassName="w-full"
-													className={`${
-														errors.dob &&
-														touched.dob
-															? 'ring-offset-1 ring-2 ring-red-600'
-															: !errors.dob &&
-															  touched.dob
-															? 'ring-offset-1 ring-2 ring-green-600'
-															: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-													}  focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
-												/>
-											</div>
-											{errors.dob && touched.dob ? (
-												<div className="text-red-600 text-center mb-4">
-													{errors.dob}
-												</div>
-											) : null}
+
 											<Select
 												id="cluster"
 												name="cluster"
+												defaultValue={Object.create({
+													value: values.cluster,
+													label: values.cluster
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -562,9 +520,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.cluster !== ''
-														? values.cluster
-														: 'Cluster'
+													'Please choose your cluster'
 												}
 												className={`${
 													errors.cluster &&
@@ -590,11 +546,15 @@ export const Layout: React.FC<LayoutProps> = ({
 												className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 												onClick={() => {
 													!errors.ic &&
+													touched.cluster &&
 													!errors.address1 &&
-													!errors.dob &&
 													!errors.cluster
 														? updateProgress(66)
-														: null
+														: setErrors({
+																...errors,
+																cluster:
+																	'Please choose your cluster'
+														  })
 												}}
 											>
 												Next
@@ -605,6 +565,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="smallTeam"
 												name="smallTeam"
+												defaultValue={Object.create({
+													value: values.smallTeam,
+													label: values.smallTeam
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -613,9 +577,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.smallTeam !== ''
-														? values.smallTeam
-														: 'Small Team'
+													'Please choose your small team'
 												}
 												className={`${
 													errors.smallTeam &&
@@ -704,6 +666,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="cg"
 												name="cg"
+												defaultValue={Object.create({
+													value: values.cg,
+													label: values.cg
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -711,9 +677,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.cg !== ''
-														? values.cg
-														: 'CG'
+													'Please choose your CG'
 												}
 												className={`${
 													errors.cg && touched.cg
@@ -794,6 +758,10 @@ export const Layout: React.FC<LayoutProps> = ({
 											<Select
 												id="status"
 												name="status"
+												defaultValue={Object.create({
+													value: values.status,
+													label: values.status
+												})}
 												onChange={(selection) =>
 													setValues({
 														...values,
@@ -801,9 +769,7 @@ export const Layout: React.FC<LayoutProps> = ({
 													})
 												}
 												placeholder={
-													values.status !== ''
-														? values.status
-														: 'Status'
+													'Please choose your status'
 												}
 												className={`${
 													errors.status &&
