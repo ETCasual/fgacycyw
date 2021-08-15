@@ -33,5 +33,3 @@ const Error404: NextPage = (): JSX.Element => {
 }
 
 export default Error404
-
-//unnecessary comment
