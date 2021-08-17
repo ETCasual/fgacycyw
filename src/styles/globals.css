@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/HuaWenKaiTi-Bold-1.ttf?alt=media&token=a0b0df3b-6acd-4e38-800e-a4a5694d9698');
+@import url('https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/REEJI-HonghuangLiGB-Bold-2.ttf?alt=media&token=4dd2d440-1086-49ea-b52c-f01becc91369');
 
 @font-face {
 	font-family: 'Gloss And Bloom';
