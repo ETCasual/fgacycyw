@@ -6,6 +6,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
+				chiTitle: ["'REEJI-HonghuangLiGB'", 'sans-serif'],
+				chiText: ["'Kaiti'", 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				bebas: ["'Bebas Neue'", 'sans-serif'],
 				century: ["'Century Gothic'", 'sans-serif'],

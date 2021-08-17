@@ -5,17 +5,21 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import React, { Fragment, useState, useEffect, createRef } from 'react'
-import { FaChevronDown } from 'react-icons/fa'
-import { Layout, MyCarousel, Loader } from '../components'
+import { FaChevronDown, FaPaintBrush } from 'react-icons/fa'
+import { Layout, MyCarousel, Loader, Timeline } from '../components'
 import { SermonCard } from '../components/SermonCard'
 import { UserProps } from '../interface'
 import AOS from 'aos'
+import 'react-vertical-timeline-component/style.min.css'
+import { GiBlindfold, GiButterfly } from 'react-icons/gi'
 
 import { AiOutlineForm } from 'react-icons/ai'
 import { useRegister } from '../stores/useRegister'
 import Select from 'react-select'
 import YouTube from 'react-youtube'
 import { useRef } from 'react'
+import { VerticalTimeline } from 'react-vertical-timeline-component'
+import { BsPeopleFill } from 'react-icons/bs'
 // import { UserProps } from '../interface'
 
 // const texts = [
@@ -34,6 +38,41 @@ const selections = [
 	{
 		value: 'Performing Arts (Public Speaking)',
 		label: 'Performing Arts (Public Speaking)'
+	}
+]
+
+const timelineElements = [
+	{
+		sessionNo: '1',
+		date: 'Friday 8.30PM',
+		sessionTitle: '被遗忘的牧人',
+		speaker: 'Bro. Zhi Hao',
+		active: true,
+		icon: <GiBlindfold color="#210440" className="transform scale-[1.1]" />
+	},
+	{
+		sessionNo: '2',
+		date: 'Saturday 10.30AM',
+		sessionTitle: '生命与品格',
+		speaker: 'Sis. Phoebe Liew',
+		active: false,
+		icon: <BsPeopleFill color="#210440" className="transform scale-[1.1]" />
+	},
+	{
+		sessionNo: '3 | Workshops',
+		date: 'Saturday 12.45PM',
+		sessionTitle: '十八般武艺',
+		speaker: 'N/A',
+		active: false,
+		icon: <FaPaintBrush color="#210440" className="transform scale-[1.1]" />
+	},
+	{
+		sessionNo: '4',
+		date: 'Saturday 8.30PM',
+		sessionTitle: '关键蜕变',
+		speaker: 'Bro. Json',
+		active: false,
+		icon: <GiButterfly color="#210440" className="transform scale-[1.1]" />
 	}
 ]
 
@@ -158,7 +197,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 						heightClass="h-52"
 					/>
 				</div>
-				<div className="sm:w-2/3 lg:w-1/2 w-full">
+				<div className="sm:w-2/3 lg:w-1/2 w-full bg-[#ffb59b] sm:bg-transparent">
 					{thumbnail == false ? (
 						<YouTube
 							videoId="osstd3a2kf0"
@@ -185,10 +224,31 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							/>
 						</div>
 					)}
+					<div className="w-full mx-auto rounded-none sm:rounded-xl pt-5 mb-5 mt-0 sm:mt-5 bg-[#ffb59b] text-[#210440]">
+						<p className="font-montserrat font-semibold sm:text-5xl text-3xl w-full mx-auto text-center pt-5 ">
+							Warrior Conference
+						</p>
+						<p className="font-montserrat font-semibold sm:text-4xl text-2xl w-full mx-auto text-center">
+							The Unseen Shepherd
+						</p>
+						<p className="font-chiTitle font-semibold sm:text-4xl text-3xl w-full mx-auto text-center mb-5 ">
+							看不见的蜕变
+						</p>
+						<VerticalTimeline>
+							{timelineElements.map((elem, i) => (
+								<Timeline
+									active={elem.active}
+									key={i}
+									date={elem.date}
+									icon={elem.icon}
+									sessionNo={elem.sessionNo}
+									sessionTitle={elem.sessionTitle}
+									speaker={elem.speaker}
+								/>
+							))}
+						</VerticalTimeline>
+					</div>
 				</div>
-				<p className="font-montserrat font-semibold sm:text-3xl text-xl w-full mx-auto text-center my-10 animate-bounce">
-					Stay Tuned for more Updates!
-				</p>
 
 				{/* TODO: Uncomment all these went d-day comes */}
 
