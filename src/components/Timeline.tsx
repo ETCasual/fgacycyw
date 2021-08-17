@@ -21,7 +21,6 @@ export const Timeline: React.FC<TimelineProps> = ({
 }) => {
 	return (
 		<VerticalTimelineElement
-			className="vertical-timeline-element--work"
 			contentStyle={{
 				background: active ? '#FFBA00' : '#fff',
 				border: `2px solid #210440`

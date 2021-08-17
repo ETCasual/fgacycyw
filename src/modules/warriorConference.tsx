@@ -224,17 +224,19 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 							/>
 						</div>
 					)}
-					<div className="w-full mx-auto rounded-none sm:rounded-xl pt-5 mb-5 mt-0 sm:mt-5 bg-[#ffb59b] text-[#210440]">
-						<p className="font-montserrat font-semibold sm:text-5xl text-3xl w-full mx-auto text-center pt-5 ">
-							Warrior Conference
-						</p>
-						<p className="font-montserrat font-semibold sm:text-4xl text-2xl w-full mx-auto text-center">
-							The Unseen Shepherd
-						</p>
-						<p className="font-chiTitle font-semibold sm:text-4xl text-3xl w-full mx-auto text-center mb-5 ">
-							看不见的蜕变
-						</p>
-						<VerticalTimeline>
+					<div className="w-full mx-auto rounded-none sm:rounded-xl mb-5 mt-0 sm:mt-5 bg-[#ffb59b] text-[#210440]">
+						<div className="w-full py-5 bg-[#210440] text-[#ffba00] rounded-none sm:rounded-t-xl">
+							<p className="font-montserrat font-semibold sm:text-5xl text-3xl w-full mx-auto text-center">
+								Warrior Conference
+							</p>
+							<p className="font-montserrat font-semibold sm:text-4xl text-2xl w-full mx-auto text-center">
+								The Unseen Shepherd
+							</p>
+							<p className="font-chiTitle font-semibold sm:text-4xl text-3xl w-full mx-auto text-center">
+								看不见的蜕变
+							</p>
+						</div>
+						<VerticalTimeline className="text-[#210440]">
 							{timelineElements.map((elem, i) => (
 								<Timeline
 									active={elem.active}
