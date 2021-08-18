@@ -123,20 +123,20 @@ export const Layout: React.FC<LayoutProps> = ({
 							<FaChurch
 								color="#210440"
 								size={35}
-								onClick={() => router.push('/')}
+								onClick={() => router.push('/home')}
 								className="object-contain cursor-pointer"
 							/>
 						) : (
 							<BiChurch
 								color="#210440"
 								size={35}
-								onClick={() => router.push('/')}
+								onClick={() => router.push('/home')}
 								className="object-contain cursor-pointer"
 							/>
 						)}
 						<p
 							className="font-gloss text-lg sm:text-xl lg:text-2xl line-clamp-1 w-full text-center text-[#210440] cursor-pointer"
-							onClick={() => router.push('/')}
+							onClick={() => router.push('/home')}
 						>
 							Welcome Home, {user ? user!.nickname : null}
 						</p>

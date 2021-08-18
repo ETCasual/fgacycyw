@@ -130,7 +130,6 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 	const [thumbnail, setThumbnail] = useState<boolean>(false)
 	const [disabled, setDisabled] = useState<boolean>(false)
 
-	const { uid, setRegistered } = useRegister()
 	const buttonRef = createRef<HTMLButtonElement>()
 
 	useEffect(() => {
@@ -210,9 +209,6 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 												}
 											)
 											if (res.ok) {
-												setRegistered(
-													user?.uid as string
-												)
 												alert('Registered!')
 												setModalState(false)
 												window.location.reload()
@@ -376,9 +372,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div> */}
 
-				{user?.registered == false &&
-				!uid.includes(user.uid as string) &&
-				!disabled ? (
+				{user?.registered == false && !disabled ? (
 					<div className="fixed top-16">
 						<Menu as="div" className="fixed bottom-10 left-10">
 							<div>

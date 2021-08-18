@@ -13,7 +13,8 @@ import {
 	FaInstagram,
 	FaYoutube,
 	FaMale,
-	FaFemale
+	FaFemale,
+	FaChevronUp
 } from 'react-icons/fa'
 import { IoIosArrowDropdown } from 'react-icons/io'
 import router from 'next/router'
@@ -981,16 +982,79 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 								/>
 							))}
 						</div>
-						{/* <Slider
-							infinite={false}
-							autoPlay={false}
-							dots={false}
-							arrows
-						>
-							<div className="px-0 sm:px-20 w-full mt-5 h-[300px] bg-[#210440]">
-								Hi
-							</div>
-						</Slider> */}
+						<div className="px-0 my-5 w-full sm:px-20 rounded-none sm:rounded-md">
+							<Slider
+								className="w-full h-[600px] lg:h-[500px] rounded-none sm:rounded-md"
+								infinite={false}
+								autoplay={false}
+								dots={false}
+								draggable
+								arrows={false}
+							>
+								<div className="flex flex-col items-start px-5 bg-[#210440] pt-7 h-[600px] lg:h-[500px] relative">
+									<img
+										src="/assets/json.png"
+										alt="Json"
+										className="absolute right-0 sm:right-5 md:right-20 bottom-0 transform scale-[1] md:scale-[1.4] xl:scale-[2]"
+									/>
+									<p className="font-chiTitle font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 text-[#FFBA00]">
+										前言 I{' '}
+										<span className="hidden sm:inline">
+											|{' '}
+										</span>
+										<br className="inline sm:hidden" />
+										年轻就是未来
+									</p>
+									<div className="flex flex-col xl:flex-row w-full">
+										<div className="flex flex-col">
+											<pre className="font-chiText leading-[1.25rem] sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-white">{`你认识神在你里面投入的潜能吗?\n你知道你被创造的目的\n是来为了重要的使命与命定吗？`}</pre>
+											<pre className="font-chiText leading-[1.25rem] sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-white my-3">{`别让普通埋没你的目的\n别让别人定位你的生命\n发掘你属神的品格\n发现神在你里面的能力！`}</pre>
+										</div>
+										<pre
+											style={{
+												WebkitTextStroke:
+													'0.5px #FFBA00'
+											}}
+											className="font-chiText tracking-[-0.1em] sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl xl:self-center font-bold mt-5 md:mt-0 xl:mx-auto text-[#FFb59b] transform transition duration-300 ease-in-out hover:scale-[1.05] hover:text-[#FFBA00] "
+										>{`成为命定中的勇士\n成为非凡卓越的你！`}</pre>
+									</div>
+								</div>
+
+								<div className="flex flex-col bg-[#FFBA00] items-start px-5 pt-7 h-[600px] lg:h-[500px] relative">
+									{/* <img
+										src="/assets/zh.png"
+										alt="Zhi Hao"
+										className="absolute right-0 sm:right-5 md:right-20 bottom-0 transform scale-[1] md:scale-[1.7] xl:scale-[2.3]"
+									/> */}
+									<p className="font-chiTitle font-bold text-2xl sm:text-3xl lg:text-4xl mb-4 text-[#210440]">
+										前言 II | - 寻 -
+									</p>
+									<div className="flex flex-col w-full">
+										<div className="flex flex-col sm:flex-row">
+											<pre className="font-chiText leading-[1.25rem] sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-black">{`当撒母耳寻找被\n恩膏的下一任领袖时，\n耶西 (大卫的爸爸)\n却忽略了大卫。\n在这时代或许我们都\n期盼自己的努力被看见\n被重视，被知道，\n出尽法宝的让自己成名。\n但一切的努力所换来的`}</pre>
+											<pre className="font-chiText leading-[1.25rem] block lg:hidden sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-black my-2 sm:my-0">{`却与我们的\n付出不成正比\n感觉神很不公平!\n自己就像是\n那被遗忘的。\n但奇妙的神却\n找上了大卫\n看见了他!\n你的未来看似\n在自己的手里\n神却知道你\n未知的未来!`}</pre>
+											<pre className="font-chiText leading-[1.25rem] lg:block hidden sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-black my-2 sm:my-0">{`却与我们的付出不成正比\n感觉神很不公平!\n自己就像是那被遗忘的。\n但奇妙的神却\n找上了大卫看见了他!\n你的未来看似\n在自己的手里\n神却知道你未知的未来!`}</pre>
+										</div>
+										<pre className="font-chiText tracking-[-0.1em] block lg:hidden sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl font-bold mt-2 xl:ml-5 text-[#210440] transform transition duration-300 ease-in-out hover:scale-[1.05]">{`让被遗忘的你\n在这特会里被神寻见!`}</pre>
+										<pre className="font-chiText tracking-[-0.1em] lg:block hidden sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl font-bold mt-2 xl:ml-5 text-[#210440] transform transition duration-300 ease-in-out hover:scale-[1.05]">{`让被遗忘的你 在这特会里被神寻见!`}</pre>
+									</div>
+								</div>
+								<div className="flex flex-col bg-[#210440] items-center justify-center px-5 pt-7 h-[600px] lg:h-[500px] relative">
+									<div className="flex flex-col text-center items-center justify-center">
+										<FaChevronUp
+											color="#FFBA00"
+											size={150}
+											className="animate-bounce"
+										/>
+										<p className="text-4xl lg:text-6xl text-[#FFBA00] text-center mx-auto font-chiTitle">
+											点击以上卡片{' '}
+											<br className="md:hidden inline" />
+											赶快报名吧!
+										</p>
+									</div>
+								</div>
+							</Slider>
+						</div>
 					</>
 				) : (
 					<div className="w-full h-full px-10 sm:px-20">
