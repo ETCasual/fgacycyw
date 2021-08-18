@@ -1016,7 +1016,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 												WebkitTextStroke:
 													'0.5px #FFBA00'
 											}}
-											className="font-chiText tracking-[-0.1em] sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl xl:self-center font-bold mt-5 md:mt-0 xl:mx-auto text-[#FFb59b] transform transition duration-300 ease-in-out hover:scale-[1.05] hover:text-[#FFBA00] "
+											className="font-chiText tracking-[-0.075em] sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl xl:self-center font-bold mt-5 md:mt-0 xl:mx-auto text-[#FFb59b] transform transition duration-300 ease-in-out hover:scale-[1.05] hover:text-[#FFBA00] "
 										>{`成为命定中的勇士\n成为非凡卓越的你！`}</pre>
 									</div>
 								</div>
@@ -1036,8 +1036,8 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 											<pre className="font-chiText leading-[1.25rem] block lg:hidden sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-black my-2 sm:my-0">{`却与我们的\n付出不成正比\n感觉神很不公平!\n自己就像是\n那被遗忘的。\n但奇妙的神却\n找上了大卫\n看见了他!\n你的未来看似\n在自己的手里\n神却知道你\n未知的未来!`}</pre>
 											<pre className="font-chiText leading-[1.25rem] lg:block hidden sm:leading-none lg:text-3xl sm:text-2xl text-xl  text-black my-2 sm:my-0">{`却与我们的付出不成正比\n感觉神很不公平!\n自己就像是那被遗忘的。\n但奇妙的神却\n找上了大卫看见了他!\n你的未来看似\n在自己的手里\n神却知道你未知的未来!`}</pre>
 										</div>
-										<pre className="font-chiText tracking-[-0.1em] block lg:hidden sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl font-bold mt-2 xl:ml-5 text-[#210440] transform transition duration-300 ease-in-out hover:scale-[1.05]">{`让被遗忘的你\n在这特会里被神寻见!`}</pre>
-										<pre className="font-chiText tracking-[-0.1em] lg:block hidden sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl font-bold mt-2 xl:ml-5 text-[#210440] transform transition duration-300 ease-in-out hover:scale-[1.05]">{`让被遗忘的你 在这特会里被神寻见!`}</pre>
+										<pre className="font-chiText tracking-[-0.075em] block lg:hidden sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl font-bold mt-2 xl:ml-5 text-[#210440] transform transition duration-300 ease-in-out hover:scale-[1.05]">{`让被遗忘的你\n在这特会里被神寻见!`}</pre>
+										<pre className="font-chiText tracking-[-0.075em] lg:block hidden sm:leading-none xl:text-7xl lg:text-5xl sm:text-4xl text-3xl font-bold mt-2 xl:ml-5 text-[#210440] transform transition duration-300 ease-in-out hover:scale-[1.05]">{`让被遗忘的你 在这特会里被神寻见!`}</pre>
 									</div>
 								</div>
 								<div className="flex flex-col bg-[#210440] items-center justify-center px-5 pt-7 h-[600px] lg:h-[500px] relative">
