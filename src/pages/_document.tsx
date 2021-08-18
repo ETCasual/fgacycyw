@@ -6,6 +6,14 @@ class MyDocument extends Document {
 			<Html>
 				<Head>
 					<link rel="manifest" href="/manifest.json" />
+					<link
+						href="https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/HuaWenKaiTi-Bold-1.ttf?alt=media&token=a0b0df3b-6acd-4e38-800e-a4a5694d9698"
+						rel="stylesheet"
+					/>
+					<link
+						href="https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/REEJI-HonghuangLiGB-Bold-2.ttf?alt=media&token=4dd2d440-1086-49ea-b52c-f01becc91369"
+						rel="stylesheet"
+					/>
 					<meta name="apple-mobile-web-app-capable" content="yes" />
 					<link
 						href="/2048x2732.png"
