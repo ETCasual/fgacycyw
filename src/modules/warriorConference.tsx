@@ -44,33 +44,75 @@ const selections = [
 const timelineElements = [
 	{
 		sessionNo: '1',
+		key: 1,
 		date: 'Friday 8.30PM',
 		sessionTitle: '被遗忘的牧人',
 		speaker: 'Bro. Zhi Hao',
+		speakerDetails1: [
+			{
+				workshopTitle: '被遗忘的牧人',
+				speakerName: 'Bro. Zhi Hao',
+				speakerIntro: `中学时期信主，已超过16年\n曾经带领过不同年龄层的组员\n包括中学，大专和职青\n是带领着两个 Cluster\n的 Team Leader\n目前是一名商人\n经营着自己的生意`
+			}
+		],
 		active: true,
 		icon: <GiBlindfold color="#210440" className="transform scale-[1.1]" />
 	},
 	{
 		sessionNo: '2',
+		key: 2,
 		date: 'Saturday 10.30AM',
 		sessionTitle: '生命与品格',
 		speaker: 'Sis. Phoebe Liew',
+		speakerDetails2: [
+			{
+				workshopTitle: '生命与品格',
+				speakerName: 'Sis. Phoebe Liew',
+				speakerIntro: `信主超过13年\n即将迎来第二个可爱的BB\n在2015成为教会全职同工\n也在带领\nFGACYC General Affair事工\n目前带领\nKL Young Warrior\nStrike Cluster\n牧养经验涵盖不同年龄层的组员\n包括中学生、大专生、职青等\n诚实正直，谦卑顺服\n是她生命的象征!`
+			}
+		],
 		active: false,
 		icon: <BsPeopleFill color="#210440" className="transform scale-[1.1]" />
 	},
 	{
 		sessionNo: '3 | Workshops',
+		key: 3,
 		date: 'Saturday 12.45PM',
 		sessionTitle: '十八般武艺',
 		speaker: 'N/A',
+		speakerDetails3: [
+			{
+				workshopTitle: 'Photo & Posting',
+				speakerName: 'Jennifer & WinNaa',
+				speakerIntro: `CYC 最强小编\n对于画面和文字都具附\n独特见解和美感的他们\n让冰冷的文字和画面赋予了灵魂\n顿时变得生动!\n不需要华丽及昂贵的器材和字库\n就能让照片和文案变得诗情画意!\n拍下珍贵的画面\n记录自己的生活态度!`
+			},
+			{
+				workshopTitle: 'Singing',
+				speakerName: 'Theresa',
+				speakerIntro: `教会敬拜赞美主领的她\n有着独特优美及辨识度极高的歌声!\n完美的诠释每一首歌背后的意境\n唱出扣人心弦的歌声!\n唱歌是一份恩赐也是一门功夫!\n辨识自己的音律\n唱出自己的天空!`
+			},
+			{
+				workshopTitle: 'Public Speaking',
+				speakerName: 'Raymond',
+				speakerIntro: `主持过无数的婚礼\n担任过不同场合的司仪\n历练许多不同临场挑战的他\n练得一口伶牙俐齿\n以三寸不烂之舌\n炒热现场气氛更是他的绝活!\n不要只懂得发言却未能言之成理。\n学好说话，说出自己!`
+			}
+		],
 		active: false,
 		icon: <FaPaintBrush color="#210440" className="transform scale-[1.1]" />
 	},
 	{
 		sessionNo: '4',
+		key: 4,
 		date: 'Saturday 8.30PM',
 		sessionTitle: '关键蜕变',
 		speaker: 'Bro. Json',
+		speakerDetails4: [
+			{
+				workshopTitle: '关键蜕变',
+				speakerName: 'Bro. Json',
+				speakerIntro: `信主已超过 10年\n更即将成为新手爸爸\n28岁 因着呼召\n决定离开职场投入神的呼召\n目前是FGACYC KL\nYoung Warrior 全职同工\n牧养着超过 300 多名组员\n其包括中学和大专生!\n积极热忱，愿作仆人\n更是他在基督生命里的标签!`
+			}
+		],
 		active: false,
 		icon: <GiButterfly color="#210440" className="transform scale-[1.1]" />
 	}
@@ -241,8 +283,13 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 								<Timeline
 									active={elem.active}
 									key={i}
+									elemKey={elem.key}
 									date={elem.date}
 									icon={elem.icon}
+									speakerDetails1={elem.speakerDetails1}
+									speakerDetails2={elem.speakerDetails2}
+									speakerDetails3={elem.speakerDetails3}
+									speakerDetails4={elem.speakerDetails4}
 									sessionNo={elem.sessionNo}
 									sessionTitle={elem.sessionTitle}
 									speaker={elem.speaker}
