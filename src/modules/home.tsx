@@ -985,8 +985,9 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 						<div className="px-0 w-full sm:px-20 rounded-none sm:rounded-md">
 							<Slider
 								className="w-full h-[600px] lg:h-[500px] rounded-none sm:rounded-md"
-								infinite={false}
-								autoplay={false}
+								infinite
+								autoplay
+								autoplaySpeed={5000}
 								dots={false}
 								draggable
 								arrows={false}
