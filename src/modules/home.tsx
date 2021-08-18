@@ -981,7 +981,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 								/>
 							))}
 						</div>
-						<Slider
+						{/* <Slider
 							infinite={false}
 							autoPlay={false}
 							dots={false}
@@ -990,7 +990,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 							<div className="px-0 sm:px-20 w-full mt-5 h-[300px] bg-[#210440]">
 								Hi
 							</div>
-						</Slider>
+						</Slider> */}
 					</>
 				) : (
 					<div className="w-full h-full px-10 sm:px-20">
