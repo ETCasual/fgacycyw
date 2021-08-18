@@ -23,6 +23,7 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Field, Form, Formik } from 'formik'
 import ProgressBar from '@ramonak/react-progress-bar'
 import { convertto1D } from '../utils/helpers'
+import Slider from 'react-slick'
 // import initAuth from '../services/auth/next-firebase-auth'
 // import getUserData from '../pages/api/auth/[id]'
 
@@ -969,16 +970,28 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 
 				{!aboutUs ? (
 					// TODO: sm:grid-cols-1 must chg to grid-cols-2 when develop further
-					<div className="grid sm:grid-cols-1  grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full">
-						{cards.map((card, i) => (
-							<Card
-								key={i}
-								to={card.to}
-								image={card.image}
-								name={card.name}
-							/>
-						))}
-					</div>
+					<>
+						<div className="grid sm:grid-cols-1  grid-cols-1 gap-0 sm:gap-3 px-0 sm:px-20 items-center justify-center w-full">
+							{cards.map((card, i) => (
+								<Card
+									key={i}
+									to={card.to}
+									image={card.image}
+									name={card.name}
+								/>
+							))}
+						</div>
+						<Slider
+							infinite={false}
+							autoPlay={false}
+							dots={false}
+							arrows
+						>
+							<div className="px-0 sm:px-20 w-full mt-5 h-[300px] bg-[#210440]">
+								Hi
+							</div>
+						</Slider>
+					</>
 				) : (
 					<div className="w-full h-full px-10 sm:px-20">
 						<p className="text-2xl my-3 font-bebas tracking-[0.025em] text-[#210440] font-semibold">
