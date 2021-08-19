@@ -162,13 +162,13 @@ const ModalDetails: React.FC<modalDetailsProps> = ({ data1 }) => {
 			>
 				{data1!.map((data) => (
 					<>
-						<p className="text-4xl font-bebas text-[#FFBA00] tracking-[0.025em] font-bold text-center">
+						<p className="text-4xl font-bebas text-[#FFBA00] tracking-[0.025em] font-bold text-left">
 							{data.workshopTitle}
 						</p>
-						<p className="text-xl sm:text-2xl font-montserrat font-semibold text-center my-1">
+						<p className="text-xl sm:text-2xl font-montserrat font-semibold text-left my-1">
 							{data.speakerName}
 						</p>
-						<pre className="text-lg sm:text-xl md:text-2xl font-montserrat text-center mb-3">
+						<pre className="text-lg sm:text-xl md:text-2xl font-montserrat text-left mb-3">
 							{data.speakerIntro}
 						</pre>
 					</>
