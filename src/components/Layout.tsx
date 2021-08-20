@@ -195,42 +195,39 @@ export const Layout: React.FC<LayoutProps> = ({
 							>
 								Edit Profile
 							</button>
-							{user?.registered ? (
-								<>
-									<p className="text-3xl font-bebas drop-shadow-lg tracking-[0.025em] py-5 w-full text-center text-[#210440] shadow-2xl">
-										Warrior Conference
-									</p>
-									<a
-										className="w-full"
-										href="https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/warriorConf.zip?alt=media&token=db1f5047-d6ed-459e-89c0-1c0548efc7ec"
-										download
-									>
-										<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
-											Virtual Background
-										</button>
-									</a>
-									<a
-										className="w-full"
-										href="https://zoom.us/j/91988881804"
-										target="_blank"
-										rel="noreferrer"
-									>
-										<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
-											Join Zoom
-										</button>
-									</a>
-									{user?.nickname == 'ET' ? (
-										<button
-											onClick={() => {
-												setQRModalMode(true)
-												setIsOpen(false)
-											}}
-											className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none"
-										>
-											Send Attendance
-										</button>
-									) : null}
-								</>
+
+							<p className="text-3xl font-bebas drop-shadow-lg tracking-[0.025em] py-5 w-full text-center text-[#210440] shadow-2xl">
+								Warrior Conference
+							</p>
+							<a
+								className="w-full"
+								href="https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/warriorConf.zip?alt=media&token=db1f5047-d6ed-459e-89c0-1c0548efc7ec"
+								download
+							>
+								<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
+									Virtual Background
+								</button>
+							</a>
+							<a
+								className="w-full"
+								href="https://zoom.us/j/91988881804"
+								target="_blank"
+								rel="noreferrer"
+							>
+								<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
+									Join Zoom
+								</button>
+							</a>
+							{user?.nickname == 'ET' ? (
+								<button
+									onClick={() => {
+										setQRModalMode(true)
+										setIsOpen(false)
+									}}
+									className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none"
+								>
+									Send Attendance
+								</button>
 							) : null}
 							<button
 								className="text-montserrat elevation-24 text-xl focus-within:outline-none font-semibold absolute bottom-0 px-5 py-3 w-full bg-[#fff] flex flex-row items-center text-[#210440]"
