@@ -188,13 +188,16 @@ export const Layout: React.FC<LayoutProps> = ({
 							>
 								Edit Profile
 							</button>
+							<p className="text-3xl font-bebas drop-shadow-lg tracking-[0.025em] py-5 w-full text-center text-[#210440] shadow-2xl">
+								Warrior Conference
+							</p>
 							<a
 								className="w-full"
 								href="https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/warriorConf.zip?alt=media&token=db1f5047-d6ed-459e-89c0-1c0548efc7ec"
 								download
 							>
 								<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
-									Download Assets
+									Virtual Background
 								</button>
 							</a>
 							<a
@@ -204,7 +207,7 @@ export const Layout: React.FC<LayoutProps> = ({
 								rel="noreferrer"
 							>
 								<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
-									Join Warrior Conference
+									Join Zoom
 								</button>
 							</a>
 							<button
