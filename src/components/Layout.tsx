@@ -19,6 +19,8 @@ import ProgressBar from '@ramonak/react-progress-bar'
 import { Formik, Form, Field } from 'formik'
 import Select from 'react-select'
 import * as Yup from 'yup'
+import dynamic from 'next/dynamic'
+// import QrReader from 'react-qr-reader'
 import {
 	clusters,
 	genders,
@@ -38,6 +40,9 @@ import {
 } from '../modules/home'
 
 import { convertto1D, getDOBfromIC } from '../utils/helpers'
+import { toast } from 'react-toastify'
+
+const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
 const categoriesPage = [
 	{
@@ -92,11 +97,13 @@ export const Layout: React.FC<LayoutProps> = ({
 	)
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const [modalMode, setModalMode] = useState<boolean>(false)
+	const [qrModalMode, setQRModalMode] = useState<boolean>(false)
 	const [progress, updateProgress] = useState<number>(0)
 	const [disabled, setDisabled] = useState<boolean>()
 
 	const scrollElem = createRef<HTMLDivElement>()
 	const ref = createRef<HTMLButtonElement>()
+	const qrref = createRef<HTMLButtonElement>()
 
 	useEventListener(
 		'touchstart',
@@ -211,7 +218,18 @@ export const Layout: React.FC<LayoutProps> = ({
 										<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
 											Join Zoom
 										</button>
-									</a>{' '}
+									</a>
+									{user?.nickname == 'ET' ? (
+										<button
+											onClick={() => {
+												setQRModalMode(true)
+												setIsOpen(false)
+											}}
+											className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none"
+										>
+											Send Attendance
+										</button>
+									) : null}
 								</>
 							) : null}
 							<button
@@ -224,6 +242,47 @@ export const Layout: React.FC<LayoutProps> = ({
 					</Transition.Child>
 				</Dialog>
 			</Transition>
+			<Dialog
+				as="div"
+				initialFocus={qrref}
+				open={qrModalMode}
+				className="fixed inset-0 z-10 backdrop-blur-[2px]"
+				onClose={() => setQRModalMode(false)}
+			>
+				<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
+					<QrReader
+						delay={300}
+						className="w-full h-full z-20"
+						onError={() => toast.error('Contact Developer')}
+						onScan={async (data) => {
+							const attendance = await fetch(
+								`/api/attendance/${data}`,
+								{
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									credentials: 'same-origin',
+									body: JSON.stringify(user)
+								}
+							)
+							if (attendance.ok) {
+								setQRModalMode(false)
+								toast.success('Attendance Recorded!')
+							}
+						}}
+					/>
+					<button
+						ref={qrref}
+						className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 mt-2 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
+						onClick={() => {
+							setQRModalMode(false)
+						}}
+					>
+						Close
+					</button>
+				</div>
+			</Dialog>
 			<Dialog
 				as="div"
 				open={modalMode}
