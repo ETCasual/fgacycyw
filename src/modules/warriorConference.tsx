@@ -41,7 +41,7 @@ const selections = [
 	}
 ]
 
-const closed = true
+const notClosed = false
 
 const timelineElements = [
 	{
@@ -374,7 +374,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div> */}
 
-				{user?.registered == false && !disabled && closed == false ? (
+				{user?.registered == false && !disabled && notClosed ? (
 					<div className="fixed top-16">
 						<Menu as="div" className="fixed bottom-10 left-10">
 							<div>
