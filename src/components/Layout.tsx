@@ -248,7 +248,7 @@ export const Layout: React.FC<LayoutProps> = ({
 			>
 				<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
 					<QrReader
-						delay={300}
+						delay={400}
 						className="w-full h-full z-20"
 						onError={() => toast.error('Contact Developer')}
 						onScan={async (data) => {
