@@ -57,7 +57,7 @@ const timelineElements = [
 				speakerIntro: `中学时期信主，已超过16年\n曾经带领过不同年龄层的组员\n包括中学，大专和职青\n是带领着两个 Cluster\n的 Team Leader\n目前是一名商人\n经营着自己的生意`
 			}
 		],
-		active: true,
+		active: false,
 		icon: <GiBlindfold color="#210440" className="transform scale-[1.1]" />
 	},
 	{
@@ -73,7 +73,7 @@ const timelineElements = [
 				speakerIntro: `信主超过13年\n即将迎来第二个可爱的BB\n在2015成为教会全职同工\n也在带领\nFGACYC General Affair事工\n目前带领\nKL Young Warrior\nStrike Cluster\n牧养经验涵盖不同年龄层的组员\n包括中学生、大专生、职青等\n诚实正直，谦卑顺服\n是她生命的象征!`
 			}
 		],
-		active: false,
+		active: true,
 		icon: <BsPeopleFill color="#210440" className="transform scale-[1.1]" />
 	},
 	{
