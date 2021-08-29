@@ -238,7 +238,7 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div>
 				<div className="sm:w-2/3 lg:w-1/2 w-full bg-[#ffb59b] sm:bg-transparent">
-					<p className="font-bebas text-5xl mt-5 w-full text-center">
+					<p className="font-bebas text-[#210440] text-5xl mt-5 w-full text-center">
 						Recap Video
 					</p>
 					<YouTube
