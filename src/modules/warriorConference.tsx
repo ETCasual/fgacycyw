@@ -126,10 +126,10 @@ const loremipsum =
 const dayCards = [1, 2, 3]
 
 const WarriorConference: NextPage<UserProps> = ({ user }) => {
-	const [day, setDay] = useState<number>(1)
+	// const [day, setDay] = useState<number>(1)
 	const [selectionText, setSelection] = useState<string>('')
 	const [isModalOpen, setModalState] = useState<boolean>(false)
-	const [thumbnail, setThumbnail] = useState<boolean>(false)
+	// const [thumbnail, setThumbnail] = useState<boolean>(false)
 	const [disabled, setDisabled] = useState<boolean>(false)
 
 	const buttonRef = createRef<HTMLButtonElement>()
@@ -238,32 +238,18 @@ const WarriorConference: NextPage<UserProps> = ({ user }) => {
 					/>
 				</div>
 				<div className="sm:w-2/3 lg:w-1/2 w-full bg-[#ffb59b] sm:bg-transparent">
-					{thumbnail == false ? (
-						<YouTube
-							videoId="osstd3a2kf0"
-							className="mx-auto"
-							containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
-							onEnd={() => {
-								console.log('Video Ended')
-								buttonRef.current?.click()
-								setThumbnail(true)
-							}}
-						/>
-					) : (
-						<div className="mx-5 sm:mx-auto mt-3 flex flex-col items-center">
-							<button
-								className="w-full mb-3 px-5 py-3 text-xl my-2 font-montserrat rounded-md text-white bg-[#210440]"
-								onClick={() => setThumbnail(false)}
-							>
-								Replay Video
-							</button>
-							<img
-								className="mx-auto object-contain px-0 sm:px-10"
-								src="/assets/warriorConfposter.jpg"
-								alt="warriorConfPoster"
-							/>
-						</div>
-					)}
+					<p className="font-bebas text-2xl w-full text-center">
+						Recap Video
+					</p>
+					<YouTube
+						videoId="tiraeq_19DI"
+						className="mx-auto"
+						containerClassName="w-full mx-auto aspect-w-16 aspect-h-9 mt-7"
+						onEnd={() => {
+							console.log('Video Ended')
+						}}
+					/>
+
 					<div className="w-full mx-auto rounded-none sm:rounded-xl mb-5 mt-0 sm:mt-5 bg-[#ffb59b] text-[#210440]">
 						<div className="w-full py-5 bg-[#210440] text-[#ffba00] rounded-none sm:rounded-t-xl">
 							<p className="font-montserrat font-semibold sm:text-5xl text-3xl w-full mx-auto text-center">
