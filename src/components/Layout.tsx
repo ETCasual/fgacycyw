@@ -19,7 +19,7 @@ import ProgressBar from '@ramonak/react-progress-bar'
 import { Formik, Form, Field } from 'formik'
 import Select from 'react-select'
 import * as Yup from 'yup'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 // import QrReader from 'react-qr-reader'
 import {
 	clusters,
@@ -37,12 +37,10 @@ import {
 	StrikeCG,
 	VoiceCG,
 	pastoralStatuses
-} from '../modules/home'
+} from '../utils/constants'
 
 import { convertto1D, getDOBfromIC } from '../utils/helpers'
 import { toast } from 'react-toastify'
-
-const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
 const categoriesPage = [
 	{
@@ -78,6 +76,7 @@ type LayoutProps = {
 	hscreen?: boolean
 	noNav?: boolean
 	overflowHidden?: boolean
+	relative?: boolean
 }
 
 export const Layout: React.FC<LayoutProps> = ({
@@ -88,7 +87,8 @@ export const Layout: React.FC<LayoutProps> = ({
 	user,
 	noNav = false,
 	hscreen = true,
-	overflowHidden = false
+	overflowHidden = false,
+	relative = false
 }) => {
 	const authUser = useAuthUser()
 	const router = useRouter()
@@ -97,13 +97,11 @@ export const Layout: React.FC<LayoutProps> = ({
 	)
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const [modalMode, setModalMode] = useState<boolean>(false)
-	const [qrModalMode, setQRModalMode] = useState<boolean>(false)
 	const [progress, updateProgress] = useState<number>(0)
 	const [disabled, setDisabled] = useState<boolean>()
 
 	const scrollElem = createRef<HTMLDivElement>()
 	const ref = createRef<HTMLButtonElement>()
-	const qrref = createRef<HTMLButtonElement>()
 
 	useEventListener(
 		'touchstart',
@@ -122,41 +120,44 @@ export const Layout: React.FC<LayoutProps> = ({
 	)
 
 	return (
-		<div className="mainwrapper" ref={scrollElem}>
+		<div
+			className={`mainwrapper ${relative ? 'relative' : ''}`}
+			ref={scrollElem}
+		>
 			{noNav ? null : (
-				<div className="bg-[#fff] flex flex-col sticky top-0 z-10 h-14 justify-center drop-shadow-2xl shadow-xl">
+				<div className="bg-white flex flex-col sticky top-0 z-10 h-14 justify-center drop-shadow-md">
 					<div className="mx-2 sm:mx-5 lg:mx-10 flex flex-row justify-between items-center">
 						{isPage === 'home' ? (
 							<FaChurch
-								color="#210440"
+								color=" rgba(63, 39, 113, 1)"
 								size={35}
 								onClick={() => router.push('/home')}
 								className="object-contain cursor-pointer"
 							/>
 						) : (
 							<BiChurch
-								color="#210440"
+								color=" rgba(63, 39, 113, 1)"
 								size={35}
 								onClick={() => router.push('/home')}
 								className="object-contain cursor-pointer"
 							/>
 						)}
 						<p
-							className="font-gloss text-lg sm:text-xl lg:text-2xl line-clamp-1 w-full text-center text-[#210440] cursor-pointer"
+							className="font-gloss text-lg sm:text-xl lg:text-2xl line-clamp-1 w-full text-center text-PRIMARY	 cursor-pointer"
 							onClick={() => router.push('/home')}
 						>
 							Welcome Home, {user ? user!.nickname : null}
 						</p>
 						{isPage === 'profile' ? (
 							<BsFillPersonFill
-								color="#210440"
+								color=" rgba(63, 39, 113, 1)"
 								className="object-contain cursor-pointer"
 								size={35}
 								onClick={() => setIsOpen(true)}
 							/>
 						) : (
 							<BsPerson
-								color="#210440"
+								color=" rgba(63, 39, 113, 1)"
 								className="object-contain cursor-pointer"
 								size={35}
 								onClick={() => setIsOpen(true)}
@@ -183,7 +184,7 @@ export const Layout: React.FC<LayoutProps> = ({
 						leaveTo="transform translate-x-64"
 					>
 						<div className="w-64 fixed top-0 right-0 h-full flex flex-col items-start bg-white ">
-							<p className="text-3xl font-bebas tracking-[0.025em] py-5 w-full text-center text-[#210440] shadow-2xl">
+							<p className="text-3xl font-bebas tracking-[0.025em] py-5 w-full text-center text-PRIMARY shadow-2xl">
 								Profile Settings
 							</p>
 							<button
@@ -196,41 +197,21 @@ export const Layout: React.FC<LayoutProps> = ({
 								Edit Profile
 							</button>
 
-							<p className="text-3xl font-bebas drop-shadow-lg tracking-[0.025em] py-5 w-full text-center text-[#210440] shadow-2xl">
-								Warrior Conference
+							<p className="text-3xl font-bebas drop-shadow-lg tracking-[0.025em] py-5 w-full text-center text-PRIMARY shadow-2xl">
+								Watch Party
 							</p>
 							<a
 								className="w-full"
-								href="https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/warriorConf.zip?alt=media&token=db1f5047-d6ed-459e-89c0-1c0548efc7ec"
-								download
-							>
-								<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
-									Virtual Background
-								</button>
-							</a>
-							<a
-								className="w-full"
-								href="https://zoom.us/j/91988881804"
+								href="https://zoom.us/j/98899619982"
 								target="_blank"
 								rel="noreferrer"
 							>
 								<button className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none">
-									Join Zoom
+									Join In Zoom
 								</button>
 							</a>
-							{user?.nickname == 'ET' ? (
-								<button
-									onClick={() => {
-										setQRModalMode(true)
-										setIsOpen(false)
-									}}
-									className="text-montserrat text-xl w-full text-center py-3 focus-within:outline-none"
-								>
-									Send Attendance
-								</button>
-							) : null}
 							<button
-								className="text-montserrat elevation-24 text-xl focus-within:outline-none font-semibold absolute bottom-0 px-5 py-3 w-full bg-[#fff] flex flex-row items-center text-[#210440]"
+								className="text-montserrat elevation-24 text-xl focus-within:outline-none font-semibold absolute bottom-0 px-5 py-3 w-full bg-[#fff] flex flex-row items-center text-PRIMARY"
 								onClick={() => authUser.signOut()}
 							>
 								<BiLogOut className="mr-2" /> Log Out
@@ -239,47 +220,7 @@ export const Layout: React.FC<LayoutProps> = ({
 					</Transition.Child>
 				</Dialog>
 			</Transition>
-			<Dialog
-				as="div"
-				initialFocus={qrref}
-				open={qrModalMode}
-				className="fixed inset-0 z-10 backdrop-blur-[2px]"
-				onClose={() => setQRModalMode(false)}
-			>
-				<div className="w-[11/12] px-3 sm:px-6 py-4 bg-[#31065f] fixed top-1/2 left-1/2 flex flex-col items-center text-white rounded-[4px] shadow-2xl transform -translate-y-1/2 -translate-x-1/2">
-					<QrReader
-						delay={400}
-						className="w-full h-full z-20"
-						onError={() => toast.error('Contact Developer')}
-						onScan={async (data) => {
-							const attendance = await fetch(
-								`/api/attendance/${data}`,
-								{
-									method: 'POST',
-									headers: {
-										'Content-Type': 'application/json'
-									},
-									credentials: 'same-origin',
-									body: JSON.stringify(user)
-								}
-							)
-							if (attendance.ok) {
-								setQRModalMode(false)
-								toast.success('Attendance Recorded!')
-							}
-						}}
-					/>
-					<button
-						ref={qrref}
-						className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-base lg:py-2 py-1 mt-2 text-center lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
-						onClick={() => {
-							setQRModalMode(false)
-						}}
-					>
-						Close
-					</button>
-				</div>
-			</Dialog>
+
 			<Dialog
 				as="div"
 				open={modalMode}
@@ -397,7 +338,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.fullName
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 											/>
 											{errors.fullName &&
 											touched.fullName ? (
@@ -421,7 +362,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.nickname
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 											/>
 											{errors.nickname &&
 											touched.nickname ? (
@@ -447,7 +388,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.contact
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 											/>
 											{errors.contact &&
 											touched.contact ? (
@@ -530,7 +471,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.ic
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 											/>
 											{errors.ic && touched.ic ? (
 												<div className="text-red-600 text-center mb-4">
@@ -553,7 +494,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.address1
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 											/>
 											{errors.address1 &&
 											touched.address1 ? (
@@ -577,7 +518,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.address2
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]`}
 											/>
 											{errors.address2 &&
 											touched.address2 ? (
@@ -611,7 +552,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.cluster
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 												options={clusters}
 												isClearable={false}
 												maxMenuHeight={150}
@@ -668,7 +609,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.smallTeam
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 												options={
 													values.cluster == 'Move'
 														? Move.map(
@@ -772,7 +713,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.cg
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 												options={
 													values.cluster == 'Move'
 														? convertto1D(
@@ -865,7 +806,7 @@ export const Layout: React.FC<LayoutProps> = ({
 														  touched.status
 														? 'ring-offset-1 ring-2 ring-green-600'
 														: 'ring-offset-1 ring-2 ring-[#7e30d1]'
-												} mb-4 focus-within:outline-none text-[#210440] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
+												} mb-4 focus-within:outline-none text-SECONDARY lg:w-[600px] md:w-[500px] sm:w-[400px] w-[240px] bg-gray-200 text-center font-montserrat text-sm sm:text-base rounded-[4px] placeholder-[#a67bd4]`}
 												isClearable={false}
 												maxMenuHeight={150}
 												options={pastoralStatuses.map(
@@ -931,7 +872,7 @@ export const Layout: React.FC<LayoutProps> = ({
 					{children}
 				</div>
 				{noFooter ? null : (
-					<div className="z-10 bg-[#fff] sticky flex flex-row h-14 lg:h-16 py-2 bottom-0 justify-around w-full mt-10 border-[#210440] border-t-[2px]">
+					<div className="z-10 bg-[#fff] sticky flex flex-row h-14 lg:h-16 py-2 bottom-0 justify-around w-full mt-10 border-SECONDARY border-t-[2px]">
 						{categoriesPage.map((page, i) => (
 							<div
 								key={i}
