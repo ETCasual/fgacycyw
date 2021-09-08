@@ -52,31 +52,36 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
-			<Component {...pageProps} />
-			<ToastContainer
-				position="bottom-center"
-				hideProgressBar={true}
-				newestOnTop={false}
-				closeOnClick={false}
-				rtl={false}
-				pauseOnFocusLoss
-				draggable={false}
-				pauseOnHover
-				limit={1}
-			>
-				{HtmlRef && isOffline()
-					? setTimeout(() => {
-							toast.error('⚠️ Please connect to the Internet', {
-								position: 'bottom-center',
-								hideProgressBar: true,
-								closeOnClick: false,
-								pauseOnHover: true,
-								draggable: false,
-								autoClose: false
-							})
-					  }, 5000)
-					: null}
-			</ToastContainer>
+			<div className="max-w-[640px] h-screen overflow-y-scroll scrollbar-none mx-auto relative bg-white border-l border-r border-PRIMARY">
+				<Component {...pageProps} />
+				<ToastContainer
+					position="bottom-center"
+					hideProgressBar={true}
+					newestOnTop={false}
+					closeOnClick={false}
+					rtl={false}
+					pauseOnFocusLoss
+					draggable={false}
+					pauseOnHover
+					limit={1}
+				>
+					{HtmlRef && isOffline()
+						? setTimeout(() => {
+								toast.error(
+									'⚠️ Please connect to the Internet',
+									{
+										position: 'bottom-center',
+										hideProgressBar: true,
+										closeOnClick: false,
+										pauseOnHover: true,
+										draggable: false,
+										autoClose: false
+									}
+								)
+						  }, 5000)
+						: null}
+				</ToastContainer>
+			</div>
 		</>
 	)
 }

@@ -4,7 +4,8 @@ import {
 	withAuthUserTokenSSR
 } from 'next-firebase-auth'
 import notion, { parseUser } from '../lib/notion'
-import Home, { HomeProps } from '../modules/home'
+import Home from '../modules/home'
+import { HomeProps } from '../modules/home'
 import { getEnvVar } from '../utils/helpers'
 
 export const getServerSideProps = withAuthUserTokenSSR({

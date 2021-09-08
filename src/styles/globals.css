@@ -3,23 +3,13 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
-@import url('https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/HuaWenKaiTi-Bold-1.ttf?alt=media&token=a0b0df3b-6acd-4e38-800e-a4a5694d9698');
-@import url('https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/REEJI-HonghuangLiGB-Bold-2.ttf?alt=media&token=4dd2d440-1086-49ea-b52c-f01becc91369');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
 
 @font-face {
 	font-family: 'Gloss And Bloom';
 	src: url('/font/Gloss_And_Bloom.ttf');
 }
 
-@font-face {
-	font-family: 'KaiTi';
-	src: url('https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/HuaWenKaiTi-Bold-1.ttf?alt=media&token=a0b0df3b-6acd-4e38-800e-a4a5694d9698');
-}
-
-@font-face {
-	font-family: 'REEJI-HonghuangLiGB';
-	src: url('https://firebasestorage.googleapis.com/v0/b/fgacycyw-web.appspot.com/o/REEJI-HonghuangLiGB-Bold-2.ttf?alt=media&token=4dd2d440-1086-49ea-b52c-f01becc91369');
-}
 /* @import url('http://fonts.cdnfonts.com/css/century-gothic?styles=24895,24898,24896,24897'); */
 
 html,
@@ -36,8 +26,12 @@ body {
 }
 
 body > .mainwrapper {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
+}
+
+.bottomBarHeight {
+	height: calc(100vh - 210px);
 }

@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = ({
 	const router = useRouter()
 	return (
 		<div
-			className={`w-full h-[200px] group transform transition ease-in-out duration-300 hover:scale-[1.025] lg:h-[300px] cursor-pointer rounded-none sm:rounded-md bg-center bg-cover sm:bg-cover relative z-[1] bg-no-repeat ${className}`}
+			className={`w-full h-[150px] group transform transition ease-in-out duration-300 hover:scale-[1.025]  cursor-pointer rounded-none sm:rounded-md bg-center bg-cover sm:bg-cover relative z-[1] bg-no-repeat ${className}`}
 			onClick={() => {
 				to ? router.push(to) : null
 			}}
