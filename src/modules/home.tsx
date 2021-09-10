@@ -5,7 +5,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-import { Card, Layout, Loader } from '../components'
+import {
+	Card,
+	InstagramVideo,
+	Layout,
+	Loader,
+	ProfileUpdate
+} from '../components'
+import InstagramEmbed from 'react-instagram-embed'
 
 import Head from 'next/head'
 
@@ -61,6 +68,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 				<title>Home | FGACYCYW KL</title>
 			</Head>
 			<Layout currentPage="home" user={user} noFooter hscreen={false}>
+				<ProfileUpdate user={user} />
 				<div className="flex flex-col w-full h-[180px] bg-smoothPink justify-center">
 					{failed ? (
 						<p className="text-PRIMARY font-chi font-bold text-5xl text-center w-full -mt-7">
@@ -71,6 +79,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 							<p className="text-PRIMARY font-bebas text-4xl text-center w-full my-5">
 								Today&apos;s Special!
 							</p>
+							<InstagramVideo />
 						</>
 					)}
 				</div>
