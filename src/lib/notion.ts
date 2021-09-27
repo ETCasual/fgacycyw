@@ -4,7 +4,8 @@ import {
 	RichTextPropertyValue,
 	EmailPropertyValue,
 	TitlePropertyValue,
-	CheckboxPropertyValue
+	CheckboxPropertyValue,
+	URLPropertyValue
 } from '@notionhq/client/build/src/api-types'
 
 export const allowedContent = {
@@ -113,5 +114,20 @@ export const parseUser = (page: Page): Notion.User => {
 				: null,
 		registered: (page.properties.Registered as CheckboxPropertyValue)
 			.checkbox
+	}
+}
+
+export const parseRegData = (page: Page): Notion.WorshipNightReg => {
+	return {
+		wnid:
+			(page.properties.WNID as RichTextPropertyValue).rich_text.length !==
+			0
+				? (page.properties.WNID as RichTextPropertyValue).rich_text[0]
+						.plain_text
+				: null,
+		registered:
+			(page.properties.Receipt as URLPropertyValue).url.length !== 0
+				? true
+				: false
 	}
 }

@@ -27,6 +27,11 @@ const cards = [
 		image: '/assets/warriorConfBannerSmall.jpg',
 		name: 'Warriors Conference',
 		to: '/warriorConference'
+	},
+	{
+		image: '/assets/worshipnightPoster.png',
+		name: 'Worship Night',
+		to: '/worshipnight'
 	}
 ]
 

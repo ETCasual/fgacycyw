@@ -77,6 +77,7 @@ type LayoutProps = {
 	noNav?: boolean
 	overflowHidden?: boolean
 	relative?: boolean
+	itemscenter?: boolean
 }
 
 export const Layout: React.FC<LayoutProps> = ({
@@ -88,7 +89,8 @@ export const Layout: React.FC<LayoutProps> = ({
 	noNav = false,
 	hscreen = true,
 	overflowHidden = false,
-	relative = false
+	relative = false,
+	itemscenter = true
 }) => {
 	const authUser = useAuthUser()
 	const router = useRouter()
@@ -212,7 +214,10 @@ export const Layout: React.FC<LayoutProps> = ({
 							</a>
 							<button
 								className="text-montserrat elevation-24 text-xl focus-within:outline-none font-semibold absolute bottom-0 px-5 py-3 w-full bg-[#fff] flex flex-row items-center text-PRIMARY"
-								onClick={() => authUser.signOut()}
+								onClick={() => {
+									authUser.signOut()
+									router.push('/login')
+								}}
 							>
 								<BiLogOut className="mr-2" /> Log Out
 							</button>
@@ -865,9 +870,9 @@ export const Layout: React.FC<LayoutProps> = ({
 				} flex flex-col justify-between ${className}`}
 			>
 				<div
-					className={`flex w-full flex-col items-center relative ${
-						overflowHidden ? 'overflow-hidden' : null
-					}`}
+					className={`flex w-full flex-col ${
+						itemscenter ? 'items-center' : ''
+					} relative ${overflowHidden ? 'overflow-hidden' : ''}`}
 				>
 					{children}
 				</div>

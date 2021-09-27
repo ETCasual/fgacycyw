@@ -4,6 +4,13 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
+				<title>FGACYC YWKL</title>
+				<meta name="url" content="https://kl.fgacycyw.com" />
+				<meta
+					name="description"
+					content="The Official Home of FGACYC Young Warrior KL Region! Our Home Sweet Home!"
+				/>
+
 				<Head>
 					<link rel="manifest" href="/manifest.json" />
 					<link
