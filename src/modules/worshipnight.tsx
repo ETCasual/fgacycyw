@@ -7,8 +7,6 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import { Layout, Loader } from '../components'
-import { UserProps } from '../interface'
-import AOS from 'aos'
 import 'react-vertical-timeline-component/style.min.css'
 import ProgressBar from '@ramonak/react-progress-bar'
 
@@ -21,12 +19,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 	registration_data,
 	registered
 }) => {
-	console.log(JSON.stringify(registration_data, null, 2))
-	useEffect(() => {
-		AOS.init({
-			duration: 2000
-		})
-	}, [])
+	// console.log(JSON.stringify(registration_data, null, 2))
 	const [mounted, setMounted] = useState<boolean>(false)
 	const [isModalOpen, setModalState] = useState<boolean>(false)
 	const [isDisabled, setDisabled] = useState<boolean>(false)
@@ -115,15 +108,15 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 
 						{progress == 0 ? (
 							<img
-								src={'/assets/tng/tng-ss-personal.jpeg'}
+								src={'/assets/tng/tng-ss-personal.png'}
 								alt="Tng-ss"
-								className="object-cover mx-auto w-[270px] sm:w-[400px]"
+								className="object-cover mx-auto w-[200px] sm:w-[400px]"
 							/>
 						) : progress == 33 ? (
 							<img
 								src={'/assets/tng/tng-ss-sent.png'}
 								alt="Tng-ss"
-								className="object-cover mx-auto w-[270px] sm:w-[400px]"
+								className="object-cover mx-auto w-[200px] sm:w-[400px]"
 							/>
 						) : null}
 						{progress == 0 ? (
@@ -259,10 +252,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 					alt="poster"
 					className="object-cover object-center h-[215px] w-full"
 				/>
-				<div
-					className="mt-5 rounded-r-xl bg-SECONDARY px-3 py-2 shadow-md w-[270px] sm:w-[450px]"
-					data-aos="fade-right"
-				>
+				<div className="mt-5 rounded-r-xl bg-SECONDARY px-3 py-2 shadow-md w-[270px] sm:w-[450px]">
 					<p className="font-sans text-3xl sm:text-4xl italic text-PRIMARY font-bold mr-5">
 						GO BEYOND{' '}
 						<span role="img" aria-labelledby="music-note">
@@ -270,18 +260,12 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						</span>
 					</p>
 				</div>
-				<div
-					className="mt-5 rounded-r-xl bg-PRIMARY px-3 py-2 shadow-md w-[300px]"
-					data-aos="fade-right"
-				>
+				<div className="mt-5 rounded-r-xl bg-PRIMARY px-3 py-2 shadow-md w-[300px]">
 					<p className="font-sans text-xl sm:text-2xl text-smoothPink font-bold mr-5">
 						赞美与敬拜，对你而言只是歌唱罢了吗?
 					</p>
 				</div>
-				<div
-					className="mt-5 rounded-l-xl bg-PRIMARY px-3 py-2 shadow-md sm:w-[450px] w-[300px] place-self-end"
-					data-aos="fade-left"
-				>
+				<div className="mt-5 rounded-l-xl bg-PRIMARY px-3 py-2 shadow-md sm:w-[450px] w-[300px] place-self-end">
 					<p className="font-sans text-xl sm:text-2xl text-smoothPink font-bold mr-5">
 						<span className="text-2xl sm:text-3xl">
 							腓立比书 4:13
@@ -297,10 +281,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						</span>
 					</p>
 				</div>
-				<div
-					className="mt-5 rounded-r-xl bg-SECONDARY px-3 py-2 shadow-md  w-[170px] sm:w-[200px]"
-					data-aos="fade-right"
-				>
+				<div className="mt-5 rounded-r-xl bg-SECONDARY px-3 py-2 shadow-md  w-[170px] sm:w-[200px]">
 					<p className="font-sans text-2xl sm:text-3xl text-PRIMARY font-bold mr-5">
 						日期:
 						<br />
@@ -309,20 +290,14 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						(星期五)
 					</p>
 				</div>
-				<div
-					className="mt-5 rounded-r-xl bg-SECONDARY px-3 py-2 shadow-md w-[180px] sm:w-[240px]"
-					data-aos="fade-right"
-				>
+				<div className="mt-5 rounded-r-xl bg-SECONDARY px-3 py-2 shadow-md w-[180px] sm:w-[240px]">
 					<p className="font-sans text-2xl sm:text-3xl text-PRIMARY font-bold">
 						时间:
 						<br />
 						8点30分晚上
 					</p>
 				</div>
-				<div
-					className="-mt-32 mb-20 rounded-l-xl bg-yellowmain px-3 py-2 shadow-md sm:w-[250px] w-[120px] place-self-end"
-					data-aos="fade-left"
-				>
+				<div className="-mt-32 mb-20 rounded-l-xl bg-yellowmain px-3 py-2 shadow-md sm:w-[250px] w-[120px] place-self-end">
 					<p className="font-sans text-2xl sm:text-3xl text-PRIMARY font-bold mr-5">
 						方式: <br className="sm:hidden" />
 						ZOOM

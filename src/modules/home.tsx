@@ -12,7 +12,6 @@ import {
 	Loader,
 	ProfileUpdate
 } from '../components'
-import InstagramEmbed from 'react-instagram-embed'
 
 import Head from 'next/head'
 
@@ -24,14 +23,18 @@ export type HomeProps = {
 
 const cards = [
 	{
-		image: '/assets/warriorConfBannerSmall.jpg',
-		name: 'Warriors Conference',
-		to: '/warriorConference'
-	},
-	{
 		image: '/assets/worshipnightPoster.png',
 		name: 'Worship Night',
-		to: '/worshipnight'
+		to: '/worshipnight',
+		textColor: '#FFF',
+		hoverTextColor: '#FFBA00'
+	},
+	{
+		image: '/assets/warriorConfBannerSmall.jpg',
+		name: 'Warriors Conference',
+		to: '/warriorConference',
+		textColor: '#000',
+		hoverTextColor: '#210440'
 	}
 ]
 
@@ -89,7 +92,7 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 					)}
 				</div>
 				<div
-					className="bg-white rounded-t-3xl w-full flex flex-col p-10 bottomBarHeight -mt-7"
+					className="bg-white rounded-t-3xl w-full flex flex-col p-10 -mt-7 overflow-y-scroll bottomBarHeight scrollbar-none"
 					style={{
 						boxShadow: '0px -4px 20px rgba(50, 50, 50, 0.2)',
 						WebkitBoxShadow: '0px -4px 20px rgba(50, 50, 50, 0.2)',
@@ -102,6 +105,8 @@ const Home: NextPage<HomeProps> = ({ user, userToken }) => {
 								key={i}
 								to={card.to}
 								image={card.image}
+								textColor={card.textColor}
+								hoverTextColor={card.hoverTextColor}
 								name={card.name}
 							/>
 						))}
