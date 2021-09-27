@@ -24,14 +24,14 @@ export type HomeProps = {
 const cards = [
 	{
 		image: '/assets/worshipnightPoster.png',
-		name: 'Worship Night',
+		name: '',
 		to: '/worshipnight',
 		textColor: '#FFF',
 		hoverTextColor: '#FFBA00'
 	},
 	{
 		image: '/assets/warriorConfBannerSmall.jpg',
-		name: 'Warriors Conference',
+		name: '',
 		to: '/warriorConference',
 		textColor: '#000',
 		hoverTextColor: '#210440'
