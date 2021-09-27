@@ -9,7 +9,8 @@ import React, { useState, useEffect } from 'react'
 import { Layout, Loader } from '../components'
 import 'react-vertical-timeline-component/style.min.css'
 import ProgressBar from '@ramonak/react-progress-bar'
-import Compress from 'compress.js'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Compress = require('compress.js')
 
 import { toBase64 } from '../utils/helpers'
 import { WorshipNightProps } from '../pages/worshipnight'
