@@ -107,4 +107,12 @@ const sendRegWorship = async (
 	}
 }
 
+export const config = {
+	api: {
+		bodyParser: {
+			sizeLimit: '7mb'
+		}
+	}
+}
+
 export default sendRegWorship
