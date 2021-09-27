@@ -16,4 +16,9 @@ declare namespace Notion {
 		cg: string | null
 		registered: boolean
 	}
+
+	type WorshipNightReg = {
+		wnid: string | null
+		registered: boolean
+	}
 }
