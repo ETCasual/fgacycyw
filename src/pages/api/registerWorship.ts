@@ -8,7 +8,9 @@ const sendRegWorship = async (
 	res: NextApiResponse
 ): Promise<void> => {
 	const reciept = req.body.reciept
-	const properties: Notion.User = req.body.user
+	const fullname = req.body.fullname
+	const address = req.body.address
+	const uid = req.body.uid
 
 	const { env: dbId, error } = getEnvVar('NOTION_WORSHIPNIGHT_DATABASE_ID')
 	if (error) throw error
@@ -42,7 +44,7 @@ const sendRegWorship = async (
 				and: [
 					{
 						property: 'Uid',
-						text: { equals: properties.uid as string }
+						text: { equals: uid as string }
 					}
 				]
 			}
@@ -64,8 +66,7 @@ const sendRegWorship = async (
 						{
 							type: 'text',
 							text: {
-								content:
-									properties.fullName?.toUpperCase() as string
+								content: fullname as string
 							}
 						}
 					]
@@ -80,9 +81,7 @@ const sendRegWorship = async (
 						{
 							type: 'text',
 							text: {
-								content: ((properties.address1 as string) +
-									' ' +
-									properties.address2) as string
+								content: address as string
 							}
 						}
 					]
@@ -93,7 +92,7 @@ const sendRegWorship = async (
 						{
 							type: 'text',
 							text: {
-								content: properties.uid as string
+								content: uid as string
 							}
 						}
 					]
