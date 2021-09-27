@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react'
 import { Layout, Loader } from '../components'
 import 'react-vertical-timeline-component/style.min.css'
 import ProgressBar from '@ramonak/react-progress-bar'
+import Compress from 'compress.js'
 
 import { toBase64 } from '../utils/helpers'
 import { WorshipNightProps } from '../pages/worshipnight'
@@ -29,10 +30,17 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 
 	const uploadtoNotion = async (file: File, user: Notion.User) => {
 		console.log('uploading to imgbb')
-		console.log('user submission: ' + user)
-		const imgB64 = await toBase64(file)
+		// console.log('user submission: ' + user)
+		const compress = new Compress()
+		const resizedImg = await compress.compress([file], {
+			size: 1,
+			quality: 0.65,
+			resize: true
+		})
 
-		if (imgB64 instanceof Error) {
+		const imgB64 = resizedImg[0].data
+
+		if (imgB64.length == 0) {
 			console.error('Failed to encode Image')
 			alert('图片上传失败，请重新加载网页😬')
 			return

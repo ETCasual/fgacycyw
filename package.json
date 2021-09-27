@@ -22,6 +22,7 @@
 		"@tailwindcss/line-clamp": "^0.2.1",
 		"@types/react-vertical-timeline-component": "^3.0.1",
 		"aos": "^2.3.4",
+		"compress.js": "^1.2.1",
 		"express-validator": "^6.12.1",
 		"firebase": "^8.8.1",
 		"firebase-admin": "^9.11.0",
@@ -54,6 +55,7 @@
 	},
 	"devDependencies": {
 		"@types/aos": "^3.0.4",
+		"@types/compress.js": "^1.1.1",
 		"@types/luxon": "^1.27.1",
 		"@types/react": "17.0.15",
 		"@types/react-qr-reader": "^2.1.4",
