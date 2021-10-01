@@ -17,7 +17,8 @@ import { useRouter } from 'next/router'
 const WorshipNight: NextPage<WorshipNightProps> = ({
 	user,
 	registration_data,
-	registered
+	registered,
+	approved
 }) => {
 	// console.log(JSON.stringify(registration_data, null, 2))
 	const [mounted, setMounted] = useState<boolean>(false)
@@ -127,7 +128,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 								<span className="text-yellowmain">
 									TNG E-Wallet
 								</span>{' '}
-								Scan 以上的QR码把对应的报名费 (RM5) 提交
+								Scan 以上的QR码把对应的报名费 (RM9) 提交
 								<br />
 								或以{' '}
 								<span className="text-yellowmain">
@@ -307,15 +308,19 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 				</div>
 
 				<div className="mx-auto my-10 rounded-xl w-[300px] sm:w-[450px] bg-SECONDARY shadow-xl items-center font-sans p-2">
-					{registered && registration_data?.wnid !== null ? (
+					{approved && registration_data?.wnid ? (
 						<p className="text-3xl text-center my-2 font-bold text-PRIMARY">
 							以下是您的 ID 以及 Zoom Link
 						</p>
-					) : (
+					) : registered && registration_data?.wnid == undefined ? (
 						<p className="text-3xl text-center my-2 font-bold text-PRIMARY">
 							您的资料未被审查
 							<br />
 							请稍等~
+						</p>
+					) : (
+						<p className="text-3xl text-center my-2 font-bold text-PRIMARY">
+							报名详情
 						</p>
 					)}
 
@@ -327,7 +332,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						</p>
 					) : (
 						<>
-							<p className="font-sans text-2xl text-PRIMARY font-bold tracking-tighter text-center">
+							<p className="font-sans line-through text-2xl text-PRIMARY font-bold tracking-tighter text-center">
 								<span
 									role="img"
 									aria-labelledby="pin"
@@ -384,18 +389,18 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 							</p>
 						</>
 					)}
-					{registered ? null : registered &&
-					  registration_data?.wnid !== null ? (
+					{approved && registration_data?.wnid ? (
 						<button
 							// Enter Zoom Link
 							onClick={() =>
-								router.push('https://zoom.us/j/99376674284')
+								// router.push('https://zoom.us/j/99376674284')
+								alert('日子还没到哦! 在 10月15日 再来吧! 😉')
 							}
 							className="mt-5 w-full font-bebas text-2xl px-5 py-2 bg-PRIMARY rounded-xl text-white"
 						>
 							Join Zoom
 						</button>
-					) : (
+					) : registered ? null : (
 						<button
 							onClick={() => setModalState(true)}
 							className="mt-5 w-full font-bebas text-2xl px-5 py-2 bg-PRIMARY rounded-xl text-white"

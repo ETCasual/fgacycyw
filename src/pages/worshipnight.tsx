@@ -11,6 +11,7 @@ import { getEnvVar } from '../utils/helpers'
 export interface WorshipNightProps extends UserProps {
 	registration_data?: Notion.WorshipNightReg
 	registered?: boolean
+	approved?: boolean
 }
 
 export const getServerSideProps = withAuthUserTokenSSR({
@@ -52,6 +53,10 @@ export const getServerSideProps = withAuthUserTokenSSR({
 		return {
 			props: {
 				user: user,
+				approved:
+					response2.results[0] == undefined
+						? false
+						: response2.results[0].properties['Approval'],
 				registration_data:
 					response2.results[0] == undefined ? null : regData,
 				registered:
