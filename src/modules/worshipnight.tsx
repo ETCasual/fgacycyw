@@ -13,7 +13,14 @@ import ProgressBar from '@ramonak/react-progress-bar'
 import { toBase64 } from '../utils/helpers'
 import { WorshipNightProps } from '../pages/worshipnight'
 import { useRouter } from 'next/router'
-import YouTube from 'react-youtube'
+import YouTube, { PlayerVars, Options } from 'react-youtube'
+
+const ytopts: Options = {
+	playerVars: {
+		showinfo: 0,
+		controls: 1
+	}
+}
 
 const WorshipNight: NextPage<WorshipNightProps> = ({
 	user,
@@ -266,8 +273,9 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 				</div>
 				<YouTube
 					videoId="_qDjZxwh-bc"
-					className="mx-auto p-3 lg:p-5 rounded-2xl"
-					containerClassName="mx-auto rounded-2xl w-full"
+					className="mx-auto p-3 lg:p-5 rounded-2xl w-full"
+					containerClassName="mx-auto rounded-2xl"
+					opts={ytopts}
 					onEnd={() => {
 						console.log('Video Ended')
 					}}
