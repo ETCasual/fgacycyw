@@ -13,6 +13,7 @@ import ProgressBar from '@ramonak/react-progress-bar'
 import { toBase64 } from '../utils/helpers'
 import { WorshipNightProps } from '../pages/worshipnight'
 import { useRouter } from 'next/router'
+import YouTube from 'react-youtube'
 
 const WorshipNight: NextPage<WorshipNightProps> = ({
 	user,
@@ -263,6 +264,14 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						</span>
 					</p>
 				</div>
+				<YouTube
+					videoId="_qDjZxwh-bc"
+					className="mx-auto p-3 lg:p-5 rounded-2xl"
+					containerClassName="mx-auto rounded-2xl w-full"
+					onEnd={() => {
+						console.log('Video Ended')
+					}}
+				/>
 				<div className="mt-5 rounded-r-xl bg-PRIMARY px-3 py-2 shadow-md w-[300px]">
 					<p className="font-sans text-xl sm:text-2xl text-smoothPink font-bold mr-5">
 						赞美与敬拜，对你而言只是歌唱罢了吗?
