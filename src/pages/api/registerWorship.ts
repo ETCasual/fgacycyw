@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import FormData from 'form-data'
 import notion from '../../lib/notion'
 import { getEnvVar } from '../../utils/helpers'
 
@@ -7,35 +6,13 @@ const sendRegWorship = async (
 	req: NextApiRequest,
 	res: NextApiResponse
 ): Promise<void> => {
-	const reciept = req.body.reciept
 	const fullname = req.body.fullname
 	const address = req.body.address
 	const uid = req.body.uid
+	const wnid = (Math.floor(Math.random() * 9999) + 1).toString()
 
 	const { env: dbId, error } = getEnvVar('NOTION_WORSHIPNIGHT_DATABASE_ID')
 	if (error) throw error
-
-	const { env: imgbbApi, error: error2 } = getEnvVar('IMGBB_API_KEY')
-	if (error2) throw error2
-
-	const form = new FormData()
-	form.append('image', reciept)
-
-	// Send a POST request to upload the image to ImgBB
-	const fetchRes = await fetch(
-		`https://api.imgbb.com/1/upload?key=${imgbbApi}`,
-		{
-			method: 'POST',
-			body: form as unknown as BodyInit
-		}
-	)
-	const imgbbRes = await fetchRes.json()
-
-	// If uploading fails fail the request
-	if (!(fetchRes.status === 200)) {
-		res.status(404).json(new Error('Unable to upload image to ImgBB'))
-		return
-	}
 
 	try {
 		const checkRes = await notion.databases.query({
@@ -71,10 +48,6 @@ const sendRegWorship = async (
 						}
 					]
 				},
-				Receipt: {
-					type: 'url',
-					url: imgbbRes.data.url
-				},
 				'Full Address': {
 					type: 'rich_text',
 					rich_text: [
@@ -93,6 +66,28 @@ const sendRegWorship = async (
 							type: 'text',
 							text: {
 								content: uid as string
+							}
+						}
+					]
+				},
+				Approval: {
+					type: 'checkbox',
+					checkbox: true
+				},
+				WNID: {
+					type: 'rich_text',
+					rich_text: [
+						{
+							type: 'text',
+							text: {
+								content:
+									wnid.length == 1
+										? 'WN000' + wnid
+										: wnid.length == 2
+										? 'WN00' + wnid
+										: wnid.length == 3
+										? 'WN0' + wnid
+										: 'WN' + wnid
 							}
 						}
 					]

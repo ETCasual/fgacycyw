@@ -126,7 +126,9 @@ export const parseRegData = (page: Page): Notion.WorshipNightReg => {
 						.plain_text
 				: null,
 		registered:
-			(page.properties.Receipt as URLPropertyValue).url.length !== 0
+			(page.properties.Receipt as URLPropertyValue) == undefined
+				? (page.properties.Approval as CheckboxPropertyValue).checkbox
+				: (page.properties.Receipt as URLPropertyValue).url.length !== 0
 				? true
 				: false
 	}

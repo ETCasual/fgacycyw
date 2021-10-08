@@ -33,19 +33,9 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 	const [isModalOpen, setModalState] = useState<boolean>(false)
 	const [isDisabled, setDisabled] = useState<boolean>(false)
 	const [progress, setProgress] = useState<number>(0)
-	const [file, setFile] = useState<File | null>()
 	const router = useRouter()
 
-	const uploadtoNotion = async (file: File, user: Notion.User) => {
-		console.log('uploading to imgbb')
-		console.log('user submission: ' + user)
-		const imgB64 = await toBase64(file)
-
-		if (imgB64 instanceof Error) {
-			console.error('Failed to encode Image')
-			alert('图片上传失败，请重新加载网页😬')
-			return
-		}
+	const uploadtoNotion = async (user: Notion.User) => {
 		const res = await fetch('/api/registerWorship', {
 			method: 'POST',
 			headers: {
@@ -55,8 +45,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 			body: JSON.stringify({
 				fullname: user.fullName,
 				address: user.address1 + ',' + user.address2,
-				uid: user.uid,
-				reciept: imgB64
+				uid: user.uid
 			})
 		})
 		if (res.ok) {
@@ -64,7 +53,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 			setProgress(100)
 		} else {
 			alert(
-				'对不起，上传当中出现了状况，请重新加载网页再尝试 😕\n若问题再现 请告诉组长 😉'
+				'对不起，当中出现了状况，请重新加载网页再尝试 😕\n若问题再现 请告诉组长 😉'
 
 				// JSON.stringify(user, null, 2)
 			)
@@ -118,112 +107,27 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						</div>
 
 						{progress == 0 ? (
-							<img
-								src={'/assets/tng/tng-ss-personal.png'}
-								alt="Tng-ss"
-								className="object-cover mx-auto w-[200px] sm:w-[400px]"
-							/>
-						) : progress == 33 ? (
-							<img
-								src={'/assets/tng/tng-ss-sent.png'}
-								alt="Tng-ss"
-								className="object-cover mx-auto w-[200px] sm:w-[400px]"
-							/>
-						) : null}
-						{progress == 0 ? (
-							<p className="font-semibold text-lg my-2 px-5">
-								1. 用户们需使用{' '}
-								<span className="text-yellowmain">
-									TNG E-Wallet
-								</span>{' '}
-								Scan 以上的QR码把对应的报名费 (RM9) 提交
-								<br />
-								或以{' '}
-								<span className="text-yellowmain">
-									TNG E-Wallet Transfer
-								</span>{' '}
-								的方式提交给{' '}
-								<span className="text-yellowmain">
-									+60163379314
-								</span>
-							</p>
-						) : progress == 33 ? (
 							<>
-								<p className="font-semibold text-lg my-2 px-5">
-									2. 用户们需把付费之后的
+								<p className="font-semibold text-center text-2xl my-2 px-5">
+									按一下的
 									<span className="text-yellowmain">
-										单据使用 YWKL App 提交上来
+										{' '}
+										按键{' '}
 									</span>
-									给官方审查
-								</p>
-								<p className="font-semibold text-lg my-2 px-5">
-									3.
-									用户们可以在审查成功的前提下，在下一天得着您的{' '}
-									<span className="text-yellowmain">
-										专属ID 以及 Zoom Link
-									</span>
+									就可以报名了!
 								</p>
 							</>
 						) : null}
 
 						{progress == 0 ? (
-							<button
-								onClick={() => setProgress(33)}
-								className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
-							>
-								Next
-							</button>
-						) : progress == 33 ? (
-							<div className="w-full flex gap-2">
-								<button
-									onClick={() => setProgress(0)}
-									className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
-								>
-									Back
-								</button>
-								<button
-									onClick={() => setProgress(66)}
-									className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
-								>
-									Next
-								</button>
-							</div>
-						) : progress == 66 ? (
 							<>
-								<p className="my-1 text-lg font-semibold font-sans">
-									Reciept, 单据
-								</p>
-								<input
-									type="file"
-									id="screenshot"
-									name="screenshot"
-									accept="image/png, image/jpeg"
-									onChange={(event) =>
-										setFile(event.currentTarget.files![0])
-									}
-									className="mb-4 focus-within:outline-none text-PRIMARY w-full bg-gray-200 text-center font-montserrat text-sm sm:text-base py-2 px-3 rounded-[4px] placeholder-[#a67bd4]"
-								/>
-								<div className="w-full flex gap-2">
-									<button
-										onClick={() => setProgress(33)}
-										className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-[100px] transform hover:scale-[1.035]  transition ease-in-out duration-500"
-									>
-										Back
-									</button>
+								<div className="w-full mt-2 flex gap-2">
 									<button
 										disabled={isDisabled}
 										onClick={() => {
-											file
-												? setProgress(80)
-												: alert('请上传您的截图')
-											file ? setDisabled(true) : null
-
-											file
-												? uploadtoNotion(
-														file as File,
-														user as Notion.User
-												  )
-												: null
+											setDisabled(true)
+											setProgress(80)
+											uploadtoNotion(user as Notion.User)
 										}}
 										className="rounded-[4px] bg-[#10031f] text-[#fff] font-montserrat text-lg lg:py-2 py-1 text-center w-full transform hover:scale-[1.035]  transition ease-in-out duration-500"
 									>
@@ -359,7 +263,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 								</span>
 								EARLY BIRD 01/10/2021 (RM5)
 							</p>
-							<p className="font-sans text-2xl text-PRIMARY font-bold tracking-tighter text-center">
+							<p className="font-sans line-through text-2xl text-PRIMARY font-bold tracking-tighter text-center">
 								<span
 									role="img"
 									aria-labelledby="pin"
@@ -368,23 +272,6 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 									📌
 								</span>
 								AFTER EARLY BIRD 02/10/2021 (RM9)
-							</p>
-							<p className="font-sans text-2xl text-PRIMARY font-bold tracking-tighter text-center my-3">
-								<span
-									role="img"
-									aria-labelledby="siren"
-									className="mr-1"
-								>
-									🚨
-								</span>
-								截止日期: 08/10/2021
-								<span
-									role="img"
-									aria-labelledby="siren"
-									className="ml-1"
-								>
-									🚨
-								</span>
 							</p>
 
 							<p className="font-sans text-2xl text-PRIMARY font-bold tracking-tighter text-center my-3">
