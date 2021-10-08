@@ -241,7 +241,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						</p>
 					) : (
 						<p className="text-3xl text-center my-2 font-bold text-PRIMARY">
-							报名详情
+							在此报名!
 						</p>
 					)}
 
@@ -251,48 +251,7 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 								? registration_data?.wnid
 								: null}
 						</p>
-					) : (
-						<>
-							<p className="font-sans line-through text-2xl text-PRIMARY font-bold tracking-tighter text-center">
-								<span
-									role="img"
-									aria-labelledby="pin"
-									className="mr-1"
-								>
-									📌
-								</span>
-								EARLY BIRD 01/10/2021 (RM5)
-							</p>
-							<p className="font-sans line-through text-2xl text-PRIMARY font-bold tracking-tighter text-center">
-								<span
-									role="img"
-									aria-labelledby="pin"
-									className="mr-1"
-								>
-									📌
-								</span>
-								AFTER EARLY BIRD 02/10/2021 (RM9)
-							</p>
-
-							<p className="font-sans text-2xl text-PRIMARY font-bold tracking-tighter text-center my-3">
-								<span
-									role="img"
-									aria-labelledby="gift"
-									className="mr-1"
-								>
-									🎁
-								</span>
-								LIMITED EDITION Gift Pack
-								<span
-									role="img"
-									aria-labelledby="gift"
-									className="ml-1"
-								>
-									🎁
-								</span>
-							</p>
-						</>
-					)}
+					) : null}
 					{approved && registration_data?.wnid ? (
 						<button
 							// Enter Zoom Link
