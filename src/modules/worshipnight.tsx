@@ -256,8 +256,8 @@ const WorshipNight: NextPage<WorshipNightProps> = ({
 						<button
 							// Enter Zoom Link
 							onClick={() =>
-								// router.push('https://zoom.us/j/99376674284')
-								alert('日子还没到哦! 在 10月15日 再来吧! 😉')
+								router.push('https://zoom.us/j/99376674284')
+								// alert('日子还没到哦! 在 10月15日 再来吧! 😉')
 							}
 							className="mt-5 w-full font-bebas text-2xl px-5 py-2 bg-PRIMARY rounded-xl text-white"
 						>
